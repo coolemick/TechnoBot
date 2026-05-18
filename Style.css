@@ -92,3 +92,30 @@ body {
 .chat-input button:hover {
     background: #147324;
 }
+
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+    align-self: flex-start;
+}
+
+.option-button {
+    background: #1f5f3f;
+    border: 2px solid #147324;
+    color: white;
+    padding: 10px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-size: 14px;
+    text-align: left;
+    max-width: 300px;
+}
+
+.option-button:hover {
+    background: #147324;
+    border-color: #0d3b1a;
+}
+
