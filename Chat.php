@@ -20,40 +20,40 @@ class TechnoBot {
                 ],
                 "responses" => [
                     "hallo" => [
-                        "Hallo 👋 Hoe kan ik je helpen?",
-                        "Hey 😄 Wat kan ik voor je doen?",
+                        "Hallo! Hoe kan ik je helpen?",
+                        "Hallo! Wat kan ik voor je doen?",
                         "Hi daar!",
-                        "Hallo 👋",
-                        "Heyyy 😎"
+                        "Hallo!",
+                        "Hallo! Welkom!"
                     ],
                     "hoe gaat het" => [
-                        "Met mij gaat het goed! En met jou? 😄",
-                        "Alles chill! En met jou? 😎"
+                        "Met mij gaat het goed! En met jou?",
+                        "Prima! En met jou?"
                     ],
                     "salam" => [
                         "Salam! Hoe kan ik je helpen?",
-                        "Salam! Yooo",
+                        "Salam! Welkom.",
                     ],
                     "wsg" => [
-                        "Wsg gang 😎",
-                        "Yooo wat is goed 🔥",
-                        "Wsg bro 👊"
+                        "Hey! Hoe gaat het?",
+                        "Yo, wat kan ik voor je doen?",
+                        "Hallo!"
                     ],
                     "wsp" => [
-                        "Wsp 😄",
+                        "Hallo!",
                         "Alles chill?",
-                        "Wsp bro 👊"
+                        "Hallo!"
                     ],
                     "hey" => [
-                        "Hey 👋",
-                        "Heey 😄",
+                        "Hey!",
+                        "Hallo!",
                         "Yo!"
                     ]
                 ],
                 "follow_up" => [
-                    "Dat heb je al gezegd",
-                    "Nog een keer? 😄",
-                    "Haha hallo opnieuw 👋",
+                    "Dat heb je al gezegd.",
+                    "Nog een keer?",
+                    "Hallo opnieuw!",
                 ]
             ],
 
@@ -63,16 +63,16 @@ class TechnoBot {
                     "excited", "moe", "blij"
                 ],
                 "responses" => [
-                    "Ik hoop dat alles goed komt ❤️",
-                    "Vertel me meer 😄",
+                    "Ik hoop dat alles goed komt.",
+                    "Vertel me meer.",
                     "Dat klinkt interessant!",
-                    "Ik luister 👀",
-                    "Gevoelens zijn belangrijk 🙂"
+                    "Ik luister.",
+                    "Gevoelens zijn belangrijk."
                 ],
                 "follow_up" => [
                     "Nog steeds daar mee bezig?",
-                    "Ik snap het 😄",
-                    "Thanks dat je het deelt 👊"
+                    "Ik snap het.",
+                    "Dank je dat je dit deelt."
                 ]
             ],
 
@@ -82,10 +82,10 @@ class TechnoBot {
                     "greatest"
                 ],
                 "responses" => [
-                    "Anisssss 🐐",
+                    "Een echte kampioen!",
                 ],
                 "follow_up" => [
-                    "Anisssss 🐐",
+                    "Zeker!",
                 ]
             ],
             "hadj2" => [
@@ -94,11 +94,11 @@ class TechnoBot {
                     "Moussa"
                 ],
                 "responses" => [
-                    "Anis Hadj Moussa.... wat een speler is dat! 🐐",
-                    "Anis Hadj Moussa is de beste speler die ooit heeft gevoetbald! 🐐"
+                    "Anis Hadj Moussa - wat een talent!",
+                    "Anis Hadj Moussa is inderdaad een geweldige speler!"
                 ],
                 "follow_up" => [
-                    "Anis Hadj Moussa is de beste speler die ooit heeft gevoetbald! 🐐",
+                    "Zeker een sterke speler!",
                 ]
             ],
 
@@ -161,23 +161,23 @@ class TechnoBot {
             // ── PASJE / SLEUTEL ───────────────────────────────────────────────
             "pasje" => [
                 "keywords" => ["pasje", "sleutel", "deur", "toegang", "liftpas", "pas"],
-                "intro" => "Wat wil je weten over het pasje/sleutel? 🔑\n- Hoe vraag ik een pasje aan?\n- Wat is een liftpas?\n- En de sleutel voor dagco's?",
+                "intro" => "Wat wil je weten over het pasje/sleutel?\n- Hoe vraag ik een pasje aan?\n- Wat is een liftpas?\n- En de sleutel voor dagco's?",
                 "sub_topics" => [
                     "aanvragen" => [
                         "keywords" => ["aanvragen", "krijgen", "hoe", "coordinator"],
-                        "response" => "Je kunt een pasje aanvragen bij de coördinator medewerkers 🙋"
+                        "response" => "Je kunt een pasje aanvragen bij de coördinator medewerkers."
                     ],
                     "liftpas" => [
                         "keywords" => ["liftpas", "lift", "ook openen"],
-                        "response" => "Sommige medewerkers hebben een liftpas. Ook met de liftpas kun je de deur van het gebouw openen 🛗"
+                        "response" => "Sommige medewerkers hebben een liftpas. Ook met de liftpas kun je de deur van het gebouw openen."
                     ],
                     "sleutel" => [
                         "keywords" => ["sleutel", "alarm", "dagco"],
-                        "response" => "Als dagco krijg je een sleutel van Technolab en wordt uitgelegd hoe het alarm werkt 🔐"
+                        "response" => "Als dagco krijg je een sleutel van Technolab en wordt uitgelegd hoe het alarm werkt."
                     ],
                     "nacht" => [
                         "keywords" => ["nacht", "weekend", "vakantie", "laat", "23", "bernard", "davinci"],
-                        "response" => "Als je tussen 23:00 en 06:00 uur, in het weekend of vakantie in het pand bent, moet Bernard van de Da Vinci College geïnformeerd worden. Anders moet Technolab een boete betalen! ⚠️"
+                        "response" => "Als je tussen 23:00 en 06:00 uur, in het weekend of vakantie in het pand bent, moet Bernard van de Da Vinci College geïnformeerd worden. Anders moet Technolab een boete betalen!"
                     ],
                 ]
             ],
@@ -205,23 +205,23 @@ class TechnoBot {
             // ── MDT ───────────────────────────────────────────────────────────
             "mdt" => [
                 "keywords" => ["mdt", "maatschappelijke diensttijd", "subsidie", "uren"],
-                "intro" => "Wat wil je weten over MDT? 📋\n- Wat is MDT?\n- Wie komt in aanmerking?\n- Hoe uren registreren?",
+                "intro" => "Wat wil je weten over MDT?\n- Wat is MDT?\n- Wie komt in aanmerking?\n- Hoe uren registreren?",
                 "sub_topics" => [
                     "wat" => [
                         "keywords" => ["wat", "uitleg", "wat is"],
-                        "response" => "MDT staat voor Maatschappelijke DienstTijd. Technolab krijgt subsidie voor MDT uren 🏛️"
+                        "response" => "MDT staat voor Maatschappelijke DienstTijd. Technolab krijgt subsidie voor MDT uren."
                     ],
                     "wie" => [
                         "keywords" => ["wie", "leeftijd", "jonger", "30"],
-                        "response" => "Ben je jonger dan 30 jaar? Ga dan naar de MDT coördinator om een MDT formulier in te vullen 📝"
+                        "response" => "Ben je jonger dan 30 jaar? Ga dan naar de MDT coördinator om een MDT formulier in te vullen."
                     ],
                     "uren" => [
                         "keywords" => ["uren", "registreren", "schrijven", "wekelijks"],
-                        "response" => "Voor MDT moeten we wekelijks onze gewerkte uren bijhouden. Uren ophopen of compenseren is niet de bedoeling ⏱️"
+                        "response" => "Voor MDT moeten we wekelijks onze gewerkte uren bijhouden. Uren ophopen of compenseren is niet de bedoeling."
                     ],
                     "extra" => [
                         "keywords" => ["extra", "uitbetalen", "meer werken"],
-                        "response" => "Moet je echt meer dagen werken en kun je niet ruilen? Dan kun je in overleg met de rolverdeler extra gewerkte dagen laten uitbetalen 💶"
+                        "response" => "Moet je echt meer dagen werken en kun je niet ruilen? Dan kun je in overleg met de rolverdeler extra gewerkte dagen laten uitbetalen."
                     ],
                 ]
             ],
@@ -229,19 +229,19 @@ class TechnoBot {
             // ── LOONVERKLARING ────────────────────────────────────────────────
             "loon" => [
                 "keywords" => ["loon", "loonverklaring", "salaris", "betaling", "uitbetaling", "boekhouding"],
-                "intro" => "Wat wil je weten over loon/betaling? 💵\n- Hoe werkt de betaling?\n- Wat heb ik nodig?\n- Naar wie stuur ik het?",
+                "intro" => "Wat wil je weten over loon/betaling?\n- Hoe werkt de betaling?\n- Wat heb ik nodig?\n- Naar wie stuur ik het?",
                 "sub_topics" => [
                     "hoe" => [
                         "keywords" => ["hoe", "werkt", "boekhoudingsbureau"],
-                        "response" => "De betaling van je loon gaat via een boekhoudingsbureau 🏢"
+                        "response" => "De betaling van je loon gaat via een boekhoudingsbureau."
                     ],
                     "nodig" => [
                         "keywords" => ["nodig", "id", "identiteitsbewijs", "loonverklaring"],
-                        "response" => "Voor je uitbetaling is een loonverklaring én een kopie van je ID nodig 🪪"
+                        "response" => "Voor je uitbetaling is een loonverklaring én een kopie van je ID nodig."
                     ],
                     "sturen" => [
                         "keywords" => ["sturen", "waar", "email", "adres"],
-                        "response" => "Stuur je loonverklaring naar boekhouding@technolableiden.nl ✉️ Zorg dat het op tijd aankomt!"
+                        "response" => "Stuur je loonverklaring naar boekhouding@technolableiden.nl. Zorg dat het op tijd aankomt!"
                     ],
                 ]
             ],

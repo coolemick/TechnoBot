@@ -4,29 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TechnoBot</title>
-
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<section class="chat-container">
+<div class="chat-wrapper">
+    <section class="chat-container">
 
-    <article class="chat-header">
-        <h1>TechnoBot</h1>
-    </article>
+        <div class="chat-header">
+            <div class="header-content">
+                <h1>TechnoBot</h1>
+                <p>Welkom! Stel een vraag.</p>
+            </div>
+        </div>
 
-    <article class="chat-box" id="chat-box">
-        <article class="bot-message">
-            Hey 👋 Ik ben TechnoBot! Stel me een vraag.
-        </article>
-    </article>
+        <div class="chat-box" id="chat-box">
+            <div class="bot-message">
+                <div class="message-content">Hallo! Ik ben TechnoBot. Hoe kan ik je helpen?</div>
+            </div>
+        </div>
 
-    <article class="chat-input">
-        <input type="text" id="user-input" placeholder="Typ een bericht...">
-        <button id="send-btn">Verstuur</button>
-    </article>
+        <div class="chat-input-wrapper">
+            <div class="chat-input">
+                <input type="text" id="user-input" placeholder="Stel een vraag..." />
+                <button id="send-btn" aria-label="Bericht verzenden">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                </button>
+            </div>
+        </div>
 
-</section>
+    </section>
+</div>
 
 <script src="script.js"></script>
 
