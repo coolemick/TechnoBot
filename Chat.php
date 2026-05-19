@@ -78,14 +78,27 @@ class TechnoBot {
 
             "hadj" => [
                 "keywords" => [
-                    "hadj", "moussa", "anis", "goat", "best",
+                    "goat", "best",
                     "greatest"
                 ],
                 "responses" => [
                     "Anisssss 🐐",
                 ],
                 "follow_up" => [
-                    "The GOAT 🐐",
+                    "Anisssss 🐐",
+                ]
+            ],
+            "hadj2" => [
+                "keywords" => [
+                    "Anis", "Hadj",
+                    "Moussa"
+                ],
+                "responses" => [
+                    "Anis Hadj Moussa.... wat een speler is dat! 🐐",
+                    "Anis Hadj Moussa is de beste speler die ooit heeft gevoetbald! 🐐"
+                ],
+                "follow_up" => [
+                    "Anis Hadj Moussa is de beste speler die ooit heeft gevoetbald! 🐐",
                 ]
             ],
 
