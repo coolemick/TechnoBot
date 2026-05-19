@@ -59,7 +59,7 @@ class TechnoBot {
 
             "feeling" => [
                 "keywords" => [
-                    "sad", "happy", "tired", "angry", "depressed",
+                    "verdrietig", "happy", "tired", "boos", "depressed",
                     "excited", "moe", "blij"
                 ],
                 "responses" => [
@@ -73,6 +73,19 @@ class TechnoBot {
                     "Nog steeds daar mee bezig?",
                     "Ik snap het 😄",
                     "Thanks dat je het deelt 👊"
+                ]
+            ],
+
+            "hadj" => [
+                "keywords" => [
+                    "hadj", "moussa", "anis", "goat", "best",
+                    "greatest"
+                ],
+                "responses" => [
+                    "Anisssss 🐐",
+                ],
+                "follow_up" => [
+                    "The GOAT 🐐",
                 ]
             ],
 
