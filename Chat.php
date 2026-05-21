@@ -7,8 +7,17 @@ header("Content-Type: application/json");
 class TechnoBot {
 
     private array $intents;
+    private array $conversationHistory = [];
+    private int $messageCount = 0;
 
     public function __construct() {
+        
+        // Initialize conversation history from session
+        if (!isset($_SESSION["conversation_history"])) {
+            $_SESSION["conversation_history"] = [];
+        }
+        $this->conversationHistory = $_SESSION["conversation_history"];
+        $this->messageCount = count($this->conversationHistory);
 
         $this->intents = [
 
@@ -22,9 +31,14 @@ class TechnoBot {
                     "hallo" => [
                         "Hallo! Hoe kan ik je helpen?",
                         "Hallo! Wat kan ik voor je doen?",
-                        "Hi daar!",
-                        "Hallo!",
-                        "Hallo! Welkom!"
+                        "Hi daar! Waar kan ik je mee helpen?",
+                        "Hallo! Fijn dat je er bent.",
+                        "Hallo! Welkom bij TechnoBot!",
+                        "Hoi! Stel gerust een vraag.",
+                        "Goedendag! Waarmee kan ik je assisteren?",
+                        "Hallo daar! Wat wil je weten?",
+                        "Welkom! Hoe kan ik je vandaag helpen?",
+                        "Hey! Ik ben klaar om vragen te beantwoorden!"
                     ],
                     "hoe gaat het" => [
                         "Met mij gaat het goed! En met jou?",
@@ -35,9 +49,8 @@ class TechnoBot {
                         "Salam! Welkom.",
                     ],
                     "wsg" => [
-                        "Hey! Hoe gaat het?",
-                        "Yo, wat kan ik voor je doen?",
-                        "Hallo!"
+                        "Wsg Gang",
+                        "Yo, wat kan ik voor je doen?"
                     ],
                     "wsp" => [
                         "Hallo!",
@@ -82,10 +95,10 @@ class TechnoBot {
                     "greatest"
                 ],
                 "responses" => [
-                    "Een echte kampioen!",
+                    "Anissssss Hadj Moussa is de GOAT 🐐",
                 ],
                 "follow_up" => [
-                    "Zeker!",
+                    "Anissssss Hadj Moussa is de GOAT 🐐",
                 ]
             ],
             "hadj2" => [
@@ -94,11 +107,10 @@ class TechnoBot {
                     "Moussa"
                 ],
                 "responses" => [
-                    "Anis Hadj Moussa - wat een talent!",
-                    "Anis Hadj Moussa is inderdaad een geweldige speler!"
+                    "Anis Hadj Moussa is de beste speler die ooit heeft bestaan!"
                 ],
                 "follow_up" => [
-                    "Zeker een sterke speler!",
+                    "Anissssss Hadj Moussa is de GOAT 🐐",
                 ]
             ],
 
