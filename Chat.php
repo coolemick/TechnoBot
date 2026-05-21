@@ -95,7 +95,7 @@ class TechnoBot {
                     "greatest"
                 ],
                 "responses" => [
-                    "Anissssss Hadj Moussa is de GOAT 🐐",
+                    "Anissssss🐐",
                 ],
                 "follow_up" => [
                     "Anissssss Hadj Moussa is de GOAT 🐐",
