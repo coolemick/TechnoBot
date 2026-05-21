@@ -98,7 +98,7 @@ class TechnoBot {
                     "Anissssss🐐",
                 ],
                 "follow_up" => [
-                    "Anissssss Hadj Moussa is de GOAT 🐐",
+                    "Anissssss🐐",
                 ]
             ],
             "hadj2" => [
@@ -110,7 +110,7 @@ class TechnoBot {
                     "Anis Hadj Moussa is de beste speler die ooit heeft bestaan!"
                 ],
                 "follow_up" => [
-                    "Anissssss Hadj Moussa is de GOAT 🐐",
+                    "Anisssss🐐",
                 ]
             ],
 
