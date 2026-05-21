@@ -83,7 +83,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    background: var(--technolab-white);
+    background: var(--technolab-white);;
 }
 
 .chat-box::-webkit-scrollbar {
