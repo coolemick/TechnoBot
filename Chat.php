@@ -81,12 +81,13 @@ class TechnoBot
                 ],
                 "answer" => "Anissssss🐐",
                 "suggestions" => [
-                    "Waar komt Anis vandaan?",
+                    "Wie is Anis?",
                 ],
                 "sub_topics" => [
-                    "waar" => [
-                        "keywords" => ["Anis"],
-                        "answer" => "Anis komt uit Algeria"
+                    "wie" => [
+                        "keywords" => ["Anis?"],
+                        "answer" => "Anis Hadj Moussa, de Algerijnse GOAT🐐",
+                        "image" => "Images/Anis.png"
                     ],
                 ]
             
@@ -94,12 +95,12 @@ class TechnoBot
 
             // ── FIKA ──────────────────────────────────────────────────────────
             "fika" => [
-                "keywords" => ["niet","budget","fika", "koken", "eten", "lunch", "boodschappen"],
+                "keywords" => ["niet","budget","fika", "koken", "eten", "lunch", "boodschappen", "kookt"],
                 "answer" => "Fika is een gezamenlijke lunch elke woensdag waarbij een team kookt voor iedereen. 🍽️",
                 "suggestions" => [
+                    "Wie kookt er?",
                     "Hoeveel budget is er?",
-                    "Wat koken we?",
-                    "Wat als ik er niet ben?"
+                    "Wat koken we?"
                 ],
                 "sub_topics" => [
                     "wanneer" => [
@@ -119,8 +120,9 @@ class TechnoBot
                         "answer" => "We koken veganistisch/vegetarisch 🌱 en consumeren geen alcohol."
                     ],
                     "team" => [
-                        "keywords" => ["team", "wie", "wie kookt", "groep", "gekozen"],
-                        "answer" => "Na elke Fika wordt een nieuw team gekozen, plus nieuwe ingrediënten en keuken 🍳"
+                        "keywords" => ["wie", "kookt", "groep", "gekozen"],
+                        "answer" => "Na elke Fika wordt door behulp van een rad een nieuw team gekozen, plus nieuwe ingrediënten🍳",
+                        "image" => "Images/Fika.png"
                     ],
                     "verhindering" => [
                         "keywords" => ["niet", "verhinderd", "vervanging", "afmelden"],
@@ -134,8 +136,8 @@ class TechnoBot
                 "keywords" => ["training","bhv", "bedrijfshulpverlening", "noodgeval", "veiligheid", "ehbo"],
                 "answer" => "BHV staat voor BedrijfsHulpVerlening. BHV'ers helpen bij noodgevallen. 🚨",
                 "suggestions" => [
-                    "Wat is BHV?",
                     "Wie zijn de BHV'ers?",
+                    "Wat is BHV?",
                     "Wanneer is training?",
                 ],
                 "sub_topics" => [
@@ -145,7 +147,8 @@ class TechnoBot
                     ],
                     "wie" => [
                         "keywords" => ["wie", "aanwezig", "board", "knus"],
-                        "answer" => "Wie op dit moment BHV'er is, staat op het zwarte board in de knus 🖤"
+                        "answer" => "Wie op dit moment BHV'er is, staat op het zwarte board in de knus 🖤",
+                         "image" => "Images/BHV.jpg"
                     ],
                     "training" => [
                         "keywords" => ["Wanneer","training"],
@@ -624,10 +627,14 @@ class TechnoBot
             foreach ($intent["sub_topics"] as $subKey => $subTopic) {
                 foreach ($subTopic["keywords"] as $keyword) {
                     if ($this->matches($message, $keyword)) {
-                        return [
+                        $response = [
                             "reply" => $subTopic["answer"],
                             "buttons" => []
                         ];
+                        if (isset($subTopic["image"])) {
+                            $response["image"] = $subTopic["image"];
+                        }
+                        return $response;
                     }
                 }
             }

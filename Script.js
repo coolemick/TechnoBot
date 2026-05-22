@@ -2,7 +2,7 @@ const sendBtn = document.getElementById("send-btn");
 const userInput = document.getElementById("user-input");
 const chatBox = document.getElementById("chat-box");
 
-function addMessage(message, sender, buttons = []) {
+function addMessage(message, sender, buttons = [], image = null) {
     const messageDiv = document.createElement("div");
     messageDiv.classList.add(sender === "user" ? "user-message" : "bot-message");
 
@@ -11,6 +11,17 @@ function addMessage(message, sender, buttons = []) {
     contentDiv.textContent = message;
 
     messageDiv.appendChild(contentDiv);
+
+    if (image) {
+        const imageDiv = document.createElement("div");
+        imageDiv.classList.add("message-image");
+        const img = document.createElement("img");
+        img.src = image;
+        img.alt = "Message image";
+        imageDiv.appendChild(img);
+        messageDiv.appendChild(imageDiv);
+    }
+
     chatBox.appendChild(messageDiv);
 
     if (buttons.length > 0) {
@@ -86,7 +97,7 @@ async function sendMessageWithContent(message) {
         const data = await response.json();
         removeTypingIndicator();
 
-        addMessage(data.reply, "bot", data.buttons || []);
+        addMessage(data.reply, "bot", data.buttons || [], data.image || null);
 
     } catch (error) {
         removeTypingIndicator();

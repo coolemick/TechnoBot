@@ -106,6 +106,7 @@ body {
 .bot-message,
 .user-message {
     display: flex;
+    flex-wrap: wrap;
     animation: fadeInUp 0.35s ease-out;
 }
 
@@ -127,6 +128,20 @@ body {
     line-height: 1.4;
     font-size: 14px;
     max-width: 85%;
+}
+
+.message-image {
+    margin-top: 8px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.message-image img {
+    max-width: 280px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .bot-message {
