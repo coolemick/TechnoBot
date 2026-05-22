@@ -1,6 +1,38 @@
 const sendBtn = document.getElementById("send-btn");
 const userInput = document.getElementById("user-input");
 const chatBox = document.getElementById("chat-box");
+const chatbotToggle = document.getElementById("chatbot-toggle");
+const chatWrapper = document.getElementById("chat-wrapper");
+const closeButton = document.getElementById("close-button");
+
+let isChatbotOpen = false;
+
+// Toggle chatbot open/close
+function toggleChatbot() {
+    isChatbotOpen = !isChatbotOpen;
+
+    if (isChatbotOpen) {
+        chatWrapper.classList.add("active");
+        chatbotToggle.classList.add("hidden");
+        userInput.focus();
+    } else {
+        chatWrapper.classList.remove("active");
+        chatbotToggle.classList.remove("hidden");
+    }
+}
+
+// Event listeners for toggle
+chatbotToggle.addEventListener("click", toggleChatbot);
+closeButton.addEventListener("click", toggleChatbot);
+
+// Close chatbot when clicking outside
+document.addEventListener("click", (e) => {
+    if (isChatbotOpen &&
+        !chatWrapper.contains(e.target) &&
+        !chatbotToggle.contains(e.target)) {
+        toggleChatbot();
+    }
+});
 
 function addMessage(message, sender, buttons = [], image = null) {
     const messageDiv = document.createElement("div");
@@ -107,13 +139,13 @@ async function sendMessageWithContent(message) {
 
 sendBtn.addEventListener("click", sendMessage);
 
-userInput.addEventListener("keypress", function(e) {
+userInput.addEventListener("keypress", function (e) {
     if (e.key === "Enter") {
         sendMessage();
     }
 });
 
-userInput.addEventListener("keydown", function(e) {
+userInput.addEventListener("keydown", function (e) {
     if (e.key === "Enter" && e.shiftKey) {
         e.preventDefault();
     }
