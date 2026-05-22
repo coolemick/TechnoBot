@@ -4,14 +4,16 @@ session_start();
 
 header("Content-Type: application/json");
 
-class TechnoBot {
+class TechnoBot
+{
 
     private array $intents;
     private array $conversationHistory = [];
     private int $messageCount = 0;
 
-    public function __construct() {
-        
+    public function __construct()
+    {
+
         // Initialize conversation history from session
         if (!isset($_SESSION["conversation_history"])) {
             $_SESSION["conversation_history"] = [];
@@ -23,149 +25,135 @@ class TechnoBot {
 
             "hallo" => [
                 "keywords" => [
-                    "hallo", "salam", "helo", "hey", "hi", "hii",
-                    "yo", "wsg", "wsp", "sup", "goede avond",
-                    "goede morgen", "hoe gaat het"
+                    "hallo",
+                    "salam",
+                    "helo",
+                    "hey",
+                    "hi",
+                    "hii",
+                    "yo",
+                    "wsg",
+                    "wsp",
+                    "sup",
+                    "goede avond",
+                    "goede morgen",
+                    "hoe gaat het"
                 ],
-                "responses" => [
-                    "hallo" => [
-                        "Hallo! Hoe kan ik je helpen?",
-                        "Hallo! Wat kan ik voor je doen?",
-                        "Hi daar! Waar kan ik je mee helpen?",
-                        "Hallo! Fijn dat je er bent.",
-                        "Hallo! Welkom bij TechnoBot!",
-                        "Hoi! Stel gerust een vraag.",
-                        "Goedendag! Waarmee kan ik je assisteren?",
-                        "Hallo daar! Wat wil je weten?",
-                        "Welkom! Hoe kan ik je vandaag helpen?",
-                        "Hey! Ik ben klaar om vragen te beantwoorden!"
-                    ],
-                    "hoe gaat het" => [
-                        "Met mij gaat het goed! En met jou?",
-                        "Prima! En met jou?"
-                    ],
-                    "salam" => [
-                        "Salam! Hoe kan ik je helpen?",
-                        "Salam! Welkom.",
-                    ],
-                    "wsg" => [
-                        "Wsg Gang",
-                        "Yo, wat kan ik voor je doen?"
-                    ],
-                    "wsp" => [
-                        "Hallo!",
-                        "Alles chill?",
-                        "Hallo!"
-                    ],
-                    "hey" => [
-                        "Hey!",
-                        "Hallo!",
-                        "Yo!"
-                    ]
-                ],
-                "follow_up" => [
-                    "Dat heb je al gezegd.",
-                    "Nog een keer?",
-                    "Hallo opnieuw!",
-                ]
+                "answer" => "Hallo! Fijn je te ontmoeten! Waar kan ik je mee helpen?",
+                "suggestions" => []
             ],
 
             "feeling" => [
                 "keywords" => [
-                    "verdrietig", "happy", "tired", "boos", "depressed",
-                    "excited", "moe", "blij"
+                    "verdrietig",
+                    "happy",
+                    "tired",
+                    "boos",
+                    "depressed",
+                    "excited",
+                    "moe",
+                    "blij"
                 ],
-                "responses" => [
-                    "Ik hoop dat alles goed komt.",
-                    "Vertel me meer.",
-                    "Dat klinkt interessant!",
-                    "Ik luister.",
-                    "Gevoelens zijn belangrijk."
+                "answer" => "Ik luister. Gevoelens zijn belangrijk. Wil je me meer vertellen?",
+                "suggestions" => []
+            ],
+
+            "onaardig" => [
+                "keywords" => [
+                    "homo",
+                    "bitch",
+                    "niet leuk",
+                    "raggen",
+                    "albi"
                 ],
-                "follow_up" => [
-                    "Nog steeds daar mee bezig?",
-                    "Ik snap het.",
-                    "Dank je dat je dit deelt."
-                ]
+                "answer" => "Dat is niet zo aardig",
+                "suggestions" => []
             ],
 
             "hadj" => [
                 "keywords" => [
-                    "goat", "best",
+                    "goat",
+                    "anis",
+                    "hadj",
+                    "moussa",
+                    "best",
                     "greatest"
                 ],
-                "responses" => [
-                    "Anissssss🐐",
+                "answer" => "Anissssss🐐",
+                "suggestions" => [
+                    "Waar komt Anis vandaan?",
                 ],
-                "follow_up" => [
-                    "Anissssss🐐",
+                "sub_topics" => [
+                    "waar" => [
+                        "keywords" => ["Anis"],
+                        "answer" => "Anis komt uit Algeria"
+                    ],
                 ]
-            ],
-            "hadj2" => [
-                "keywords" => [
-                    "Anis", "Hadj",
-                    "Moussa"
-                ],
-                "responses" => [
-                    "Anis Hadj Moussa is de beste speler die ooit heeft bestaan!"
-                ],
-                "follow_up" => [
-                    "Anisssss🐐",
-                ]
+            
             ],
 
             // ── FIKA ──────────────────────────────────────────────────────────
             "fika" => [
-                "keywords" => ["fika", "koken", "eten", "lunch", "boodschappen"],
-                "intro" => "Wat wil je weten over Fika? 🍽️\n- Wanneer is het?\n- Hoeveel budget?\n- Wat koken we?\n- Wat als ik niet kan?",
+                "keywords" => ["niet","budget","fika", "koken", "eten", "lunch", "boodschappen"],
+                "answer" => "Fika is een gezamenlijke lunch elke woensdag waarbij een team kookt voor iedereen. 🍽️",
+                "suggestions" => [
+                    "Hoeveel budget is er?",
+                    "Wat koken we?",
+                    "Wat als ik er niet ben?"
+                ],
                 "sub_topics" => [
                     "wanneer" => [
-                        "keywords" => ["wanneer", "welke dag", "dag"],
-                        "response" => "Fika is elke woensdag 📅"
+                        "keywords" => ["wanneer", "welke dag", "dag", "woensdag"],
+                        "answer" => "Fika is elke woensdag 📅"
                     ],
                     "budget" => [
-                        "keywords" => ["budget", "geld", "euro", "hoeveel", "kosten"],
-                        "response" => "Er mag rond de €50,- voor Fika worden uitgegeven 💶"
+                        "keywords" => ["budget", "geld", "euro", "hoeveel", "kosten", "Hoeveel budget is er?"],
+                        "answer" => "Er mag rond de €50,- voor Fika worden uitgegeven 💶"
                     ],
                     "boodschappen" => [
                         "keywords" => ["boodschappen", "winkel", "plus", "kopen"],
-                        "response" => "Boodschappen worden meestal bij de Plus beneden gedaan 🛒"
+                        "answer" => "Boodschappen worden meestal bij de Plus beneden gedaan 🛒"
                     ],
                     "eten" => [
                         "keywords" => ["wat eten", "wat koken", "vegetarisch", "veganistisch", "alcohol", "vlees"],
-                        "response" => "Op Technolab koken we veganistisch/vegetarisch 🌱 We consumeren geen alcohol, ook geen 0.0 dranken."
+                        "answer" => "We koken veganistisch/vegetarisch 🌱 en consumeren geen alcohol."
                     ],
                     "team" => [
-                        "keywords" => ["team", "wie", "wie kookt", "groep"],
-                        "response" => "Na elke Fika wordt een nieuw team, nieuwe ingrediënten en een nieuwe keuken gekozen 🍳"
+                        "keywords" => ["team", "wie", "wie kookt", "groep", "gekozen"],
+                        "answer" => "Na elke Fika wordt een nieuw team gekozen, plus nieuwe ingrediënten en keuken 🍳"
                     ],
                     "verhindering" => [
-                        "keywords" => ["niet kunnen", "verhinderd", "vervanging", "afmelden"],
-                        "response" => "Ben je gekozen maar heb je geen tijd? Zoek dan zelf vervanging! 🔄"
+                        "keywords" => ["niet", "verhinderd", "vervanging", "afmelden"],
+                        "answer" => "Ben je gekozen maar heb je geen tijd? Zoek dan zelf vervanging! 🔄"
                     ],
                 ]
             ],
 
             // ── BHV ───────────────────────────────────────────────────────────
             "bhv" => [
-                "keywords" => ["bhv", "bedrijfshulpverlening", "noodgeval", "veiligheid", "ehbo"],
-                "intro" => "Wat wil je weten over BHV? 🚨\n- Wat is het?\n- Wie zijn de BHV'ers?\n- Wanneer training?",
+                "keywords" => ["training","bhv", "bedrijfshulpverlening", "noodgeval", "veiligheid", "ehbo"],
+                "answer" => "BHV staat voor BedrijfsHulpVerlening. BHV'ers helpen bij noodgevallen. 🚨",
+                "suggestions" => [
+                    "Wat is BHV?",
+                    "Wie zijn de BHV'ers?",
+                    "Wanneer is training?",
+                ],
                 "sub_topics" => [
                     "wat" => [
                         "keywords" => ["wat", "wat is", "uitleg"],
-                        "response" => "BHV staat voor BedrijfsHulpVerlening. BHV'ers zijn aanwezig om te helpen bij noodgevallen 🚨"
+                        "answer" => "BHV staat voor BedrijfsHulpVerlening. BHV'ers zijn aanwezig om te helpen bij noodgevallen 🚨"
                     ],
                     "wie" => [
                         "keywords" => ["wie", "aanwezig", "board", "knus"],
-                        "response" => "Wie op dit moment aanwezig is als BHV'er, is te zien op het zwarte board in de knus 🖤"
+                        "answer" => "Wie op dit moment BHV'er is, staat op het zwarte board in de knus 🖤"
                     ],
                     "training" => [
-                        "keywords" => ["training", "opleiding", "cursus", "wanneer"],
-                        "response" => "Elk jaar volgen medewerkers een BHV training 📚"
+                        "keywords" => ["Wanneer","training"],
+                        "answer" => "Elk jaar volgen medewerkers een BHV training 📚"
                     ],
                     "regels" => [
                         "keywords" => ["regels", "noodgeval", "wat doen"],
-                        "response" => "Lees de regels goed door zodat je weet wat te doen is bij een noodgeval 📋"
+                        "answer" => "Lees de regels goed door zodat je weet wat te doen is bij een noodgeval 📋"
                     ],
                 ]
             ],
@@ -173,23 +161,28 @@ class TechnoBot {
             // ── PASJE / SLEUTEL ───────────────────────────────────────────────
             "pasje" => [
                 "keywords" => ["pasje", "sleutel", "deur", "toegang", "liftpas", "pas"],
-                "intro" => "Wat wil je weten over het pasje/sleutel?\n- Hoe vraag ik een pasje aan?\n- Wat is een liftpas?\n- En de sleutel voor dagco's?",
+                "answer" => "Je kunt een pasje aanvragen bij de coördinator medewerkers. 🔑",
+                "suggestions" => [
+                    "Wat is een liftpas?",
+                    "Hoe werkt het alarm?",
+                    "Nachtwerk melden?"
+                ],
                 "sub_topics" => [
                     "aanvragen" => [
                         "keywords" => ["aanvragen", "krijgen", "hoe", "coordinator"],
-                        "response" => "Je kunt een pasje aanvragen bij de coördinator medewerkers."
+                        "answer" => "Je kunt een pasje aanvragen bij de coördinator medewerkers."
                     ],
                     "liftpas" => [
                         "keywords" => ["liftpas", "lift", "ook openen"],
-                        "response" => "Sommige medewerkers hebben een liftpas. Ook met de liftpas kun je de deur van het gebouw openen."
+                        "answer" => "Sommige medewerkers hebben een liftpas. Ook hiermee kun je de deur van het gebouw openen."
                     ],
                     "sleutel" => [
                         "keywords" => ["sleutel", "alarm", "dagco"],
-                        "response" => "Als dagco krijg je een sleutel van Technolab en wordt uitgelegd hoe het alarm werkt."
+                        "answer" => "Als dagco krijg je een sleutel van Technolab en wordt uitgelegd hoe het alarm werkt."
                     ],
                     "nacht" => [
                         "keywords" => ["nacht", "weekend", "vakantie", "laat", "23", "bernard", "davinci"],
-                        "response" => "Als je tussen 23:00 en 06:00 uur, in het weekend of vakantie in het pand bent, moet Bernard van de Da Vinci College geïnformeerd worden. Anders moet Technolab een boete betalen!"
+                        "answer" => "Tussen 23:00-06:00 uur, weekend of vakantie? Informeer Bernard van Da Vinci College. Anders krijgt Technolab een boete! 📞"
                     ],
                 ]
             ],
@@ -197,19 +190,24 @@ class TechnoBot {
             // ── PENSIOEN ──────────────────────────────────────────────────────
             "pensioen" => [
                 "keywords" => ["pensioen", "bright", "brightpensioen"],
-                "intro" => "Wat wil je weten over pensioen? 💰\n- Heeft Technolab een pensioenregeling?\n- Wat is BrightPensioen?\n- Hoe aanmelden?",
+                "answer" => "Technolab biedt geen collectieve pensioenregeling, maar BrightPensioen lidmaatschap wordt vergoed! 💰",
+                "suggestions" => [
+                    "Wat is BrightPensioen?",
+                    "Hoe meld ik me aan?",
+                    "Wat kost het mij?"
+                ],
                 "sub_topics" => [
                     "regeling" => [
                         "keywords" => ["regeling", "collectief", "heeft technolab"],
-                        "response" => "Technolab biedt geen collectieve pensioenregeling 📋"
+                        "answer" => "Technolab biedt geen collectieve pensioenregeling 📋"
                     ],
                     "bright" => [
                         "keywords" => ["bright", "brightpensioen", "wat is"],
-                        "response" => "Bij deelname aan BrightPensioen wordt het lidmaatschap door Technolab vergoed zolang je een arbeidscontract hebt 💙"
+                        "answer" => "BrightPensioen lidmaatschap wordt door Technolab vergoed zolang je een arbeidscontract hebt 💙"
                     ],
                     "aanmelden" => [
                         "keywords" => ["aanmelden", "hoe", "formulier", "coordinator"],
-                        "response" => "Ga naar de coördinator medewerker voor meer uitleg en het aanmeldformulier 📝"
+                        "answer" => "Ga naar de coördinator medewerker voor het aanmeldformulier 📝"
                     ],
                 ]
             ],
@@ -217,23 +215,28 @@ class TechnoBot {
             // ── MDT ───────────────────────────────────────────────────────────
             "mdt" => [
                 "keywords" => ["mdt", "maatschappelijke diensttijd", "subsidie", "uren"],
-                "intro" => "Wat wil je weten over MDT?\n- Wat is MDT?\n- Wie komt in aanmerking?\n- Hoe uren registreren?",
+                "answer" => "MDT staat voor Maatschappelijke DienstTijd. Ben je onder de 30? Dan kan je hiervan profiteren! 📋",
+                "suggestions" => [
+                    "Voor wie is MDT?",
+                    "Hoe registreer ik uren?",
+                    "Kan ik extra betaald krijgen?"
+                ],
                 "sub_topics" => [
                     "wat" => [
                         "keywords" => ["wat", "uitleg", "wat is"],
-                        "response" => "MDT staat voor Maatschappelijke DienstTijd. Technolab krijgt subsidie voor MDT uren."
+                        "answer" => "MDT staat voor Maatschappelijke DienstTijd. Technolab krijgt subsidie voor MDT uren."
                     ],
                     "wie" => [
                         "keywords" => ["wie", "leeftijd", "jonger", "30"],
-                        "response" => "Ben je jonger dan 30 jaar? Ga dan naar de MDT coördinator om een MDT formulier in te vullen."
+                        "answer" => "Ben je jonger dan 30 jaar? Ga naar de MDT coördinator om een formulier in te vullen."
                     ],
                     "uren" => [
                         "keywords" => ["uren", "registreren", "schrijven", "wekelijks"],
-                        "response" => "Voor MDT moeten we wekelijks onze gewerkte uren bijhouden. Uren ophopen of compenseren is niet de bedoeling."
+                        "answer" => "Registreer wekelijks je gewerkte uren. Uren ophopen of compenseren is niet de bedoeling! ⏱️"
                     ],
                     "extra" => [
                         "keywords" => ["extra", "uitbetalen", "meer werken"],
-                        "response" => "Moet je echt meer dagen werken en kun je niet ruilen? Dan kun je in overleg met de rolverdeler extra gewerkte dagen laten uitbetalen."
+                        "answer" => "Meer werken en niet kunnen ruilen? Bespreek met je rolverdeler voor uitbetaling 💰"
                     ],
                 ]
             ],
@@ -241,19 +244,24 @@ class TechnoBot {
             // ── LOONVERKLARING ────────────────────────────────────────────────
             "loon" => [
                 "keywords" => ["loon", "loonverklaring", "salaris", "betaling", "uitbetaling", "boekhouding"],
-                "intro" => "Wat wil je weten over loon/betaling?\n- Hoe werkt de betaling?\n- Wat heb ik nodig?\n- Naar wie stuur ik het?",
+                "answer" => "Je loon wordt via een boekhoudingsbureau betaald. Je hebt een loonverklaring én ID kopie nodig. 💳",
+                "suggestions" => [
+                    "Hoe werkt de betaling?",
+                    "Wat heb ik nodig?",
+                    "Waar stuur ik alles naar toe?"
+                ],
                 "sub_topics" => [
                     "hoe" => [
                         "keywords" => ["hoe", "werkt", "boekhoudingsbureau"],
-                        "response" => "De betaling van je loon gaat via een boekhoudingsbureau."
+                        "answer" => "De betaling van je loon gaat via een boekhoudingsbureau."
                     ],
                     "nodig" => [
                         "keywords" => ["nodig", "id", "identiteitsbewijs", "loonverklaring"],
-                        "response" => "Voor je uitbetaling is een loonverklaring én een kopie van je ID nodig."
+                        "answer" => "Voor je uitbetaling is een loonverklaring én een kopie van je ID nodig."
                     ],
                     "sturen" => [
                         "keywords" => ["sturen", "waar", "email", "adres"],
-                        "response" => "Stuur je loonverklaring naar boekhouding@technolableiden.nl. Zorg dat het op tijd aankomt!"
+                        "answer" => "Stuur je loonverklaring naar boekhouding@technolableiden.nl. Zorg dat het op tijd aankomt!"
                     ],
                 ]
             ],
@@ -261,19 +269,24 @@ class TechnoBot {
             // ── VOG ───────────────────────────────────────────────────────────
             "vog" => [
                 "keywords" => ["vog", "verklaring omtrent gedrag", "onderwijs"],
-                "intro" => "Wat wil je weten over de VOG? 📄\n- Wat is een VOG?\n- Hoe wordt het aangevraagd?\n- Wat doe ik ermee?",
+                "answer" => "Een VOG (Verklaring Omtrent Gedrag) is verplicht om in het onderwijs te werken. 🏫",
+                "suggestions" => [
+                    "Wie vraagt het aan?",
+                    "Wat doe ik ermee?",
+                    "Waar stuur ik het naar toe?"
+                ],
                 "sub_topics" => [
                     "wat" => [
                         "keywords" => ["wat", "wat is"],
-                        "response" => "Een VOG (Verklaring Omtrent Gedrag) is verplicht om in het onderwijs te werken 🏫"
+                        "answer" => "Een VOG (Verklaring Omtrent Gedrag) is verplicht om in het onderwijs te werken 🏫"
                     ],
                     "aanvragen" => [
                         "keywords" => ["aanvragen", "hoe", "wie vraagt"],
-                        "response" => "De VOG wordt voor jou aangevraagd door Technolab 👍"
+                        "answer" => "De VOG wordt voor jou aangevraagd door Technolab 👍"
                     ],
                     "ontvangen" => [
                         "keywords" => ["ontvangen", "doorsturen", "coordinator"],
-                        "response" => "Na ontvangst stuur je de VOG door naar de coördinator medewerker 📬"
+                        "answer" => "Na ontvangst stuur je de VOG door naar de coördinator medewerker 📬"
                     ],
                 ]
             ],
@@ -281,27 +294,32 @@ class TechnoBot {
             // ── HUISREGELS ────────────────────────────────────────────────────
             "huisregels" => [
                 "keywords" => ["huisregels", "regels", "gedragsregels", "houding", "telefoon", "naamkaartje"],
-                "intro" => "Wat wil je weten over de huisregels? 📏\n- Hoe laat beginnen we?\n- Ziek of verhinderd melden?\n- Gedragscode?",
+                "answer" => "Zorg dat je rond 8:15 uur binnen bent, dan starten we samen om 8:30 uur. 🕗",
+                "suggestions" => [
+                    "Ziek of verhinderd?",
+                    "Wat zijn de gedragsregels?",
+                    "Wat zijn mijn taken?"
+                ],
                 "sub_topics" => [
                     "tijd" => [
                         "keywords" => ["hoe laat", "beginnen", "starten", "tijd", "aanwezig"],
-                        "response" => "Zorg dat je rond 8:15 uur binnen bent, dan starten we samen om 8:30 uur 🕗"
+                        "answer" => "Zorg dat je rond 8:15 uur binnen bent, dan starten we samen om 8:30 uur 🕗"
                     ],
                     "ziek" => [
                         "keywords" => ["ziek", "verhinderd", "ns", "trein", "afmelden", "melden"],
-                        "response" => "Verhinderd, ziek of is de NS niet je vriend? Bel dan tussen 8:10 en 8:25 naar de dagco: 071-5191324 📞 Laat het ook je stagebegeleider weten!"
+                        "answer" => "Bel tussen 8:10 en 8:25 uur naar de dagco: 071-5191324 en zeg het je stagebegeleider 📞"
                     ],
                     "gedrag" => [
                         "keywords" => ["gedrag", "houding", "kauwgom", "pet", "telefoon", "prive"],
-                        "response" => "Professionele houding: geen kauwgom, telefoon in je tas tijdens de les, geen pet/capuchon in de les, privé blijft privé 🙅"
+                        "answer" => "Geen kauwgom, telefoon in tas, geen pet in de les, privé blijft privé. 🙅"
                     ],
                     "verlaten" => [
                         "keywords" => ["verlaten", "buiten", "weggaan", "melden dagco"],
-                        "response" => "Verlaat je Technolab? Ook als je even naar buiten gaat, meld het altijd bij de dagco 🚪"
+                        "answer" => "Verlaat je het pand? Meld het altijd bij de dagco 🚪"
                     ],
                     "klusjes" => [
                         "keywords" => ["klusjes", "opruimen", "taken", "team"],
-                        "response" => "Soms moeten er klusjes worden gedaan zoals opruimen, iets halen etc. Dit hoort er allemaal bij — wij zijn 1 team, 1 taak 💪"
+                        "answer" => "Klusjes zoals opruimen horen erbij — wij zijn 1 team, 1 taak 💪"
                     ],
                 ]
             ],
@@ -309,19 +327,24 @@ class TechnoBot {
             // ── URENREGISTRATIE ───────────────────────────────────────────────
             "urenregistratie" => [
                 "keywords" => ["urenregistratie", "uren registreren", "uren schrijven", "werkschema"],
-                "intro" => "Wat wil je weten over urenregistratie? ⏱️\n- Hoe werkt het?\n- Mag ik uren opbouwen?\n- Werkschema aanpassen?",
+                "answer" => "Registreer wekelijks je gewerkte uren. Uren ophopen of compenseren is niet de bedoeling! ⏱️",
+                "suggestions" => [
+                    "Mag ik uren opbouwen?",
+                    "Hoe pas ik mijn schema aan?",
+                    "Wat gebeurt met extra uren?"
+                ],
                 "sub_topics" => [
                     "hoe" => [
                         "keywords" => ["hoe", "werkt", "schrijven"],
-                        "response" => "Voor MDT schrijven we wekelijks onze gewerkte uren. Het is niet de bedoeling dat uren worden opgebouwd of gecompenseerd ⏱️"
+                        "answer" => "Registreer wekelijks je gewerkte uren. Uren ophopen of compenseren is niet de bedoeling! ⏱️"
                     ],
                     "opbouwen" => [
                         "keywords" => ["opbouwen", "compenseren", "ophopen"],
-                        "response" => "Uren opbouwen of compenseren is niet de bedoeling ❌ Moet je echt meer werken? Bespreek dit met je rolverdeler."
+                        "answer" => "Uren opbouwen of compenseren is niet de bedoeling ❌ Bespreek meer werken met je rolverdeler."
                     ],
                     "schema" => [
                         "keywords" => ["schema", "aanpassen", "veranderen", "werkschema"],
-                        "response" => "Alle veranderingen in het werkschema worden van tevoren met de rolverdeler afgesproken en goedgekeurd 📋"
+                        "answer" => "Wijzigingen in het werkschema worden van tevoren afgesproken met de rolverdeler 📋"
                     ],
                 ]
             ],
@@ -329,27 +352,31 @@ class TechnoBot {
             // ── TECHNOLABBER ──────────────────────────────────────────────────
             "technolabber" => [
                 "keywords" => ["technolabber", "magie", "cultuur", "gedragscode", "wie zijn wij"],
-                "responses" => [
-                    "De magie van Technolab in stand houden is essentieel ✨ We verwachten van alle medewerkers dat ze zich als echte Technolabber gedragen. Bekijk het overzicht voor meer info over wat dat inhoudt!"
-                ]
+                "answer" => "De magie van Technolab in stand houden is essentieel! ✨ We verwachten dat je je als echte Technolabber gedraagt.",
+                "suggestions" => []
             ],
 
             // ── APP GROEP ─────────────────────────────────────────────────────
             "appgroep" => [
                 "keywords" => ["app", "appgroep", "signal", "whatsapp", "groep", "berichten"],
-                "intro" => "Wat wil je weten over de app groep? 📱\n- Welke app gebruiken we?\n- Ziekmeldingen via app?\n- Hoe aanmelden?",
+                "answer" => "We gebruiken Signal voor werk gerelateerde dingen. 📱 Geen WhatsApp!",
+                "suggestions" => [
+                    "Hoe meld ik ziekmeldingen?",
+                    "Hoe meld ik me aan?",
+                    "Wat is de groep?"
+                ],
                 "sub_topics" => [
                     "welke" => [
                         "keywords" => ["welke app", "signal", "whatsapp", "wat gebruiken"],
-                        "response" => "We gebruiken Signal voor werk gerelateerde dingen 📱 Geen WhatsApp voor werkzaken!"
+                        "answer" => "We gebruiken Signal voor werk gerelateerde dingen 📱 Geen WhatsApp voor werkzaken!"
                     ],
                     "ziek" => [
                         "keywords" => ["ziekmelden", "ziek melden", "afmelden"],
-                        "response" => "Let op: ziekmeldingen moeten altijd ook telefonisch doorgegeven worden aan de dagco. App alleen is niet genoeg! 📞"
+                        "answer" => "Ziekmeldingen moeten ook telefonisch doorgegeven worden aan de dagco. App alleen is niet genoeg! 📞"
                     ],
                     "aanmelden" => [
                         "keywords" => ["aanmelden", "hoe", "link", "joinen"],
-                        "response" => "Meld je aan via de link die je van Technolab krijgt 🔗 Staat die link er al bij jou in de onboarding?"
+                        "answer" => "Meld je aan via de link die je van Technolab krijgt 🔗"
                     ],
                 ]
             ],
@@ -357,27 +384,31 @@ class TechnoBot {
             // ── NOODNUMMER ────────────────────────────────────────────────────
             "noodnummer" => [
                 "keywords" => ["noodnummer", "nood", "emergency", "contact", "formulier invullen"],
-                "responses" => [
-                    "Vul het noodnummerformulier in zodat Technolab jou in geval van nood kan bereiken 📋 Vraag naar het formulier bij de coördinator medewerker."
-                ]
+                "answer" => "Vul het noodnummerformulier in zodat Technolab jou in geval van nood kan bereiken. 📋",
+                "suggestions" => []
             ],
 
             // ── E-MAILHANDTEKENING ────────────────────────────────────────────
             "emailhandtekening" => [
                 "keywords" => ["emailhandtekening", "handtekening", "email", "outlook", "signature"],
-                "intro" => "Wat wil je weten over de emailhandtekening? ✉️\n- Hoe maak ik er een aan?\n- Hoe update ik het plaatje?\n- Hoe voeg ik een link toe?",
+                "answer" => "Je emailhandtekening kan je aanpassen in Outlook met je Technolab plaatje en links. ✉️",
+                "suggestions" => [
+                    "Hoe maak ik er een aan?",
+                    "Hoe voeg ik een plaatje toe?",
+                    "Hoe voeg ik een link toe?"
+                ],
                 "sub_topics" => [
                     "aanmaken" => [
                         "keywords" => ["aanmaken", "eerste keer", "hoe", "nieuw"],
-                        "response" => "Voor het aanmaken van je eerste emailhandtekening is er een handleiding beschikbaar. Vraag die op bij Technolab 📖"
+                        "answer" => "Voor het aanmaken van je eerste emailhandtekening is er een handleiding beschikbaar. Vraag die op bij Technolab 📖"
                     ],
                     "plaatje" => [
                         "keywords" => ["plaatje", "afbeelding", "updaten", "nieuw plaatje"],
-                        "response" => "Nieuwe plaatjes worden via Teams gedeeld. Kopieer het plaatje, ga in Outlook naar Instellingen → e-mailhandtekening en voeg de afbeelding toe 🖼️"
+                        "answer" => "Nieuwe plaatjes worden via Teams gedeeld. Kopieer het plaatje, ga in Outlook naar Instellingen → e-mailhandtekening en voeg het toe 🖼️"
                     ],
                     "link" => [
                         "keywords" => ["link", "koppeling", "klikbaar", "url"],
-                        "response" => "Klik op de afbeelding → 'Koppeling invoegen' → voeg de passende link toe. Zo kunnen mensen direct naar de Technolab pagina! 🔗"
+                        "answer" => "Klik op de afbeelding → 'Koppeling invoegen' → voeg de passende link toe 🔗"
                     ],
                 ]
             ],
@@ -385,19 +416,24 @@ class TechnoBot {
             // ── HOLACRATIE / WERKOVERLEG ──────────────────────────────────────
             "holacratie" => [
                 "keywords" => ["holacratie", "holacratisch", "werkoverleg", "vergadering", "cirkel", "facilitator", "secretaris"],
-                "intro" => "Wat wil je weten over holacratie/werkoverleg? 🔄\n- Wat is holacratisch vergaderen?\n- Wie zijn de facilitator en secretaris?\n- Wat is een cirkel?",
+                "answer" => "Holacratisch werkoverleg is strak vergaderen volgens vaste regels. Elke cirkel heeft wekelijks zo'n overleg. 🔄",
+                "suggestions" => [
+                    "Wat is holacratie?",
+                    "Wie zijn facilitator en secretaris?",
+                    "Wat is een cirkel?"
+                ],
                 "sub_topics" => [
                     "wat" => [
                         "keywords" => ["wat", "uitleg", "wat is holacratie"],
-                        "response" => "Holacratisch werkoverleg is strak vergaderen volgens vaste regels. Elke cirkel heeft wekelijks zo'n overleg 📅"
+                        "answer" => "Holacratisch werkoverleg is strak vergaderen volgens vaste regels. Elke cirkel heeft wekelijks zo'n overleg 📅"
                     ],
                     "facilitator" => [
                         "keywords" => ["facilitator", "secretaris", "wie leidt"],
-                        "response" => "De facilitator (per periode gekozen) leidt het overleg. De secretaris zorgt dat taken worden vastgelegd in de teamsplanner ✍️"
+                        "answer" => "De facilitator (gekozen per periode) leidt het overleg. De secretaris zorgt dat taken in de teamsplanner worden vastgelegd ✍️"
                     ],
                     "cirkel" => [
                         "keywords" => ["cirkel", "wat is een cirkel", "team"],
-                        "response" => "Een cirkel is een team binnen Technolab. Elke cirkel heeft een eigen werkoverleg en planner 🔵"
+                        "answer" => "Een cirkel is een team binnen Technolab. Elke cirkel heeft een eigen werkoverleg en planner 🔵"
                     ],
                 ]
             ],
@@ -405,19 +441,24 @@ class TechnoBot {
             // ── PLANNER ───────────────────────────────────────────────────────
             "planner" => [
                 "keywords" => ["planner", "agenda", "wachtwoord", "vergrendeld", "schema"],
-                "intro" => "Wat wil je weten over de planner/agenda? 📅\n- Hoe werkt de planner?\n- Hoe krijg ik het wachtwoord?\n- Teamleden overzicht?",
+                "answer" => "Elke cirkel heeft een planner die de agenda beheert en veranderingen afstemmt. 📅",
+                "suggestions" => [
+                    "Hoe werkt de planner?",
+                    "Waar is het wachtwoord?",
+                    "Wie werkt hier?"
+                ],
                 "sub_topics" => [
                     "hoe" => [
                         "keywords" => ["hoe werkt", "wat is", "planner"],
-                        "response" => "Elke cirkel heeft een planner die de agenda beheert en veranderingen afstemmt 📋"
+                        "answer" => "Elke cirkel heeft een planner die de agenda beheert en veranderingen afstemmt 📋"
                     ],
                     "wachtwoord" => [
                         "keywords" => ["wachtwoord", "vergrendeld", "toegang"],
-                        "response" => "De agenda is vergrendeld met een wachtwoord (behalve de verkennerskolom). Vraag het wachtwoord aan bij de hoofdplanner, in overleg met je rolverdeler 🔒"
+                        "answer" => "De agenda is vergrendeld met wachtwoord. Vraag het bij de hoofdplanner in overleg met je rolverdeler 🔒"
                     ],
                     "teamleden" => [
                         "keywords" => ["teamleden", "overzicht", "wie", "werkdagen"],
-                        "response" => "In de agenda zit een tabblad met alle huidige teamleden, stagiairs en hun werkdagen. Zorg dat jij er ook bij staat! 👥"
+                        "answer" => "In de agenda zit een tabblad met alle teamleden, stagiairs en hun werkdagen. Zorg dat jij er ook bij staat! 👥"
                     ],
                 ]
             ],
@@ -425,19 +466,24 @@ class TechnoBot {
             // ── BUDDY / COACHING ──────────────────────────────────────────────
             "coaching" => [
                 "keywords" => ["buddy", "coaching", "coach", "leerdoel", "doelen", "loopbaan"],
-                "intro" => "Wat wil je weten over buddy/coaching? 🤝\n- Wat is het buddysysteem?\n- Hoe werkt coaching?\n- Wie is mijn coach?",
+                "answer" => "Elke medewerker zoekt een buddy om leerdoelen te bespreken. Coaches helpen met persoonlijke uitdagingen. 🤝",
+                "suggestions" => [
+                    "Wat is het buddysysteem?",
+                    "Hoe werkt coaching?",
+                    "Wie is mijn coach?"
+                ],
                 "sub_topics" => [
                     "buddy" => [
                         "keywords" => ["buddy", "buddysysteem", "leerdoelen"],
-                        "response" => "Elke medewerker zoekt een buddy binnen Technolab om eigen leerdoelen te bespreken en te evalueren 🎯"
+                        "answer" => "Elke medewerker zoekt een buddy binnen Technolab om eigen leerdoelen te bespreken en te evalueren 🎯"
                     ],
                     "coach" => [
                         "keywords" => ["coach", "coaching", "traject", "afspraken"],
-                        "response" => "Naast de buddy zijn er coaches die in een traject van 3-4 afspraken persoonlijke uitdagingen kunnen begeleiden 💬"
+                        "answer" => "Coaches helpen in een traject van 3-4 afspraken met persoonlijke uitdagingen 💬"
                     ],
                     "wie" => [
                         "keywords" => ["wie", "wie is coach", "organigram", "talentontwikkeling"],
-                        "response" => "Cirkel Talentontwikkeling verzorgt Coaching, Loopbaancoaching en trainingen. In het organigram zie je wie op dit moment coach is 🗂️"
+                        "answer" => "Cirkel Talentontwikkeling verzorgt Coaching en trainingen. Zie het organigram voor wie op dit moment coach is 🗂️"
                     ],
                 ]
             ],
@@ -445,63 +491,64 @@ class TechnoBot {
             // ── VERTROUWENSPERSOON ────────────────────────────────────────────
             "vertrouwenspersoon" => [
                 "keywords" => ["vertrouwenspersoon", "vertrouwelijk", "bespreken", "privé probleem"],
-                "responses" => [
-                    "Heb je iets te bespreken en wil je dit vertrouwelijk houden? Ga dan naar onze vertrouwenspersoon 🔒 Op het organigram is de vertrouwenspersoon herkenbaar aan een oranje cirkel."
-                ]
+                "answer" => "Heb je iets vertrouwelijks te bespreken? Ga naar onze vertrouwenspersoon! 🔒",
+                "suggestions" => []
             ],
 
             // ── BUS RIJDEN ────────────────────────────────────────────────────
             "bus" => [
                 "keywords" => ["bus", "technolab bus", "rijbewijs", "proefrit", "auto", "reserveren"],
-                "intro" => "Wat wil je weten over de Technolab bus? 🚐\n- Hoe mag ik rijden?\n- Hoe reserveer ik?\n- Geldt dit ook voor fietsen?",
+                "answer" => "Heb je een rijbewijs? Dan moet je eerst een proefrit doen. Daarna mag je ermee rijden! 🚐",
+                "suggestions" => [
+                    "Hoe reserveer ik?",
+                    "Wat zijn de regels?",
+                    "Geldt dit ook voor fietsen?"
+                ],
                 "sub_topics" => [
                     "rijden" => [
                         "keywords" => ["rijden", "rijbewijs", "proefrit", "mag"],
-                        "response" => "Heb je een rijbewijs? Dan moet je eerst een proefrit met de Technolab bus doen. Pas daarna mag je ermee rijden 🚗"
+                        "answer" => "Heb je een rijbewijs? Dan moet je eerst een proefrit met de Technolab bus doen. Pas daarna mag je ermee rijden 🚗"
                     ],
                     "reserveren" => [
                         "keywords" => ["reserveren", "reservatie", "dagco wiki", "boeken"],
-                        "response" => "Heb je een bus of auto nodig? Reserveer via de Dagco Wiki 📅 Dit geldt ook voor fietsen!"
+                        "answer" => "Reserveer via de Dagco Wiki! Dit geldt ook voor fietsen! 📅"
                     ],
-                ]
-            ],
-
-            // ── ICT ───────────────────────────────────────────────────────────
-            "ict" => [
-                "keywords" => ["ict", "laptop", "internet", "teams", "scherm", "windows", "beheer", "ticket"],
-                "responses" => [
-                    "Problemen of vragen over laptops, Windows, internet, Teams of schermen? Maak een ticket aan bij ICT-beheer 💻"
                 ]
             ],
 
             // ── BOEKHOUDING / INKOPEN ─────────────────────────────────────────
             "boekhouding" => [
                 "keywords" => ["boekhouding", "inkopen", "bonnetje", "pinpas", "gamma", "bestellen", "declareren", "terugbetalen"],
-                "intro" => "Wat wil je weten over inkopen/boekhouding? 🧾\n- Kopen bij Gamma of Plus?\n- Zelf voorschieten en terugkrijgen?\n- Pinpas gebruiken?\n- Iets online bestellen?",
+                "answer" => "Bij Gamma of Plus koop je met je Technolab pasje. Bonnetje inleveren in de kast in de Groei! 🧾",
+                "suggestions" => [
+                    "Hoe betaal ik zelf?",
+                    "Hoe gebruik ik de pinpas?",
+                    "Hoe bestel ik online?"
+                ],
                 "sub_topics" => [
                     "gamma_plus" => [
                         "keywords" => ["gamma", "plus", "pasje", "korting"],
-                        "response" => "Bij de Gamma of Plus koop je met je Technolab pasje 🪪 Neem bij de Gamma ook de Gamma-pas mee voor korting en spaarpunten. Bonnetje inleveren in de kast in de Groei!"
+                        "answer" => "Bij de Gamma of Plus koop je met je Technolab pasje 🪪 Neem bij de Gamma ook de Gamma-pas mee! Bonnetje in kast in de Groei!"
                     ],
                     "voorschieten" => [
                         "keywords" => ["zelf betalen", "voorschieten", "terugkrijgen", "declareren", "rekeninggegevens"],
-                        "response" => "Betaal je zelf? Stuur een foto van het bonnetje + je rekeninggegevens naar boekhouding@technolableiden.nl ✉️ Vraag ook altijd akkoord bij de producteigenaar. Bij grote uitgaven altijd vooraf akkoord vragen!"
+                        "answer" => "Stuur foto van bonnetje + rekeninggegevens naar boekhouding@technolableiden.nl ✉️ Vraag altijd akkoord van producteigenaar!"
                     ],
                     "pinpas" => [
                         "keywords" => ["pinpas", "pin", "technolab pas"],
-                        "response" => "Je kunt de Technolab pinpas gebruiken. Stuur het bonnetje als foto naar boekhouding@technolableiden.nl en leg het origineel in de kast in de Groei 🧾 Vraag waar de pinpas en pincode zijn bij boekhouding of de vloermeester."
+                        "answer" => "Foto van bonnetje naar boekhouding en origineel in kast in Groei 🧾 Vraag waar pinpas en code zijn!"
                     ],
                     "online" => [
                         "keywords" => ["online", "bestellen", "internet", "link"],
-                        "response" => "Wil je online bestellen maar niet voorschieten? Stuur op tijd een link naar boekhouding — liefst al met akkoord van de producteigenaar 🛒"
+                        "answer" => "Stuur op tijd een link naar boekhouding — liefst met akkoord van producteigenaar 🛒"
                     ],
                     "overig" => [
                         "keywords" => ["parkeren", "parkeergeld", "wassen", "bus", "geen bonnetje"],
-                        "response" => "Andere uitgaven zonder bonnetje (zoals parkeergeld of wasbeurt bus)? Bespreek dit met boekhouding, dan vinden jullie samen een oplossing 🤝"
+                        "answer" => "Andere uitgaven zonder bonnetje? Bespreek met boekhouding, we vinden samen een oplossing 🤝"
                     ],
                     "voorraad" => [
                         "keywords" => ["voorraad", "toiletpapier", "koffie", "thee", "papier", "op raakt"],
-                        "response" => "Zie je dat voorraad op raakt (toiletpapier, kopieerpapier, koffie, thee etc.)? Laat het boekhouding/inkoop weten! 📦"
+                        "answer" => "Voorraad op raakt? Laat het boekhouding/inkoop weten! 📦"
                     ],
                 ]
             ],
@@ -509,38 +556,16 @@ class TechnoBot {
             // ── PAPIER HERGEBRUIKEN ───────────────────────────────────────────
             "papier" => [
                 "keywords" => ["papier", "hergebruiken", "brein", "recyclen", "printen"],
-                "responses" => [
-                    "Op Technolab hergebruiken we papier ♻️ Papier dat niet meer nodig is, sorteer je in het brein: dubbelzijdig of enkelzijdig bedrukt."
-                ]
+                "answer" => "Op Technolab hergebruiken we papier! ♻️ Sorteer papier in het brein: dubbelzijdig of engelszijdig bedrukt.",
+                "suggestions" => []
             ],
         ];
     }
 
-    public function respond(string $message): array {
+    public function respond(string $message): array
+    {
 
         $message = strtolower(trim($message));
-
-        // Check session context: are we in a sub-topic flow?
-        if (isset($_SESSION["pending_intent"])) {
-            $pendingIntent = $_SESSION["pending_intent"];
-
-            if (isset($this->intents[$pendingIntent]["sub_topics"])) {
-                foreach ($this->intents[$pendingIntent]["sub_topics"] as $subKey => $subTopic) {
-                    foreach ($subTopic["keywords"] as $keyword) {
-                        if ($this->matches($message, $keyword)) {
-                            unset($_SESSION["pending_intent"]);
-                            return [
-                                "reply" => $subTopic["response"],
-                                "buttons" => []
-                            ];
-                        }
-                    }
-                }
-            }
-
-            // User said something unrelated; clear context and fall through
-            unset($_SESSION["pending_intent"]);
-        }
 
         // Normal intent matching
         foreach ($this->intents as $intentName => $intent) {
@@ -557,7 +582,8 @@ class TechnoBot {
         ];
     }
 
-    private function matches(string $message, string $keyword): bool {
+    private function matches(string $message, string $keyword): bool
+    {
 
         if (str_contains($message, $keyword)) {
             return true;
@@ -593,64 +619,50 @@ class TechnoBot {
         string $message
     ): array {
 
-        // Intents with simple response arrays (no sub-topics)
-        if (!isset($intent["sub_topics"])) {
-
-            if ($intentName === "hallo") {
-                if (str_contains($message, "wsg")) {
-                    $responses = $intent["responses"]["wsg"];
-                } elseif (str_contains($message, "wsp")) {
-                    $responses = $intent["responses"]["wsp"];
-                } elseif (str_contains($message, "salam")) {
-                    $responses = $intent["responses"]["salam"];
-                } elseif (str_contains($message, "hey")) {
-                    $responses = $intent["responses"]["hey"];
-                } elseif (str_contains($message, "hoe gaat het")) {
-                    $responses = $intent["responses"]["hoe gaat het"];
-                } else {
-                    $responses = $intent["responses"]["hallo"];
+        // Intents with sub-topics: check if message targets a specific sub-topic
+        if (isset($intent["sub_topics"])) {
+            foreach ($intent["sub_topics"] as $subKey => $subTopic) {
+                foreach ($subTopic["keywords"] as $keyword) {
+                    if ($this->matches($message, $keyword)) {
+                        return [
+                            "reply" => $subTopic["answer"],
+                            "buttons" => []
+                        ];
+                    }
                 }
-            } else {
-                $responses = $intent["responses"];
             }
-
+            // No sub-topic matched → return main answer with suggestions as buttons
+            $buttons = [];
+            $suggestions = $intent["suggestions"] ?? [];
+            foreach (array_slice($suggestions, 0, 3) as $suggestion) {
+                $buttons[] = [
+                    "label" => $suggestion,
+                    "value" => $suggestion
+                ];
+            }
             return [
-                "reply" => $responses[rand(0, count($responses) - 1)],
-                "buttons" => []
+                "reply" => $intent["answer"],
+                "buttons" => $buttons
             ];
         }
 
-        // Intents with sub-topics: check if message already targets a sub-topic
-        foreach ($intent["sub_topics"] as $subKey => $subTopic) {
-            foreach ($subTopic["keywords"] as $keyword) {
-                if ($this->matches($message, $keyword)) {
-                    return [
-                        "reply" => $subTopic["response"],
-                        "buttons" => []
-                    ];
-                }
-            }
-        }
-
-        // No sub-topic matched → show intro menu and store context in session
-        $_SESSION["pending_intent"] = $intentName;
-        
-        // Build buttons from sub-topics
+        // Intents without sub-topics: return answer with max 3 suggestion buttons
         $buttons = [];
-        foreach ($intent["sub_topics"] as $subKey => $subTopic) {
+        $suggestions = $intent["suggestions"] ?? [];
+        foreach (array_slice($suggestions, 0, 3) as $suggestion) {
             $buttons[] = [
-                "label" => $subTopic["keywords"][0],
-                "value" => $subTopic["keywords"][0]
+                "label" => $suggestion,
+                "value" => $suggestion
             ];
         }
-        
         return [
-            "reply" => $intent["intro"],
+            "reply" => $intent["answer"],
             "buttons" => $buttons
         ];
     }
 
-    private function defaultResponse(): string {
+    private function defaultResponse(): string
+    {
 
         $responses = [
             "Sorry 😅 Dat snap ik nog niet.",
