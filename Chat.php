@@ -25,19 +25,8 @@ class TechnoBot
 
             "hallo" => [
                 "keywords" => [
-                    "hallo",
-                    "salam",
-                    "helo",
-                    "hey",
-                    "hi",
-                    "hii",
-                    "yo",
-                    "wsg",
-                    "wsp",
-                    "sup",
-                    "goede avond",
-                    "goede morgen",
-                    "hoe gaat het"
+                    "hallo", "salam", "helo", "hey", "hi", "hii", "yo",
+                    "wsg", "wsp", "sup", "goede avond", "goede morgen", "hoe gaat het"
                 ],
                 "answer" => "Hallo! Fijn je te ontmoeten! Waar kan ik je mee helpen?",
                 "suggestions" => [
@@ -49,15 +38,8 @@ class TechnoBot
 
             "feeling" => [
                 "keywords" => [
-                    "verdrietig",
-                    "happy",
-                    "tired",
-                    "boos",
-                    "depressed",
-                    "excited",
-                    "moe",
-                    "blij",
-                    "gevoelens"
+                    "verdrietig", "happy", "tired", "boos", "depressed",
+                    "excited", "moe", "blij", "gevoelens"
                 ],
                 "answer" => "Ik luister. Gevoelens zijn belangrijk. Wil je me meer vertellen?",
                 "suggestions" => [
@@ -69,13 +51,8 @@ class TechnoBot
 
             "onaardig" => [
                 "keywords" => [
-                    "homo",
-                    "bitch",
-                    "niet leuk",
-                    "raggen",
-                    "albi",
-                    "schelden",
-                    "grof"
+                    "homo", "bitch", "niet leuk", "raggen",
+                    "albi", "schelden", "grof"
                 ],
                 "answer" => "Dat is niet zo aardig 😔",
                 "suggestions" => [
@@ -87,12 +64,7 @@ class TechnoBot
 
             "hadj" => [
                 "keywords" => [
-                    "goat",
-                    "anis",
-                    "hadj",
-                    "moussa",
-                    "greatest",
-                    "algerijnse"
+                    "goat", "anis", "hadj", "moussa", "greatest", "algerijnse"
                 ],
                 "answer" => "Anissssss🐐",
                 "suggestions" => [
