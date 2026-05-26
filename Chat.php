@@ -164,7 +164,7 @@ class TechnoBot
 
             // ── PASJE / SLEUTEL ───────────────────────────────────────────────
             "pasje" => [
-                "keywords" => ["Wat","Is","krijg", "pasje", "sleutel", "deur", "toegang", "liftpas", "pas"],
+                "keywords" => ["wat","is","krijg", "pasje", "sleutel", "deur", "toegang", "liftpas", "pas"],
                 "answer" => "Je kunt een pasje aanvragen bij de coördinator medewerkers. 🔑",
                 
                 "suggestions" => [
@@ -175,8 +175,8 @@ class TechnoBot
                 "sub_topics" => [
                     "aanvragen" => [
                         "keywords" => ["Pasje", "krijg", "hoe", "coordinator"],
-                        "answer" => "Je kunt een pasje aanvragen bij de coördinator medewerkers. 🔑"
-                        "image" => "Images/Pasje.jpg",
+                        "answer" => "Je kunt een pasje aanvragen bij de coördinator medewerkers. 🔑",
+                        "image" => "Images/Pasje.jpg"
                     ],
                     "liftpas" => [
                         "keywords" => ["Wat","Is","liftpas", "lift", "ook openen"],
