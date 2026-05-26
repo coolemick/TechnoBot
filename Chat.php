@@ -68,9 +68,9 @@ class TechnoBot
                 ],
                 "answer" => "Anissssss🐐",
                 "suggestions" => [
-                    "Wie is anis hadj?",
-                    "Wat is een goat?",
-                    "Groet de hadj goat!"
+                    "Wie is Anis Hadj?",
+                    "Wat is een GOAT?",
+                    "Wie is de Hadj GOAT?"
                 ],
                 "sub_topics" => [
                     "wie" => [
@@ -86,9 +86,9 @@ class TechnoBot
                 "keywords" => ["fika"],
                 "answer" => "Fika is een gezamenlijke lunch elke woensdag waarbij een team kookt voor iedereen. 🍽️",
                 "suggestions" => [
-                    "Wie kookt fika?",
-                    "Fika budget hoeveel?",
-                    "Fika eten wat?"
+                    "Wie kookt er bij fika?",
+                    "Hoeveel is het fika budget?",
+                    "Wat eten we bij fika?"
                 ],
                 "sub_topics" => [
                     "wanneer" => [
@@ -124,9 +124,9 @@ class TechnoBot
                 "keywords" => ["bhv", "bedrijfshulpverlening"],
                 "answer" => "BHV staat voor BedrijfsHulpVerlening. BHV'ers helpen bij noodgevallen. 🚨",
                 "suggestions" => [
-                    "Bhv wie zijn de bhv'ers?",
-                    "Bhv training wanneer?",
-                    "Bhv regels wat zijn ze?"
+                    "Wie zijn de BHV'ers?",
+                    "Wanneer is de BHV training?",
+                    "Wat zijn de BHV regels?"
                 ],
                 "sub_topics" => [
                     "wat" => [
@@ -154,9 +154,9 @@ class TechnoBot
                 "keywords" => ["pasje", "liftpas", "badge"],
                 "answer" => "Je kunt een pasje aanvragen bij de coördinator medewerkers. 🔑",
                 "suggestions" => [
-                    "Pasje aanvragen hoe?",
-                    "Liftpas wat is het?",
-                    "Pasje nachtwerk regels?"
+                    "Hoe vraag ik een pasje aan?",
+                    "Wat is de liftpas?",
+                    "Wat zijn de regels voor nachtwerk met een pasje?"
                 ],
                 "sub_topics" => [
                     "aanvragen" => [
@@ -184,9 +184,9 @@ class TechnoBot
                 "keywords" => ["pensioen", "brightpensioen"],
                 "answer" => "Technolab biedt geen collectieve pensioenregeling, maar BrightPensioen lidmaatschap wordt vergoed! 💰",
                 "suggestions" => [
-                    "Brightpensioen wat is het?",
-                    "Pensioen aanmelden hoe?",
-                    "Pensioen kosten wat zijn ze?"
+                    "Wat is BrightPensioen?",
+                    "Hoe meld ik me aan voor pensioen?",
+                    "Wat kost het pensioen?"
                 ],
                 "sub_topics" => [
                     "regeling" => [
@@ -213,9 +213,9 @@ class TechnoBot
                 "keywords" => ["mdt", "maatschappelijke diensttijd"],
                 "answer" => "MDT staat voor Maatschappelijke DienstTijd. Ben je onder de 30? Dan kan je hiervan profiteren! 📋",
                 "suggestions" => [
-                    "Mdt voor wie is het?",
-                    "Mdt uren hoe registreer ik?",
-                    "Mdt extra uitbetalen?"
+                    "Voor wie is MDT?",
+                    "Hoe registreer ik mijn MDT uren?",
+                    "Kan ik extra MDT uren laten uitbetalen?"
                 ],
                 "sub_topics" => [
                     "wat" => [
@@ -242,9 +242,9 @@ class TechnoBot
                 "keywords" => ["loon", "loonverklaring", "salaris", "loonstrook"],
                 "answer" => "Je loon wordt via een boekhoudingsbureau betaald. Je hebt een loonverklaring én ID kopie nodig. 💳",
                 "suggestions" => [
-                    "Loon betaling hoe werkt het?",
-                    "Loon wat heb ik nodig?",
-                    "Loonverklaring sturen naar wie?"
+                    "Hoe werkt de loon betaling?",
+                    "Wat heb ik nodig voor mijn loon?",
+                    "Naar wie stuur ik mijn loonverklaring?"
                 ],
                 "sub_topics" => [
                     "hoe" => [
@@ -267,9 +267,9 @@ class TechnoBot
                 "keywords" => ["vog", "verklaring omtrent gedrag"],
                 "answer" => "Een VOG (Verklaring Omtrent Gedrag) is verplicht om in het onderwijs te werken. 🏫",
                 "suggestions" => [
-                    "Vog aanvragen wie doet dat?",
-                    "Vog ontvangen wat dan?",
-                    "Vog sturen naar wie?"
+                    "Wie vraagt de VOG aan?",
+                    "Wat doe ik als ik mijn VOG ontvang?",
+                    "Naar wie stuur ik mijn VOG?"
                 ],
                 "sub_topics" => [
                     "wat" => [
@@ -292,9 +292,9 @@ class TechnoBot
                 "keywords" => ["huisregels"],
                 "answer" => "Zorg dat je rond 8:15 uur binnen bent, dan starten we samen om 8:30 uur. 🕗",
                 "suggestions" => [
-                    "Huisregels ziek wat doen?",
-                    "Huisregels gedrag wat mag niet?",
-                    "Huisregels klusjes welke?"
+                    "Wat doe ik als ik ziek ben volgens de huisregels?",
+                    "Wat mag niet volgens de huisregels?",
+                    "Welke klusjes horen bij de huisregels?"
                 ],
                 "sub_topics" => [
                     "tijd" => [
@@ -325,9 +325,9 @@ class TechnoBot
                 "keywords" => ["urenregistratie", "uren registreren", "uren schrijven"],
                 "answer" => "Registreer wekelijks je gewerkte uren. Uren ophopen of compenseren is niet de bedoeling! ⏱️",
                 "suggestions" => [
-                    "Urenregistratie hoe werkt het?",
-                    "Urenregistratie opbouwen mag dat?",
-                    "Urenregistratie schema aanpassen?"
+                    "Hoe werkt de urenregistratie?",
+                    "Mag ik uren opbouwen via urenregistratie?",
+                    "Hoe pas ik mijn werkschema aan via urenregistratie?"
                 ],
                 "sub_topics" => [
                     "hoe" => [
@@ -361,9 +361,9 @@ class TechnoBot
                 "keywords" => ["appgroep", "signal", "app groep"],
                 "answer" => "We gebruiken Signal voor werk gerelateerde dingen. 📱 Geen WhatsApp!",
                 "suggestions" => [
-                    "Signal ziekmelden hoe?",
-                    "Signal aanmelden hoe?",
-                    "Signal welke app?"
+                    "Hoe meld ik me ziek via Signal?",
+                    "Hoe meld ik me aan voor de Signal appgroep?",
+                    "Welke app gebruiken we voor werk?"
                 ],
                 "sub_topics" => [
                     "welke" => [
@@ -386,9 +386,9 @@ class TechnoBot
                 "keywords" => ["noodnummer", "noodcontact", "nood formulier"],
                 "answer" => "Vul het noodnummerformulier in zodat Technolab jou in geval van nood kan bereiken. 📋",
                 "suggestions" => [
-                    "Noodnummer formulier waar?",
-                    "Noodnummer wie bellen?",
-                    "Noodnummer voor wie?"
+                    "Waar vind ik het noodnummer formulier?",
+                    "Wie bel ik in geval van nood?",
+                    "Voor wie is het noodnummer formulier?"
                 ]
             ],
 
@@ -397,9 +397,9 @@ class TechnoBot
                 "keywords" => ["emailhandtekening", "email handtekening", "handtekening outlook"],
                 "answer" => "Je emailhandtekening kan je aanpassen in Outlook met je Technolab plaatje en links. ✉️",
                 "suggestions" => [
-                    "Emailhandtekening aanmaken hoe?",
-                    "Emailhandtekening plaatje toevoegen?",
-                    "Emailhandtekening link toevoegen?"
+                    "Hoe maak ik een emailhandtekening aan?",
+                    "Hoe voeg ik een plaatje toe aan mijn emailhandtekening?",
+                    "Hoe voeg ik een link toe aan mijn emailhandtekening?"
                 ],
                 "sub_topics" => [
                     "aanmaken" => [
@@ -422,9 +422,9 @@ class TechnoBot
                 "keywords" => ["holacratie", "holacratisch", "werkoverleg"],
                 "answer" => "Holacratisch werkoverleg is strak vergaderen volgens vaste regels. Elke cirkel heeft wekelijks zo'n overleg. 🔄",
                 "suggestions" => [
-                    "Holacratie wat is het?",
-                    "Holacratie facilitator wie?",
-                    "Holacratie cirkel wat is het?"
+                    "Wat is holacratie?",
+                    "Wie is de facilitator bij holacratie?",
+                    "Wat is een holacratie cirkel?"
                 ],
                 "sub_topics" => [
                     "wat" => [
@@ -447,9 +447,9 @@ class TechnoBot
                 "keywords" => ["planner", "team agenda", "teamplanner"],
                 "answer" => "Elke cirkel heeft een planner die de agenda beheert en veranderingen afstemmt. 📅",
                 "suggestions" => [
-                    "Planner hoe werkt het?",
-                    "Planner wachtwoord waar?",
-                    "Planner teamleden overzicht?"
+                    "Hoe werkt de planner?",
+                    "Waar vind ik het planner wachtwoord?",
+                    "Wie staan er in de planner als teamleden?"
                 ],
                 "sub_topics" => [
                     "hoe" => [
@@ -472,9 +472,9 @@ class TechnoBot
                 "keywords" => ["buddy", "coaching", "coach"],
                 "answer" => "Elke medewerker zoekt een buddy om leerdoelen te bespreken. Coaches helpen met persoonlijke uitdagingen. 🤝",
                 "suggestions" => [
-                    "Buddy systeem wat is het?",
-                    "Coaching hoe werkt het?",
-                    "Coach wie is mijn coach?"
+                    "Wat is het buddy systeem?",
+                    "Hoe werkt het coaching traject?",
+                    "Wie is mijn coach?"
                 ],
                 "sub_topics" => [
                     "buddy" => [
@@ -497,9 +497,9 @@ class TechnoBot
                 "keywords" => ["vertrouwenspersoon", "vertrouwelijk bespreken"],
                 "answer" => "Heb je iets vertrouwelijks te bespreken? Ga naar onze vertrouwenspersoon! 🔒",
                 "suggestions" => [
-                    "Vertrouwenspersoon wie is het?",
-                    "Vertrouwenspersoon wat is vertrouwelijk?",
-                    "Vertrouwenspersoon contact hoe?"
+                    "Wie is de vertrouwenspersoon?",
+                    "Wat kan ik vertrouwelijk bespreken?",
+                    "Hoe neem ik contact op met de vertrouwenspersoon?"
                 ]
             ],
 
@@ -508,9 +508,9 @@ class TechnoBot
                 "keywords" => ["technolab bus", "bus rijden", "bus reserveren"],
                 "answer" => "Heb je een rijbewijs? Dan moet je eerst een proefrit doen. Daarna mag je ermee rijden! 🚐",
                 "suggestions" => [
-                    "Bus reserveren hoe?",
-                    "Bus rijden regels?",
-                    "Bus fiets reserveren ook?"
+                    "Hoe reserveer ik de bus?",
+                    "Wat zijn de regels voor het rijden met de bus?",
+                    "Kan ik ook een fiets reserveren?"
                 ],
                 "sub_topics" => [
                     "rijden" => [
@@ -529,9 +529,9 @@ class TechnoBot
                 "keywords" => ["boekhouding", "inkopen", "bonnetje", "declareren", "pinpas technolab"],
                 "answer" => "Bij Gamma of Plus koop je met je Technolab pasje. Bonnetje inleveren in de kast in de Groei! 🧾",
                 "suggestions" => [
-                    "Boekhouding zelf betalen hoe?",
-                    "Boekhouding pinpas gebruiken?",
-                    "Boekhouding online bestellen?"
+                    "Hoe betaal ik zelf iets voor boekhouding?",
+                    "Hoe gebruik ik de pinpas voor boekhouding?",
+                    "Hoe bestel ik iets online via boekhouding?"
                 ],
                 "sub_topics" => [
                     "gamma_plus" => [
@@ -566,9 +566,9 @@ class TechnoBot
                 "keywords" => ["papier hergebruiken", "papier recyclen", "papier brein", "papier dubbelzijdig"],
                 "answer" => "Op Technolab hergebruiken we papier! ♻️ Sorteer papier in het brein: dubbelzijdig of engelszijdig bedrukt.",
                 "suggestions" => [
-                    "Papier brein hoe sorteer ik?",
-                    "Papier brein wat is het?",
-                    "Papier duurzaam hoe?"
+                    "Hoe sorteer ik papier in het brein?",
+                    "Wat is het papier brein?",
+                    "Hoe gaan we duurzaam om met papier?"
                 ]
             ],
         ];
