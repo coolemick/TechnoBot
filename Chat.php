@@ -164,7 +164,7 @@ class TechnoBot
 
             // ── PASJE / SLEUTEL ───────────────────────────────────────────────
             "pasje" => [
-                "keywords" => ["krijg", "pasje", "sleutel", "deur", "toegang", "liftpas", "pas"],
+                "keywords" => ["Wat","Is","krijg", "pasje", "sleutel", "deur", "toegang", "liftpas", "pas"],
                 "answer" => "Je kunt een pasje aanvragen bij de coördinator medewerkers. 🔑",
                 
                 "suggestions" => [
