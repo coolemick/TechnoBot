@@ -112,7 +112,7 @@ class TechnoBot
                         "answer" => "Er mag rond de €50,- voor Fika worden uitgegeven 💶"
                     ],
                     "boodschappen" => [
-                        "keywords" => ["boodschappen", "winkel", "plus", "kopen"],
+                        "keywords" => ["boodschappen", "winkel", "plus"],
                         "answer" => "Boodschappen worden meestal bij de Plus beneden gedaan 🛒"
                     ],
                     "eten" => [
@@ -133,12 +133,13 @@ class TechnoBot
 
             // ── BHV ───────────────────────────────────────────────────────────
             "bhv" => [
-                "keywords" => ["training","bhv", "bedrijfshulpverlening", "noodgeval", "veiligheid", "ehbo"],
+                "keywords" => ["regels","training","bhv", "bedrijfshulpverlening", "noodgeval", "veiligheid", "ehbo"],
                 "answer" => "BHV staat voor BedrijfsHulpVerlening. BHV'ers helpen bij noodgevallen. 🚨",
                 "suggestions" => [
                     "Wie zijn de BHV'ers?",
                     "Wat is BHV?",
                     "Wanneer is training?",
+                    "Wat zijn de regels?",
                 ],
                 "sub_topics" => [
                     "wat" => [
@@ -163,21 +164,23 @@ class TechnoBot
 
             // ── PASJE / SLEUTEL ───────────────────────────────────────────────
             "pasje" => [
-                "keywords" => ["pasje", "sleutel", "deur", "toegang", "liftpas", "pas"],
+                "keywords" => ["krijg", "pasje", "sleutel", "deur", "toegang", "liftpas", "pas"],
                 "answer" => "Je kunt een pasje aanvragen bij de coördinator medewerkers. 🔑",
+                
                 "suggestions" => [
-                    "Wat is een liftpas?",
-                    "Hoe werkt het alarm?",
+                    "Hoe krijg ik een pasje?",
+                    "Hoe werkt de liftpas?",
                     "Nachtwerk melden?"
                 ],
                 "sub_topics" => [
                     "aanvragen" => [
-                        "keywords" => ["aanvragen", "krijgen", "hoe", "coordinator"],
-                        "answer" => "Je kunt een pasje aanvragen bij de coördinator medewerkers."
+                        "keywords" => ["aanvragen", "krijg", "hoe", "coordinator"],
+                        "answer" => "Je kunt een pasje aanvragen bij de coördinator medewerkers. 🔑"
+                        "image" => "Images/Pasje.jpg",
                     ],
                     "liftpas" => [
                         "keywords" => ["liftpas", "lift", "ook openen"],
-                        "answer" => "Sommige medewerkers hebben een liftpas. Ook hiermee kun je de deur van het gebouw openen."
+                        "answer" => "Sommige medewerkers hebben een liftpas waarmee je de lift kunt gebruiken. Ook hiermee kun je de deur van het gebouw openen."
                     ],
                     "sleutel" => [
                         "keywords" => ["sleutel", "alarm", "dagco"],
@@ -485,7 +488,7 @@ class TechnoBot
                         "answer" => "Coaches helpen in een traject van 3-4 afspraken met persoonlijke uitdagingen 💬"
                     ],
                     "wie" => [
-                        "keywords" => ["wie", "wie is coach", "organigram", "talentontwikkeling"],
+                        "keywords" => ["wie", "coach", "organigram", "talentontwikkeling"],
                         "answer" => "Cirkel Talentontwikkeling verzorgt Coaching en trainingen. Zie het organigram voor wie op dit moment coach is 🗂️"
                     ],
                 ]
