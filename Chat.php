@@ -169,17 +169,17 @@ class TechnoBot
                 
                 "suggestions" => [
                     "Hoe krijg ik een pasje?",
-                    "Hoe werkt de liftpas?",
+                    "Wat is de liftpas?",
                     "Nachtwerk melden?"
                 ],
                 "sub_topics" => [
                     "aanvragen" => [
-                        "keywords" => ["aanvragen", "krijg", "hoe", "coordinator"],
+                        "keywords" => ["Pasje", "krijg", "hoe", "coordinator"],
                         "answer" => "Je kunt een pasje aanvragen bij de coördinator medewerkers. 🔑"
                         "image" => "Images/Pasje.jpg",
                     ],
                     "liftpas" => [
-                        "keywords" => ["liftpas", "lift", "ook openen"],
+                        "keywords" => ["Wat","Is","liftpas", "lift", "ook openen"],
                         "answer" => "Sommige medewerkers hebben een liftpas waarmee je de lift kunt gebruiken. Ook hiermee kun je de deur van het gebouw openen."
                     ],
                     "sleutel" => [
