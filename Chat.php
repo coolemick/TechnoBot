@@ -208,7 +208,7 @@ class TechnoBot
             ],
 
             // ── PENSIOEN ──────────────────────────────────────────────────────
-            "pensioenion" => [
+            "pensioen" => [
                 "keywords" => ["pensioen", "brightpensioen"],
                 "answer" => "Technolab biedt geen collectieve pensioenregeling, maar BrightPensioen lidmaatschap wordt vergoed! 💰",
                 "suggestions" => [
