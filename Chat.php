@@ -143,11 +143,11 @@ class TechnoBot
                 ],
                 "answer" => "Anissssss🐐",
                 "suggestions" => [
-                    "Wie is Anis Hadj Moussa?",
+                    "Anis Hadj Moussa?",
                 ],
                 "sub_topics" => [
                     "wie" => [
-                        "keywords" => ["wie is anis hadj", "anis hadj wie", "wie is anis", "wie is de hadj goat"],
+                        "keywords" => ["wie is anis hadj", "anis hadj", "wie is anis", "wie is de hadj goat"],
                         "answer" => "Anis Hadj Moussa, de Algerijnse GOAT🐐",
                         "image" => "Images/Anis.png"
                     ],
