@@ -26,24 +26,70 @@ class TechnoBot
             "hallo" => [
                 "keywords" => [
                     "hallo",
+                    "hoi",
                     "salam",
                     "helo",
                     "hey",
                     "hi",
                     "hii",
                     "yo",
-                    "wsg",
                     "wsp",
-                    "sup",
+                    "wsg",
                     "goede avond",
                     "goede morgen",
                     "hoe gaat het"
                 ],
-                "answer" => "Hallo! Fijn je te ontmoeten! Waar kan ik je mee helpen?",
+                "answer" => "Hallo! Waar kan ik je mee helpen?",
                 "suggestions" => [
                     "Wat is Technolab?",
                     "Hoe werkt dit?",
                     "Wat kan ik vragen?"
+                ]
+            ],
+            "technolab" => [
+                "keywords" => [
+                    "technolab",
+                    "techno",
+                    "lab",
+                    "wat",
+                    "uitleg",
+                    "groot",
+                    "hoeveel",
+                    "scholen",
+                    "wie",
+                    "zijn"
+                    
+                ],
+                "answer" => "Technolab Leiden is een leerwerkbedrijf met passie voor onderwijs, techniek, wetenschap en talentontwikkeling.",
+                "suggestions" => [
+                    "Wie zijn wij?",
+                    "Hoe groot is Technolab?",
+                    "Wat voor projecten doen wij?"
+                ],
+                "sub_topics" => [
+                    "groot" => [
+                        "keywords" => ["groot", "hoeveel", "scholen"],
+                        "answer" => "Ruim 36.000 leerlingen, meer dan 50 scholen en circa 100 bedrijven en organisaties elk jaar meedoen aan de lessen en projecten van Technolab! 🏫",
+                    ],
+                    "wie" => [
+                        "keywords" => ["wie zijn wij", "wie", "zijn"],
+                        "answer" => "Bij Technolab verbinden we onderwijs, techniek en talentontwikkeling. Samen met scholen en bedrijven laten we kinderen, jongeren én medewerkers ontdekken: wie ben ik, wat kan ik, wat wil ik? Daarnaast maken ze kennis met en enthousiasmeren we ze voor natuur en techniek: de toekomst! 🌟",
+                    ],
+                    "wat" => [
+                        "keywords" => ["projecten", "voor"],
+                        "answer" => "We organiseren workshops, projecten, beroepsoriëntatieweken en leerwerktrajecten, en bieden trainingsprogramma’s voor medewerkers van scholen en bedrijven. Zo helpen we mensen ontdekken of een loopbaan in het onderwijs of de techniek bij hen past, en versterken we de zijstroom in het onderwijs. Ook begeleiden we mbo-, hbo- en wo-studenten bij leerwerkplekken en praktijkervaring. 🚀",
+                    ],
+                ]
+            ],
+            
+            "oke" => [
+                "keywords" => [
+                    "Sorry, ik bedoelde het niet",
+                    "Ik snap het niet",
+
+                ],
+                "answer" => "Oke, geen probleem! Waar kan ik je mee helpen?",
+                "suggestions" => [
                 ]
             ],
 
@@ -59,16 +105,19 @@ class TechnoBot
                     "blij",
                     "gevoelens"
                 ],
-                "answer" => "Ik luister. Gevoelens zijn belangrijk. Wil je me meer vertellen?",
+                "answer" => "Ik luister. Gevoelens zijn belangrijk.",
                 "suggestions" => [
-                    "Hoe kan ik beter worden?",
-                    "Wat zijn tips?",
-                    "Kan ik erover praten?"
                 ]
             ],
 
             "onaardig" => [
                 "keywords" => [
+                    "dom",
+                    "dumb",
+                    "stom",
+                    "idioot",
+                    "sukkel",
+                    "lul",
                     "homo",
                     "bitch",
                     "niet leuk",
@@ -79,9 +128,7 @@ class TechnoBot
                 ],
                 "answer" => "Dat is niet zo aardig 😔",
                 "suggestions" => [
-                    "Sorry, ik bedoelde het niet",
-                    "Wat zijn de regels?",
-                    "Hoe beter gedragen?"
+                    "Sorry, ik bedoelde het niet"
                 ]
             ],
 
@@ -96,9 +143,7 @@ class TechnoBot
                 ],
                 "answer" => "Anissssss🐐",
                 "suggestions" => [
-                    "Wie is Anis Hadj?",
-                    "Wat is een GOAT?",
-                    "Wie is de Hadj GOAT?"
+                    "Wie is Anis Hadj Moussa?",
                 ],
                 "sub_topics" => [
                     "wie" => [
@@ -676,6 +721,25 @@ class TechnoBot
         string $message
     ): array {
 
+        // Special handling for "hallo" intent - use the actual greeting word from the message
+        if ($intentName === "hallo") {
+            $greeting = $this->extractGreeting($message, $intent["keywords"]);
+            $answer = ucfirst($greeting) . "! Fijn je te ontmoeten! Waar kan ik je mee helpen?";
+            
+            $buttons = [];
+            $suggestions = $intent["suggestions"] ?? [];
+            foreach (array_slice($suggestions, 0, 3) as $suggestion) {
+                $buttons[] = [
+                    "label" => $suggestion,
+                    "value" => $suggestion
+                ];
+            }
+            return [
+                "reply" => $answer,
+                "buttons" => $buttons
+            ];
+        }
+
         // Intents with sub-topics: check if message targets a specific sub-topic
         if (isset($intent["sub_topics"])) {
             foreach ($intent["sub_topics"] as $subKey => $subTopic) {
@@ -720,6 +784,20 @@ class TechnoBot
             "reply" => $intent["answer"],
             "buttons" => $buttons
         ];
+    }
+
+    private function extractGreeting(string $message, array $keywords): string
+    {
+        // Find which greeting keyword matches and return it
+        foreach ($keywords as $keyword) {
+            if ($this->matches($message, $keyword)) {
+                // For multi-word greetings, return the first word
+                $words = explode(" ", $keyword);
+                return trim($words[0]);
+            }
+        }
+        // Default fallback
+        return "hallo";
     }
 
     private function defaultResponse(): string
