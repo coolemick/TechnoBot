@@ -50,38 +50,30 @@ class TechnoBot
                 "keywords" => [
                     "technolab",
                     "techno",
-                    "lab",
-                    "wat",
-                    "uitleg",
-                    "groot",
-                    "hoeveel",
-                    "scholen",
-                    "wie",
-                    "zijn"
-                    
+                    "lab"
                 ],
                 "answer" => "Technolab Leiden is een leerwerkbedrijf met passie voor onderwijs, techniek, wetenschap en talentontwikkeling.",
                 "suggestions" => [
-                    "Wie zijn wij?",
+                    "Over Technolab?",
                     "Hoe groot is Technolab?",
                     "Wat voor projecten doen wij?"
                 ],
                 "sub_topics" => [
                     "groot" => [
-                        "keywords" => ["groot", "hoeveel", "scholen"],
+                        "keywords" => ["groot", "hoeveel", "hoeveel scholen", "hoe groot", "hoe groot is"],
                         "answer" => "Ruim 36.000 leerlingen, meer dan 50 scholen en circa 100 bedrijven en organisaties elk jaar meedoen aan de lessen en projecten van Technolab! 🏫",
                     ],
                     "wie" => [
-                        "keywords" => ["wie zijn wij", "wie", "zijn"],
+                        "keywords" => ["wie is technolab", "wie zijn wij", "wat is technolab", "wat zijn jullie"],
                         "answer" => "Bij Technolab verbinden we onderwijs, techniek en talentontwikkeling. Samen met scholen en bedrijven laten we kinderen, jongeren én medewerkers ontdekken: wie ben ik, wat kan ik, wat wil ik? Daarnaast maken ze kennis met en enthousiasmeren we ze voor natuur en techniek: de toekomst! 🌟",
                     ],
-                    "wat" => [
-                        "keywords" => ["projecten", "voor"],
+                    "projecten" => [
+                        "keywords" => ["wat doen jullie", "wat voor projecten", "hoe werkt technolab", "hoe werkt dit", "hoe werkt"],
                         "answer" => "We organiseren workshops, projecten, beroepsoriëntatieweken en leerwerktrajecten, en bieden trainingsprogramma’s voor medewerkers van scholen en bedrijven. Zo helpen we mensen ontdekken of een loopbaan in het onderwijs of de techniek bij hen past, en versterken we de zijstroom in het onderwijs. Ook begeleiden we mbo-, hbo- en wo-studenten bij leerwerkplekken en praktijkervaring. 🚀",
                     ],
                 ]
             ],
-            
+
             "oke" => [
                 "keywords" => [
                     "Sorry, ik bedoelde het niet",
@@ -89,8 +81,7 @@ class TechnoBot
 
                 ],
                 "answer" => "Oke, geen probleem! Waar kan ik je mee helpen?",
-                "suggestions" => [
-                ]
+                "suggestions" => []
             ],
 
             "feeling" => [
@@ -106,8 +97,7 @@ class TechnoBot
                     "gevoelens"
                 ],
                 "answer" => "Ik luister. Gevoelens zijn belangrijk.",
-                "suggestions" => [
-                ]
+                "suggestions" => []
             ],
 
             "onaardig" => [
@@ -725,7 +715,7 @@ class TechnoBot
         if ($intentName === "hallo") {
             $greeting = $this->extractGreeting($message, $intent["keywords"]);
             $answer = ucfirst($greeting) . "! Fijn je te ontmoeten! Waar kan ik je mee helpen?";
-            
+
             $buttons = [];
             $suggestions = $intent["suggestions"] ?? [];
             foreach (array_slice($suggestions, 0, 3) as $suggestion) {
