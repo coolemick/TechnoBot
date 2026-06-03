@@ -42,48 +42,34 @@ class TechnoBot
                 "answer" => "Hallo! Waar kan ik je mee helpen?",
                 "suggestions" => [
                     "Wat is Technolab?",
-                    "Wat is fika",
-                    "Hoe werkt de boekhouding?"
+                    "Hoe werkt dit?",
+                    "Wat kan ik vragen?"
                 ]
             ],
             "technolab" => [
                 "keywords" => [
                     "technolab",
                     "techno",
-                    "lab",
-                    "projecten",
-                    "wat doen jullie",
-                    "wat voor projecten",
-                    "hoe groot",
-                    "hoe werkt",
-                    "wat kan ik vragen"
+                    "lab"
                 ],
                 "answer" => "Technolab Leiden is een leerwerkbedrijf met passie voor onderwijs, techniek, wetenschap en talentontwikkeling.",
                 "suggestions" => [
+                    "Over Technolab?",
                     "Hoe groot is Technolab?",
-                    "Wat voor projecten doen jullie?",
-                    "Hoe werkt Technolab?"
+                    "Wat voor projecten doen wij?"
                 ],
                 "sub_topics" => [
                     "groot" => [
                         "keywords" => ["groot", "hoeveel", "hoeveel scholen", "hoe groot", "hoe groot is"],
-                        "answer" => "Ruim 36.000 leerlingen, meer dan 50 scholen en circa 100 bedrijven en organisaties doen elk jaar mee aan de lessen en projecten van Technolab! 🏫",
+                        "answer" => "Ruim 36.000 leerlingen, meer dan 50 scholen en circa 100 bedrijven en organisaties elk jaar meedoen aan de lessen en projecten van Technolab! 🏫",
                     ],
                     "wie" => [
                         "keywords" => ["wie is technolab", "wie zijn wij", "wat is technolab", "wat zijn jullie"],
-                        "answer" => "Bij Technolab verbinden we onderwijs, techniek en talentontwikkeling. Samen met scholen en bedrijven laten we kinderen, jongeren én medewerkers ontdekken: wie ben ik, wat kan ik, wat wil ik? We maken ze enthousiast voor natuur en techniek: de toekomst! 🌟",
+                        "answer" => "Bij Technolab verbinden we onderwijs, techniek en talentontwikkeling. Samen met scholen en bedrijven laten we kinderen, jongeren én medewerkers ontdekken: wie ben ik, wat kan ik, wat wil ik? Daarnaast maken ze kennis met en enthousiasmeren we ze voor natuur en techniek: de toekomst! 🌟",
                     ],
                     "projecten" => [
-                        "keywords" => ["wat doen jullie", "wat voor projecten", "wat voor projecten doen jullie", "projecten"],
-                        "answer" => "We organiseren workshops, lessen (zoals TechniekWijs, ToekomstTaal en Toekomstkunde), POP-UP projectweken, beroepsoriëntatietrajecten (Talent & Toekomst), de Willie Wortel Wedstrijd, de Meesterchallenge en Expeditie Leerkracht. Ook bieden we stages en leerwerkplekken voor mbo-, hbo- en wo-studenten! 🚀",
-                    ],
-                    "hoe_werkt" => [
-                        "keywords" => ["hoe werkt technolab", "hoe werkt dit", "hoe werkt"],
-                        "answer" => "Bij Technolab leer je door te doen! Leerlingen, studenten en professionals werken samen in een creatieve omgeving. We geven lessen op locatie in Leiden én op scholen (POP-UP). Medewerkers werken in cirkels (holacratie) en nemen verantwoordelijkheid voor hun eigen rol. Elke dag zijn er zo'n 20 stagiairs actief aan het werk! 💡",
-                    ],
-                    "wat_kan_vragen" => [
-                        "keywords" => ["wat kan ik vragen", "wat kun je beantwoorden", "waarmee kan je helpen", "wat weet jij"],
-                        "answer" => "Je kunt mij vragen over van alles rondom Technolab! Denk aan: Fika, BHV, pasjes, pensioen, MDT, loon, VOG, huisregels, urenregistratie, holacratie, de dagco, lessen en leskisten, stage lopen, en nog veel meer. Probeer het gewoon! 😄",
+                        "keywords" => ["wat doen jullie", "wat voor projecten", "hoe werkt technolab", "hoe werkt dit", "hoe werkt"],
+                        "answer" => "We organiseren workshops, projecten, beroepsoriëntatieweken en leerwerktrajecten, en bieden trainingsprogramma’s voor medewerkers van scholen en bedrijven. Zo helpen we mensen ontdekken of een loopbaan in het onderwijs of de techniek bij hen past, en versterken we de zijstroom in het onderwijs. Ook begeleiden we mbo-, hbo- en wo-studenten bij leerwerkplekken en praktijkervaring. 🚀",
                     ],
                 ]
             ],
@@ -92,6 +78,7 @@ class TechnoBot
                 "keywords" => [
                     "Sorry, ik bedoelde het niet",
                     "Ik snap het niet",
+
                 ],
                 "answer" => "Oke, geen probleem! Waar kan ik je mee helpen?",
                 "suggestions" => []
@@ -124,10 +111,8 @@ class TechnoBot
                     "homo",
                     "bitch",
                     "niet leuk",
-                    "niet aardig",
-                    "niet interessant",
-                    "niet belangrijk",
-                    "niet belangrijk genoeg",
+                    "raggen",
+                    "albi",
                     "schelden",
                     "grof"
                 ],
@@ -155,126 +140,6 @@ class TechnoBot
                         "keywords" => ["wie is anis hadj", "anis hadj", "wie is anis", "wie is de hadj goat"],
                         "answer" => "Anis Hadj Moussa, de Algerijnse GOAT🐐",
                         "image" => "Images/Anis.png"
-                    ],
-                ]
-            ],
-
-            // ── DAGCO ─────────────────────────────────────────────────────────
-            "dagco" => [
-                "keywords" => ["dagco", "dagcoordinator", "dagcoördinator", "dag coordinator"],
-                "answer" => "De dagcoördinator (dagco) zorgt elke dag dat Technolab op tijd open is en de dag goed verloopt. 🗓️",
-                "suggestions" => [
-                    "Wat doet de dagco?",
-                    "Hoe bereik ik de dagco?",
-                    "Wie is de dagco vandaag?"
-                ],
-                "sub_topics" => [
-                    "wat" => [
-                        "keywords" => ["dagco wat", "dagco doet", "wat doet de dagco", "dagco taken"],
-                        "answer" => "De dagco zorgt dat Technolab op tijd open is, zet koffie en thee klaar, opent de dag in de kring met een energiser en houdt gedurende de dag bij wie het pand verlaat of terugkomt. Ook regel je vervoer via de dagco! 🚐☕",
-                    ],
-                    "bereiken" => [
-                        "keywords" => ["dagco bellen", "dagco bereiken", "dagco nummer", "hoe bereik ik de dagco", "dagco telefoon"],
-                        "answer" => "De dagco is bereikbaar op 071-5191324. Bel bij ziekte of verhindering tussen 08:10 en 08:25 uur! 📞",
-                    ],
-                    "wie" => [
-                        "keywords" => ["dagco wie", "wie is dagco", "wie is de dagco vandaag", "dagco vandaag"],
-                        "answer" => "Elke dag is er iemand uit een ander team dagco. Kijk op de planner of vraag het aan een collega wie het vandaag is! 👀",
-                    ],
-                    "sleutel" => [
-                        "keywords" => ["dagco sleutel", "dagco alarm", "dagco openen"],
-                        "answer" => "Als dagco krijg je een sleutel van Technolab en wordt uitgelegd hoe het alarm werkt 🔑",
-                    ],
-                ]
-            ],
-
-            // ── LESKISTEN ─────────────────────────────────────────────────────
-            "leskisten" => [
-                "keywords" => ["leskisten", "leskist", "blauwe kisten", "blauwe leskist"],
-                "answer" => "De blauwe leskisten zijn de herkenbare kisten waarmee Technolab lessen worden gegeven! 📦",
-                "suggestions" => [
-                    "Wat zitten er in de leskisten?",
-                    "Welke lessen horen bij de leskisten?",
-                    "Waar worden leskisten gebruikt?"
-                ],
-                "sub_topics" => [
-                    "inhoud" => [
-                        "keywords" => ["leskist inhoud", "leskist wat zit erin", "wat zitten er in de leskisten", "leskist materiaal"],
-                        "answer" => "In de blauwe leskisten zit al het materiaal voor een Technolab les: handleidingen, materialen voor experimenten en opdrachten. Alles wat je nodig hebt voor een goede les zit erin! 🔬🔧",
-                    ],
-                    "lessen" => [
-                        "keywords" => ["leskist lessen", "welke lessen leskisten", "leskist techniekwijs", "welke lessen horen bij de leskisten"],
-                        "answer" => "De leskisten horen bij de lessen van Technolab, zoals TechniekWijs (wetenschap & techniek), ToekomstTaal (programmeren & mediawijsheid) en Toekomstkunde (duurzaamheid & technologie). 📚",
-                    ],
-                    "gebruik" => [
-                        "keywords" => ["leskist gebruik", "leskist waar", "leskist school", "waar worden leskisten gebruikt"],
-                        "answer" => "Leskisten worden gebruikt bij lessen op Technolab zelf én bij POP-UP lessen op scholen in de regio Leiden. Zo brengen we de Technolab-ervaring direct naar de klas! 🏫",
-                    ],
-                ]
-            ],
-
-            // ── STAGE LOPEN ───────────────────────────────────────────────────
-            "stage" => [
-                "keywords" => ["stage", "stagiair", "stage lopen", "stageplaats"],
-                "answer" => "Bij Technolab Leiden kun je een actieve en afwisselende stage lopen in een creatieve omgeving! 🎓",
-                "suggestions" => [
-                    "Hoe meld ik me aan voor een stage?",
-                    "Wat kan ik doen tijdens mijn stage?",
-                    "Voor welke studierichtingen is stage mogelijk?"
-                ],
-                "sub_topics" => [
-                    "aanmelden" => [
-                        "keywords" => ["stage aanmelden", "stage inschrijven", "stage formulier", "stage aanvragen", "hoe meld ik me aan voor een stage"],
-                        "answer" => "Aanmelden kan via het formulier op technolableiden.nl/over-technolab/stage-leiden/. Daarna volg je de stappen: aanmelden → inspiratiemiddag → ontdekdag → match & start! 📝",
-                    ],
-                    "wat_doen" => [
-                        "keywords" => ["stage wat doe je", "stage werkzaamheden", "stage activiteiten", "wat kan ik doen tijdens mijn stage"],
-                        "answer" => "Tijdens je stage werk je mee aan inspirerend techniekonderwijs voor kinderen en jongeren. Je werkt in een multidisciplinair team, krijgt ruimte voor eigen ideeën en begeleiding gericht op jouw leerdoelen. Elke dag zijn er zo'n 20 stagiairs actief! 💪",
-                    ],
-                    "richtingen" => [
-                        "keywords" => ["stage richtingen", "stage opleiding", "stage welke studie", "voor welke studierichtingen is stage mogelijk"],
-                        "answer" => "Technolab zoekt stagiairs uit diverse richtingen, zoals Toegepaste Psychologie, HBO-ICT / Innovative Development, Media Vormgeven en MLO. De mix van achtergronden zorgt voor een inspirerende leeromgeving! 🎨💻",
-                    ],
-                    "contact" => [
-                        "keywords" => ["stage contact", "stage email", "stage vragen", "stage bellen"],
-                        "answer" => "Vragen over je stage? Bel 071-5191324 of mail naar stage@technolableiden.nl. Let op: tijdens schoolvakanties wordt mail minder vaak gelezen 📧",
-                    ],
-                ]
-            ],
-
-            // ── LESSEN ────────────────────────────────────────────────────────
-            "lessen" => [
-                "keywords" => ["les", "lessen", "lesaanbod", "lesprogramma", "workshop", "workshops", "techniekwijs", "toekomsttaal", "toekomstkunde", "popup", "willie wortel"],
-                "answer" => "Technolab biedt inspirerende lessen en workshops voor PO en VO op het gebied van techniek, wetenschap en talentontwikkeling! 📚",
-                "suggestions" => [
-                    "Wat zijn alle lesprogramma's?",
-                    "Wat is TechniekWijs?",
-                    "Wat is ToekomstTaal?"
-                ],
-                "sub_topics" => [
-                    "overzicht" => [
-                        "keywords" => ["les overzicht", "alle lessen", "welke lessen", "wat zijn de lesprogrammas van technolab", "lesprogrammas"],
-                        "answer" => "Technolab heeft drie hoofdleerlijnen: TechniekWijs (wetenschap & techniek), ToekomstTaal (programmeren & mediawijsheid) en Toekomstkunde (duurzaamheid & technologie). Daarnaast zijn er POP-UP projectweken, mini-stages en de Willie Wortel Wedstrijd! 🔭💻🌱",
-                    ],
-                    "techniekwijs" => [
-                        "keywords" => ["techniekwijs", "wetenschap techniek les", "wat is techniekwijs"],
-                        "answer" => "TechniekWijs is de leerlijn voor wetenschap en techniekonderwijs. Met een rijk aanbod aan apparatuur halen we de uitvinder in leerlingen naar boven! Denk aan workshops over stroomcircuits, katrollen, tandwielen en elektriciteit. 🔧⚡",
-                    ],
-                    "toekomsttaal" => [
-                        "keywords" => ["toekomsttaal", "programmeren les", "mediawijsheid les", "wat is toekomsttaal", "digispel"],
-                        "answer" => "ToekomstTaal is de leerlijn voor programmeren en mediawijsheid. Leerlingen leren hoe digitale technologie werkt, programmeren met Micro:bit en bouwen eigen robots! 🤖📱",
-                    ],
-                    "toekomstkunde" => [
-                        "keywords" => ["toekomstkunde", "duurzaamheid les", "klimaat les", "wat is toekomstkunde", "groen doen"],
-                        "answer" => "Toekomstkunde gaat over duurzaamheid, hernieuwbare energie, biodiversiteit en klimaatactie. Leerlingen werken hands-on aan oplossingen voor duurzaamheidsvraagstukken. 🌿🌍",
-                    ],
-                    "popup" => [
-                        "keywords" => ["popup les", "pop up technolab", "projectweek school", "les op school"],
-                        "answer" => "Met POP-UP Technolab komen wij naar jouw school! We verzorgen een week vullend programma met activiteiten op school én bijzondere dagdelen bij Technolab of de Hortus. Er is een programmeer/maakweek én een uitvindersweek. Afgesloten met een tentoonstelling! 🎉",
-                    ],
-                    "willie_wortel" => [
-                        "keywords" => ["willie wortel", "uitvinderswedstrijd", "wedstrijd technolab"],
-                        "answer" => "De Willie Wortel Wedstrijd is een uitvinderswedstrijd voor jonge geniën uit de regio Leiden. Ze bedenken creatieve oplossingen voor uiteenlopende problemen. Er is ook een junior versie voor jongere leerlingen! 🏆💡",
                     ],
                 ]
             ],
@@ -437,7 +302,7 @@ class TechnoBot
 
             // ── LOONVERKLARING ────────────────────────────────────────────────
             "loon" => [
-                "keywords" => ["loon", "loonverklaring", "salaris", "loonstrook", "betaling salaris", "betaling loon", "uitbetaling"],
+                "keywords" => ["loon", "loonverklaring", "salaris", "loonstrook"],
                 "answer" => "Je loon wordt via een boekhoudingsbureau betaald. Je hebt een loonverklaring én ID kopie nodig. 💳",
                 "suggestions" => [
                     "Hoe werkt de loon betaling?",
@@ -446,15 +311,15 @@ class TechnoBot
                 ],
                 "sub_topics" => [
                     "hoe" => [
-                        "keywords" => ["loon hoe", "loon betaling", "salaris betaling", "hoe werkt betaling", "hoe werkt de loon betaling", "hoe wordt mijn loon betaald", "hoe werkt salaris"],
+                        "keywords" => ["loon hoe", "loon betaling", "loon bureau", "salaris hoe", "hoe werkt de loon betaling"],
                         "answer" => "De betaling van je loon gaat via een boekhoudingsbureau."
                     ],
                     "nodig" => [
-                        "keywords" => ["loon nodig", "loon identiteitsbewijs", "loonverklaring nodig", "salaris nodig", "wat heb ik nodig voor mijn loon", "wat heb ik nodig salaris"],
+                        "keywords" => ["loon nodig", "loon identiteitsbewijs", "loonverklaring nodig", "salaris nodig", "wat heb ik nodig voor mijn loon"],
                         "answer" => "Voor je uitbetaling is een loonverklaring én een kopie van je ID nodig."
                     ],
                     "sturen" => [
-                        "keywords" => ["loonverklaring sturen", "loon sturen", "loon email", "loon naar wie", "naar wie stuur ik mijn loonverklaring", "salaris email"],
+                        "keywords" => ["loonverklaring sturen", "loon sturen", "loon email", "loon naar wie", "naar wie stuur ik mijn loonverklaring"],
                         "answer" => "Stuur je loonverklaring naar boekhouding@technolableiden.nl. Zorg dat het op tijd aankomt!"
                     ],
                 ]
