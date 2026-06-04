@@ -703,7 +703,7 @@ class TechnoBot
 
             // ── BUS RIJDEN ────────────────────────────────────────────────────
             "bus" => [
-                "keywords" => ["technolab bus", "bus rijden", "bus reserveren"],
+                "keywords" => ["bus", "bus rijden", "bus reserveren"],
                 "answer" => "Heb je een rijbewijs? Dan moet je eerst een proefrit doen. Daarna mag je ermee rijden! 🚐",
                 "suggestions" => [
                     "Hoe reserveer ik de bus?",
