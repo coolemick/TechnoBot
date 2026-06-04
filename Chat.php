@@ -153,10 +153,18 @@ class TechnoBot
                 "sub_topics" => [
                     "wie" => [
                         "keywords" => ["wie is anis hadj", "anis hadj", "wie is anis", "wie is de hadj goat"],
-                        "answer" => "Anis Hadj Moussa, de Algerijnse GOAT🐐",
-                        "image" => "Images/Anis.png"
+                        "answer" => "",
+                        "image" => "Images/Anissss.gif"
                     ],
                 ]
+            ],
+            "diddy d" => [
+                "keywords" => [
+                    "diddy",
+                    "dayaan?"
+                ],
+                "answer" => "",
+                "image" => "Images/DiddyD.jpg"
             ],
 
             // ── DAGCO ─────────────────────────────────────────────────────────
@@ -696,8 +704,12 @@ class TechnoBot
                 "answer" => "Heb je iets vertrouwelijks te bespreken? Ga naar onze vertrouwenspersoon! 🔒",
                 "suggestions" => [
                     "Wie is de vertrouwenspersoon?",
-                    "Wat kan ik vertrouwelijk bespreken?",
-                    "Hoe neem ik contact op met de vertrouwenspersoon?"
+                ],
+                "sub_topics" => [
+                    "wie" => [
+                        "keywords" => ["wie is de vertouwenspersoon"],
+                        "answer" => "Maartje Kapteijn is onze vertrouwenspersoon."
+                    ]        
                 ]
             ],
 
@@ -707,8 +719,7 @@ class TechnoBot
                 "answer" => "Heb je een rijbewijs? Dan moet je eerst een proefrit doen. Daarna mag je ermee rijden! 🚐",
                 "suggestions" => [
                     "Hoe reserveer ik de bus?",
-                    "Wat zijn de regels voor het rijden met de bus?",
-                    "Kan ik ook een fiets reserveren?"
+                    "Wat zijn de regels voor het rijden met de bus?"
                 ],
                 "sub_topics" => [
                     "rijden" => [
@@ -719,6 +730,7 @@ class TechnoBot
                         "keywords" => ["bus reserveren", "bus boeken", "bus dagco wiki", "fiets reserveren", "hoe reserveer ik de bus", "kan ik ook een fiets reserveren"],
                         "answer" => "Reserveer via de Dagco Wiki! Dit geldt ook voor fietsen! 📅"
                     ],
+                    
                 ]
             ],
 
@@ -890,10 +902,17 @@ class TechnoBot
                     "value" => $suggestion
                 ];
             }
-            return [
+            $response = [
                 "reply" => $intent["answer"],
                 "buttons" => $buttons
             ];
+            
+            // Add image if present at main intent level
+            if (isset($intent["image"])) {
+                $response["image"] = $intent["image"];
+            }
+            
+            return $response;
         }
 
         // Intents without sub-topics: return answer with max 3 suggestion buttons
@@ -905,10 +924,17 @@ class TechnoBot
                 "value" => $suggestion
             ];
         }
-        return [
+        $response = [
             "reply" => $intent["answer"],
             "buttons" => $buttons
         ];
+        
+        // Add image if present at main intent level
+        if (isset($intent["image"])) {
+            $response["image"] = $intent["image"];
+        }
+        
+        return $response;
     }
 
     private function extractGreeting(string $message, array $keywords): string
