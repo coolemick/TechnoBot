@@ -161,7 +161,7 @@ class TechnoBot
             "diddy d" => [
                 "keywords" => [
                     "diddy",
-                    "dayaan?"
+                    "dayaan"
                 ],
                 "answer" => "",
                 "image" => "Images/DiddyD.jpg"
