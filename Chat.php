@@ -10,16 +10,22 @@ class TechnoBot
     private array $intents;
     private array $conversationHistory = [];
     private int $messageCount = 0;
+    private array $synonyms = [];
+    private array $semanticGroups = [];
+
+    // Tie threshold: if top scores are within this range, treat as a tie
+    private const TIE_THRESHOLD = 0.08;
 
     public function __construct()
     {
-
-        // Initialize conversation history from session
         if (!isset($_SESSION["conversation_history"])) {
             $_SESSION["conversation_history"] = [];
         }
         $this->conversationHistory = $_SESSION["conversation_history"];
         $this->messageCount = count($this->conversationHistory);
+
+        $this->initializeSynonyms();
+        $this->initializeSemanticGroups();
 
         $this->intents = [
 
@@ -158,9 +164,10 @@ class TechnoBot
                     ],
                 ]
             ],
-            "diddy d" => [
+            "big D" => [
                 "keywords" => [
-                    "diddy",
+                    "Big D",
+                    "big d",
                     "dayaan"
                 ],
                 "answer" => "",
@@ -421,7 +428,6 @@ class TechnoBot
                 "suggestions" => [
                     "Voor wie is MDT?",
                     "Hoe registreer ik mijn MDT uren?",
-                    "Kan ik extra MDT uren laten uitbetalen?"
                 ],
                 "sub_topics" => [
                     "wat" => [
@@ -436,10 +442,6 @@ class TechnoBot
                         "keywords" => ["mdt uren", "mdt registreren", "mdt schrijven", "mdt wekelijks", "hoe registreer ik mijn mdt uren"],
                         "answer" => "Registreer wekelijks je gewerkte uren. Uren ophopen of compenseren is niet de bedoeling! ⏱️"
                     ],
-                    "extra" => [
-                        "keywords" => ["mdt extra", "mdt uitbetalen", "mdt meer werken", "kan ik extra mdt uren laten uitbetalen"],
-                        "answer" => "Meer werken en niet kunnen ruilen? Bespreek met je rolverdeler voor uitbetaling 💰"
-                    ],
                 ]
             ],
 
@@ -448,7 +450,7 @@ class TechnoBot
                 "keywords" => ["loon", "loonverklaring", "salaris", "loonstrook", "betaling salaris", "betaling loon", "uitbetaling"],
                 "answer" => "Je loon wordt via een boekhoudingsbureau betaald. Je hebt een loonverklaring én ID kopie nodig. 💳",
                 "suggestions" => [
-                    "Hoe werkt de loon betaling?",
+                    "Loon betaling?",
                     "Wat heb ik nodig voor mijn loon?",
                     "Naar wie stuur ik mijn loonverklaring?"
                 ],
@@ -528,17 +530,17 @@ class TechnoBot
 
             // ── URENREGISTRATIE ───────────────────────────────────────────────
             "urenregistratie" => [
-                "keywords" => ["urenregistratie", "uren registreren", "uren schrijven"],
+                "keywords" => ["urenregistratie", "uren", "registreren", "uren schrijven"],
                 "answer" => "Registreer wekelijks je gewerkte uren. Uren ophopen of compenseren is niet de bedoeling! ⏱️",
                 "suggestions" => [
-                    "Hoe werkt de urenregistratie?",
+                    "hoe werkt de urenregistratie?",
                     "Mag ik uren opbouwen via urenregistratie?",
                     "Hoe pas ik mijn werkschema aan via urenregistratie?"
                 ],
                 "sub_topics" => [
                     "hoe" => [
-                        "keywords" => ["urenregistratie hoe", "uren registreren hoe", "uren schrijven hoe", "hoe werkt de urenregistratie"],
-                        "answer" => "Registreer wekelijks je gewerkte uren. Uren ophopen of compenseren is niet de bedoeling! ⏱️"
+                        "keywords" => ["uren schrijven hoe", "hoe werkt de urenregistratie"],
+                        "answer" => "Registreer wekelijks je gewerkte uren. Uren ophopen of compenseren is niet de bedoeling!⏱️"
                     ],
                     "opbouwen" => [
                         "keywords" => ["urenregistratie opbouwen", "uren compenseren", "uren ophopen", "mag ik uren opbouwen via urenregistratie"],
@@ -709,7 +711,7 @@ class TechnoBot
                     "wie" => [
                         "keywords" => ["wie is de vertouwenspersoon"],
                         "answer" => "Maartje Kapteijn is onze vertrouwenspersoon."
-                    ]        
+                    ]
                 ]
             ],
 
@@ -730,7 +732,6 @@ class TechnoBot
                         "keywords" => ["bus reserveren", "bus boeken", "bus dagco wiki", "fiets reserveren", "hoe reserveer ik de bus", "kan ik ook een fiets reserveren"],
                         "answer" => "Reserveer via de Dagco Wiki! Dit geldt ook voor fietsen! 📅"
                     ],
-                    
                 ]
             ],
 
@@ -784,191 +785,369 @@ class TechnoBot
         ];
     }
 
-    public function respond(string $message): array
+    private function initializeSynonyms(): void
     {
-
-        $message = strtolower(trim($message));
-
-        // Normal intent matching
-        foreach ($this->intents as $intentName => $intent) {
-            foreach ($intent["keywords"] as $keyword) {
-                if ($this->matches($message, $keyword)) {
-                    return $this->getResponse($intentName, $intent, $message);
-                }
-            }
-        }
-
-        return [
-            "reply" => $this->defaultResponse(),
-            "buttons" => []
+        $this->synonyms = [
+            "loon" => ["salaris", "betaling", "uitbetaling", "verdienste", "inkomsten"],
+            "betaling" => ["uitbetaling", "loon", "salaris", "geld", "giro"],
+            "lessen" => ["les", "workshop", "lesaanbod", "lesprogramma", "les geven", "training"],
+            "techniekwijs" => ["techniek", "wetenschap", "electronics", "maker"],
+            "programmeren" => ["coderen", "coding", "digitaal", "toekomsttaal"],
+            "duurzaamheid" => ["groen", "klimaat", "toekomstkunde", "milieu"],
+            "dagco" => ["dagcoordinator", "dagcoördinator", "coordinator"],
+            "stage" => ["stagiair", "stageplaats", "stagelopen", "praktijk"],
+            "holacratie" => ["werkoverleg", "cirkel", "team overleg", "cirkeloverleg"],
+            "wie" => ["welke persoon", "naam", "contact"],
+            "wat" => ["welke", "soort", "type"],
+            "hoe" => ["op welke manier", "werkwijze", "proces"],
+            "waar" => ["locatie", "plek", "plaats", "adres"],
+            "wanneer" => ["tijdstip", "moment", "dag", "uur"],
         ];
     }
 
-    private function matches(string $message, string $keyword): bool
+    private function initializeSemanticGroups(): void
     {
+        $this->semanticGroups = [
+            "financial" => ["loon", "salaris", "betaling", "geld", "verdienen", "uitbetaling", "pensioen"],
+            "education" => ["lessen", "les", "workshop", "techniekwijs", "toekomsttaal", "toekomstkunde", "programmeren"],
+            "organization" => ["dagco", "holacratie", "cirkel", "team", "planner", "werkoverleg"],
+            "work" => ["stage", "werk", "job", "stagiair", "medewerker", "contract"],
+            "rules" => ["huisregels", "gedrag", "regels", "protocol", "richtlijn"],
+        ];
+    }
+    private function normalizeMessage(string $message): string
+    {
+        $message = mb_strtolower(trim($message));
+        $message = preg_replace('/[^\p{L}\p{N}\s]/u', ' ', $message); // strip punctuation
+        $message = preg_replace('/\s+/', ' ', $message);               // collapse spaces
+        return trim($message);
+    }
 
-        if (str_contains($message, $keyword)) {
-            return true;
+    private function tokenizeMessage(string $message): array
+    {
+        return array_filter(explode(' ', $message), fn($w) => strlen($w) >= 2);
+    }
+
+    public function respond(string $message): array
+    {
+        $normalizedMessage = $this->normalizeMessage($message);
+        $messageWords = $this->tokenizeMessage($normalizedMessage);
+
+        $this->conversationHistory[] = [
+            "message" => $message,
+            "normalized" => $normalizedMessage,
+            "timestamp" => time()
+        ];
+        $_SESSION["conversation_history"] = $this->conversationHistory;
+
+        // Score ALL intents and sub-topics in a single pass
+        $allResults = $this->scoreAllIntents($normalizedMessage, $messageWords);
+
+        if (empty($allResults) || $allResults[0]["score"] < 0.4) {
+            return [
+                "reply" => $this->defaultResponse(),
+                "buttons" => []
+            ];
         }
 
-        $words = explode(" ", $message);
-        $keywordWords = explode(" ", $keyword);
+        // Check for ties within TIE_THRESHOLD of the top score
+        $topScore = $allResults[0]["score"];
+        $tied = array_filter($allResults, fn($r) => ($topScore - $r["score"]) <= self::TIE_THRESHOLD);
+        $tied = array_values($tied);
 
-        // For multi-word keywords, require ALL words to approximately match
-        if (count($keywordWords) > 1) {
-            $matchedWords = 0;
-            foreach ($keywordWords as $kw) {
-                foreach ($words as $word) {
-                    if (abs(strlen($word) - strlen($kw)) > 2) {
-                        continue;
-                    }
-                    $distance = levenshtein($word, $kw);
-                    $maxLength = max(strlen($word), strlen($kw));
-                    if ($maxLength === 0) continue;
-                    $similarity = 1 - ($distance / $maxLength);
-                    if ($similarity >= 0.82) {
-                        $matchedWords++;
-                        break;
-                    }
+        // Only consider a real tie if there are multiple distinct top-level intents
+        $tiedTopLevelIntents = [];
+        foreach ($tied as $result) {
+            $intentName = $result["intent"];
+            if (!isset($tiedTopLevelIntents[$intentName])) {
+                $tiedTopLevelIntents[$intentName] = $result;
+            }
+        }
+
+        if (count($tiedTopLevelIntents) >= 2) {
+            return $this->buildTieResponse($tiedTopLevelIntents);
+        }
+
+        // Single winner intent
+        $winner = $allResults[0];
+        $winnerIntent = $winner["intent"];
+
+        // Find the best sub-topic result for this intent
+        $bestSubTopic = null;
+        foreach ($allResults as $result) {
+            if ($result["intent"] === $winnerIntent && $result["subTopic"] !== null) {
+                $bestSubTopic = $result;
+                break; // already sorted by score, first match is best
+            }
+        }
+
+        // Use sub-topic if it scored >= 0.85
+        $subTopicToUse = null;
+        if ($bestSubTopic !== null && $bestSubTopic["score"] >= 0.85) {
+            $subTopicToUse = $bestSubTopic["subTopic"];
+        }
+
+        return $this->getResponse(
+            $winnerIntent,
+            $this->intents[$winnerIntent],
+            $normalizedMessage,
+            $subTopicToUse
+        );
+    }
+
+    /**
+     * Score ALL intents AND sub-topics in one unified pass.
+     * Returns a flat sorted array of results with intent, subTopic, and score.
+     * FIX: eliminates double-scoring sub-topics and correctly uses max-keyword scoring.
+     */
+    private function scoreAllIntents(string $normalizedMessage, array $messageWords): array
+    {
+        $results = [];
+
+        foreach ($this->intents as $intentName => $intent) {
+            // Score the top-level intent
+            $intentScore = $this->calculateIntentSemanticScore($normalizedMessage, $messageWords, $intent);
+            $results[] = [
+                "intent"   => $intentName,
+                "subTopic" => null,
+                "score"    => $intentScore,
+            ];
+
+            // Score sub-topics in the same pass
+            if (isset($intent["sub_topics"])) {
+                foreach ($intent["sub_topics"] as $subKey => $subTopic) {
+                    $subScore = $this->calculateIntentSemanticScore($normalizedMessage, $messageWords, $subTopic);
+                    $results[] = [
+                        "intent"   => $intentName,
+                        "subTopic" => $subKey,
+                        "score"    => $subScore,
+                    ];
                 }
             }
-            return $matchedWords === count($keywordWords);
         }
 
-        // Single-word keyword: fuzzy match against individual words
-        foreach ($words as $word) {
-            if (abs(strlen($word) - strlen($keyword)) > 2) {
-                continue;
+        // Sort highest score first
+        usort($results, fn($a, $b) => $b["score"] <=> $a["score"]);
+
+        return $results;
+    }
+
+    /**
+     * FIX: Use MAX keyword score instead of average × ratio.
+     * A single strong keyword match is enough to identify an intent.
+     * Bonus is added when multiple keywords match, but the base is the best single match.
+     */
+    private function calculateIntentSemanticScore(string $normalizedMessage, array $messageWords, array $intentData): float
+    {
+        $keywords = $intentData["keywords"] ?? [];
+        if (empty($keywords)) {
+            return 0.0;
+        }
+
+        $maxScore = 0.0;
+        $matchCount = 0;
+
+        foreach ($keywords as $keyword) {
+            $keywordScore = $this->calculateWordToKeywordSemanticScore($normalizedMessage, $messageWords, $keyword);
+
+            if ($keywordScore > $maxScore) {
+                $maxScore = $keywordScore;
             }
-            $distance = levenshtein($word, $keyword);
-            $maxLength = max(strlen($word), strlen($keyword));
-            if ($maxLength === 0) continue;
-            $similarity = 1 - ($distance / $maxLength);
-            if ($similarity >= 0.82) {
-                return true;
+
+            if ($keywordScore > 0.3) {
+                $matchCount++;
             }
         }
 
-        return false;
+        // Base score = best single keyword match
+        // Small bonus for each additional matching keyword (up to +0.15 total)
+        $multiMatchBonus = min(($matchCount - 1) * 0.05, 0.15);
+
+        return min($maxScore + $multiMatchBonus, 1.0);
+    }
+
+    private function calculateWordToKeywordSemanticScore(string $normalizedMessage, array $messageWords, string $keyword): float
+    {
+        // Strategy 1: Exact phrase match in full message
+        if (str_contains($normalizedMessage, $keyword)) {
+            return 1.0;
+        }
+
+        $bestScore = 0.0;
+
+        foreach ($messageWords as $word) {
+            // Direct match
+            if ($word === $keyword) {
+                return 1.0;
+            }
+
+            $bestScore = max($bestScore, $this->fuzzyWordScore($word, $keyword));
+            $bestScore = max($bestScore, $this->synonymWordScore($word, $keyword));
+            $bestScore = max($bestScore, $this->semanticGroupScore($word, $keyword));
+        }
+
+        return $bestScore;
+    }
+
+    private function fuzzyWordScore(string $word, string $keyword): float
+    {
+        if (strlen($word) < 2 || strlen($keyword) < 2) {
+            return 0;
+        }
+
+        if (abs(strlen($word) - strlen($keyword)) > 3) {
+            return 0;
+        }
+
+        $distance = levenshtein($word, $keyword);
+        $maxLength = max(strlen($word), strlen($keyword));
+
+        if ($maxLength === 0) {
+            return 0;
+        }
+
+        $similarity = 1 - ($distance / $maxLength);
+        return ($similarity >= 0.75) ? $similarity * 0.85 : 0;
+    }
+
+    private function synonymWordScore(string $word, string $keyword): float
+    {
+        if (isset($this->synonyms[$keyword]) && in_array($word, $this->synonyms[$keyword])) {
+            return 0.8;
+        }
+        if (isset($this->synonyms[$word]) && in_array($keyword, $this->synonyms[$word])) {
+            return 0.8;
+        }
+        return 0;
+    }
+
+    private function semanticGroupScore(string $word, string $keyword): float
+    {
+        foreach ($this->semanticGroups as $groupWords) {
+            if (in_array($word, $groupWords) && in_array($keyword, $groupWords)) {
+                return 0.65;
+            }
+        }
+        return 0;
+    }
+
+    /**
+     * Build a tie-response: inform the user and show one button per tied intent.
+     */
+    private function buildTieResponse(array $tiedIntents): array
+    {
+        $buttons = [];
+
+        foreach ($tiedIntents as $intentName => $result) {
+            $intent = $this->intents[$intentName];
+
+            // Use the first suggestion as button label, or fall back to the intent name
+            $label = $intent["suggestions"][0] ?? ucfirst($intentName);
+
+            $buttons[] = [
+                "label" => $label,
+                "value" => $label,
+            ];
+        }
+
+        return [
+            "reply"   => "Ik weet het niet zeker 🤔 Bedoel je één van deze onderwerpen?",
+            "buttons" => array_slice($buttons, 0, 4), // max 4 buttons
+        ];
     }
 
     private function getResponse(
         string $intentName,
         array $intent,
-        string $message
+        string $message,
+        ?string $subTopic = null
     ): array {
 
-        // Special handling for "hallo" intent - use the actual greeting word from the message
+        // FIX: Greeting handler — return the matched keyword as-is instead of splitting on space
         if ($intentName === "hallo") {
             $greeting = $this->extractGreeting($message, $intent["keywords"]);
             $answer = ucfirst($greeting) . "! Fijn je te ontmoeten! Waar kan ik je mee helpen?";
 
             $buttons = [];
-            $suggestions = $intent["suggestions"] ?? [];
-            foreach (array_slice($suggestions, 0, 3) as $suggestion) {
-                $buttons[] = [
-                    "label" => $suggestion,
-                    "value" => $suggestion
-                ];
+            foreach (array_slice($intent["suggestions"] ?? [], 0, 3) as $suggestion) {
+                $buttons[] = ["label" => $suggestion, "value" => $suggestion];
             }
-            return [
-                "reply" => $answer,
-                "buttons" => $buttons
-            ];
+            return ["reply" => $answer, "buttons" => $buttons];
         }
 
-        // Intents with sub-topics: check if message targets a specific sub-topic
-        if (isset($intent["sub_topics"])) {
-            foreach ($intent["sub_topics"] as $subKey => $subTopic) {
-                foreach ($subTopic["keywords"] as $keyword) {
-                    if ($this->matches($message, $keyword)) {
-                        $response = [
-                            "reply" => $subTopic["answer"],
-                            "buttons" => []
-                        ];
-                        if (isset($subTopic["image"])) {
-                            $response["image"] = $subTopic["image"];
-                        }
-                        return $response;
-                    }
-                }
+        // Specific sub-topic response
+        if ($subTopic && isset($intent["sub_topics"][$subTopic])) {
+            $subTopicData = $intent["sub_topics"][$subTopic];
+            $response = ["reply" => $subTopicData["answer"], "buttons" => []];
+            if (isset($subTopicData["image"])) {
+                $response["image"] = $subTopicData["image"];
             }
-            // No sub-topic matched → return main answer with suggestions as buttons
-            $buttons = [];
-            $suggestions = $intent["suggestions"] ?? [];
-            foreach (array_slice($suggestions, 0, 3) as $suggestion) {
-                $buttons[] = [
-                    "label" => $suggestion,
-                    "value" => $suggestion
-                ];
-            }
-            $response = [
-                "reply" => $intent["answer"],
-                "buttons" => $buttons
-            ];
-            
-            // Add image if present at main intent level
-            if (isset($intent["image"])) {
-                $response["image"] = $intent["image"];
-            }
-            
             return $response;
         }
 
-        // Intents without sub-topics: return answer with max 3 suggestion buttons
+        // Main intent response with suggestion buttons
         $buttons = [];
-        $suggestions = $intent["suggestions"] ?? [];
-        foreach (array_slice($suggestions, 0, 3) as $suggestion) {
-            $buttons[] = [
-                "label" => $suggestion,
-                "value" => $suggestion
-            ];
+        foreach (array_slice($intent["suggestions"] ?? [], 0, 3) as $suggestion) {
+            $buttons[] = ["label" => $suggestion, "value" => $suggestion];
         }
-        $response = [
-            "reply" => $intent["answer"],
-            "buttons" => $buttons
-        ];
-        
-        // Add image if present at main intent level
+
+        $response = ["reply" => $intent["answer"], "buttons" => $buttons];
+
         if (isset($intent["image"])) {
             $response["image"] = $intent["image"];
         }
-        
+
         return $response;
     }
 
+    /**
+     * FIX: Return the full matched keyword phrase, not just the first word.
+     * "goede morgen" now correctly returns "goede morgen" instead of "goede".
+     */
     private function extractGreeting(string $message, array $keywords): string
     {
-        // Find which greeting keyword matches and return it
+        $normalizedMessage = $this->normalizeMessage($message);
+        $messageWords = $this->tokenizeMessage($normalizedMessage);
+
         foreach ($keywords as $keyword) {
-            if ($this->matches($message, $keyword)) {
-                // For multi-word greetings, return the first word
-                $words = explode(" ", $keyword);
-                return trim($words[0]);
+            // Check full phrase first
+            if (str_contains($normalizedMessage, $keyword)) {
+                return $keyword;
+            }
+
+            // Single-word keywords: fuzzy match against message words
+            if (!str_contains($keyword, ' ')) {
+                foreach ($messageWords as $word) {
+                    if ($this->fuzzyWordScore($word, $keyword) > 0.8 || $word === $keyword) {
+                        return $keyword;
+                    }
+                }
             }
         }
-        // Default fallback
+
         return "hallo";
     }
 
     private function defaultResponse(): string
     {
-
         $responses = [
             "Sorry 😅 Dat snap ik nog niet.",
             "Hmm 🤔 Kun je het anders formuleren?",
             "Ik leer nog 👀",
             "Interessant... vertel meer 😄"
         ];
-
         return $responses[rand(0, count($responses) - 1)];
     }
 }
 
 $message = $_POST["message"] ?? "";
+$message = strip_tags(trim($message));
+$message = mb_substr($message, 0, 500);
+if ($message === "") {
+    echo json_encode(["reply" => "", "buttons" => []]);
+    exit;
+}
 
 $bot = new TechnoBot();
-
 $response = $bot->respond($message);
-
 echo json_encode($response);

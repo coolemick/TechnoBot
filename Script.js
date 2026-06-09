@@ -5,9 +5,12 @@ const chatbotToggle = document.getElementById("chatbot-toggle");
 const chatWrapper = document.getElementById("chat-wrapper");
 const closeButton = document.getElementById("close-button");
 
+const SESSION_KEY = "technobot_history";
+
 let isChatbotOpen = false;
 
-// Toggle chatbot open/close
+// ── TOGGLE ────────────────────────────────────────────────────────────────────
+
 function toggleChatbot() {
     isChatbotOpen = !isChatbotOpen;
 
@@ -21,11 +24,9 @@ function toggleChatbot() {
     }
 }
 
-// Event listeners for toggle
 chatbotToggle.addEventListener("click", toggleChatbot);
 closeButton.addEventListener("click", toggleChatbot);
 
-// Close chatbot when clicking outside
 document.addEventListener("click", (e) => {
     if (isChatbotOpen &&
         !chatWrapper.contains(e.target) &&
@@ -34,14 +35,52 @@ document.addEventListener("click", (e) => {
     }
 });
 
-function addMessage(message, sender, buttons = [], image = null) {
+// ── SESSION HISTORY ───────────────────────────────────────────────────────────
+
+/**
+ * Save a message to sessionStorage so the chat survives soft refreshes.
+ * History is an array of { sender, message, buttons, image } objects.
+ */
+function saveMessageToHistory(sender, message, buttons = [], image = null) {
+    const history = loadHistory();
+    history.push({ sender, message, buttons, image });
+    try {
+        sessionStorage.setItem(SESSION_KEY, JSON.stringify(history));
+    } catch (_) {
+        // sessionStorage full or unavailable — fail silently
+    }
+}
+
+function loadHistory() {
+    try {
+        return JSON.parse(sessionStorage.getItem(SESSION_KEY) || "[]");
+    } catch (_) {
+        return [];
+    }
+}
+
+/** Replay saved history into the chat box on page load */
+function restoreHistory() {
+    const history = loadHistory();
+    history.forEach(({ sender, message, buttons, image }) => {
+        renderMessage(message, sender, buttons, image, false); // false = don't re-save
+    });
+}
+
+// ── RENDERING ─────────────────────────────────────────────────────────────────
+
+/**
+ * Render a message bubble (and optional buttons/image) into the chat box.
+ * @param {boolean} persist  Whether to also write this to sessionStorage.
+ */
+function renderMessage(message, sender, buttons = [], image = null, persist = true) {
     const messageDiv = document.createElement("div");
     messageDiv.classList.add(sender === "user" ? "user-message" : "bot-message");
 
     const contentDiv = document.createElement("div");
     contentDiv.classList.add("message-content");
+    // FIX: use textContent to avoid XSS — never innerHTML with user data
     contentDiv.textContent = message;
-
     messageDiv.appendChild(contentDiv);
 
     if (image) {
@@ -57,25 +96,62 @@ function addMessage(message, sender, buttons = [], image = null) {
     chatBox.appendChild(messageDiv);
 
     if (buttons.length > 0) {
-        const buttonsContainer = document.createElement("div");
-        buttonsContainer.classList.add("buttons-container");
-
-        buttons.forEach(button => {
-            const btn = document.createElement("button");
-            btn.classList.add("option-button");
-            btn.textContent = button.label;
-            btn.addEventListener("click", () => {
-                addMessage(button.value, "user");
-                sendMessageWithContent(button.value);
-            });
-            buttonsContainer.appendChild(btn);
-        });
-
-        chatBox.appendChild(buttonsContainer);
+        renderButtons(buttons);
     }
 
     chatBox.scrollTop = chatBox.scrollHeight;
+
+    if (persist) {
+        saveMessageToHistory(sender, message, buttons, image);
+    }
 }
+
+/**
+ * Render suggestion buttons.
+ * FIX: buttons are disabled immediately after one click to prevent spam.
+ */
+function renderButtons(buttons, persist = true) {
+    const container = document.createElement("div");
+    container.classList.add("buttons-container");
+
+    buttons.forEach(button => {
+        const btn = document.createElement("button");
+        btn.classList.add("option-button");
+        btn.textContent = button.label;
+
+        btn.addEventListener("click", () => {
+            // FIX: disable ALL buttons in this container immediately on any click
+            container.querySelectorAll(".option-button").forEach(b => {
+                b.disabled = true;
+                b.classList.add("option-button--used");
+            });
+
+            renderMessage(button.value, "user");
+            sendMessageWithContent(button.value);
+        });
+
+        container.appendChild(btn);
+    });
+
+    chatBox.appendChild(container);
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+// ── INPUT SANITIZATION ────────────────────────────────────────────────────────
+
+/**
+ * FIX: Strip HTML tags and control characters from user input client-side.
+ * The server also sanitizes, so this is defence-in-depth.
+ */
+function sanitizeInput(raw) {
+    return raw
+        .replace(/<[^>]*>/g, "")           // strip HTML tags
+        .replace(/[\x00-\x1F\x7F]/g, "")  // strip control characters
+        .trim()
+        .substring(0, 500);               // hard cap at 500 chars
+}
+
+// ── TYPING INDICATOR ──────────────────────────────────────────────────────────
 
 function showTypingIndicator() {
     const typingDiv = document.createElement("div");
@@ -97,18 +173,19 @@ function showTypingIndicator() {
 }
 
 function removeTypingIndicator() {
-    const typingIndicator = document.getElementById("typing-indicator");
-    if (typingIndicator) {
-        typingIndicator.remove();
-    }
+    const indicator = document.getElementById("typing-indicator");
+    if (indicator) indicator.remove();
 }
 
-async function sendMessage() {
-    const message = userInput.value.trim();
+// ── SEND LOGIC ────────────────────────────────────────────────────────────────
+
+function sendMessage() {
+    const raw = userInput.value;
+    const message = sanitizeInput(raw);
 
     if (message === "") return;
 
-    addMessage(message, "user");
+    renderMessage(message, "user");
     userInput.value = "";
 
     sendMessageWithContent(message);
@@ -116,37 +193,59 @@ async function sendMessage() {
 
 async function sendMessageWithContent(message) {
     showTypingIndicator();
+    const safeMessage = sanitizeInput(message);
 
     try {
         const response = await fetch("chat.php", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            body: `message=${encodeURIComponent(message)}`
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: `message=${encodeURIComponent(safeMessage)}`
         });
 
-        const data = await response.json();
-        removeTypingIndicator();
+        // Check HTTP status first
+        if (!response.ok) {
+            const text = await response.text();
+            console.error("HTTP error", response.status, text);
+            removeTypingIndicator();
+            renderMessage(`Server fout: ${response.status}`, "bot");
+            return;
+        }
 
-        addMessage(data.reply, "bot", data.buttons || [], data.image || null);
+        const text = await response.text(); // read as text first
+        console.log("Raw PHP response:", text);  // ← check browser console
+
+        let data;
+        try {
+            data = JSON.parse(text);
+        } catch (e) {
+            console.error("JSON parse failed:", text);
+            removeTypingIndicator();
+            renderMessage("PHP fout — check console (F12)", "bot");
+            return;
+        }
+
+        removeTypingIndicator();
+        renderMessage(data.reply, "bot", data.buttons || [], data.image || null);
 
     } catch (error) {
+        console.error("Fetch failed:", error);
         removeTypingIndicator();
-        addMessage("Er ging iets fout. Probeer het opnieuw.", "bot");
+        renderMessage("Verbinding mislukt — is chat.php bereikbaar?", "bot");
     }
 }
 
+// ── EVENT LISTENERS ───────────────────────────────────────────────────────────
+
 sendBtn.addEventListener("click", sendMessage);
 
-userInput.addEventListener("keypress", function (e) {
-    if (e.key === "Enter") {
-        sendMessage();
-    }
+userInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") sendMessage();
 });
 
-userInput.addEventListener("keydown", function (e) {
-    if (e.key === "Enter" && e.shiftKey) {
-        e.preventDefault();
-    }
+userInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && e.shiftKey) e.preventDefault();
 });
+
+// ── INIT ──────────────────────────────────────────────────────────────────────
+
+restoreHistory();
