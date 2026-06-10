@@ -50,7 +50,7 @@ class TechnoBot
                 "suggestions" => [
                     "Wat is Technolab?",
                     "Wat is fika",
-                    "Hoe werkt de boekhouding?"
+                    "Hoe betaal ik zelf iets voor boekhouding?"
                 ]
             ],
             "technolab" => [
@@ -335,7 +335,7 @@ class TechnoBot
 
             // ── BHV ───────────────────────────────────────────────────────────
             "bhv" => [
-                "keywords" => ["bhv", "bedrijfshulpverlening"],
+                "keywords" => ["bhv", "bedrijfshulpverlening", "wat is bhv", "bhv uitleg"],
                 "answer" => "BHV staat voor BedrijfsHulpVerlening. BHV'ers helpen bij noodgevallen. 🚨",
                 "suggestions" => [
                     "Wie zijn de BHV'ers?",
@@ -344,20 +344,20 @@ class TechnoBot
                 ],
                 "sub_topics" => [
                     "wat" => [
-                        "keywords" => ["bhv wat", "bhv uitleg", "bhv wat is"],
+                        "keywords" => ["bhv wat", "bhv uitleg", "bhv wat is", "wat is bhv", "wat betekent bhv"],
                         "answer" => "BHV staat voor BedrijfsHulpVerlening. BHV'ers zijn aanwezig om te helpen bij noodgevallen 🚨"
                     ],
                     "wie" => [
-                        "keywords" => ["bhv wie", "bhv aanwezig", "bhv board", "bhv knus", "wie zijn de bhv'ers"],
+                        "keywords" => ["bhv wie", "wie bhv", "bhv aanwezig", "bhv board", "bhv knus", "wie zijn de bhvers", "wie zijn de bhv ers", "wie zijn de bhv'ers", "welke medewerkers bhv"],
                         "answer" => "Wie op dit moment BHV'er is, staat op het zwarte board in de knus 🖤",
-                        "image" => "Images/BHV.jpg"
+                        "image" => "Images/bhv.jpg"
                     ],
                     "training" => [
-                        "keywords" => ["bhv training", "bhv wanneer training", "bhv opleiding", "wanneer is de bhv training"],
+                        "keywords" => ["bhv training", "bhv wanneer training", "bhv opleiding", "wanneer bhv", "bhv cursus", "wanneer is de bhv training"],
                         "answer" => "Elk jaar volgen medewerkers een BHV training 📚"
                     ],
                     "regels" => [
-                        "keywords" => ["bhv regels", "bhv noodgeval", "bhv wat doen", "wat zijn de bhv regels"],
+                        "keywords" => ["bhv regels", "bhv noodgeval", "bhv wat doen", "noodgeval bhv", "bhv procedure", "wat zijn de bhv regels"],
                         "answer" => "Lees de regels goed door zodat je weet wat te doen is bij een noodgeval 📋"
                     ],
                 ]
@@ -556,12 +556,34 @@ class TechnoBot
 
             // ── TECHNOLABBER ──────────────────────────────────────────────────
             "technolabber" => [
-                "keywords" => ["technolabber", "technolab cultuur", "technolab waarden", "technolab gedragscode"],
-                "answer" => "De magie van Technolab in stand houden is essentieel! ✨ We verwachten dat je je als echte Technolabber gedraagt.",
+                "keywords" => ["technolabber", "technolab cultuur", "technolab waarden", "technolab gedragscode", "wie is technolab", "over technolab", "wat is technolab"],
+                "answer" => "Technolab Leiden is een leerwerkbedrijf met passie voor onderwijs, techniek, wetenschap en talentontwikkeling. ✨ Als Technolabber draag je die missie actief uit!",
                 "suggestions" => [
-                    "Wat is Technolab?",
-                    "Hoe werkt dit?",
-                    "Wat kan ik vragen?"
+                    "Wat zijn de kernwaarden van Technolab?",
+                    "Hoe werkt Technolab intern?",
+                    "Wat doet Technolab?"
+                ],
+                "sub_topics" => [
+                    "kernwaarden" => [
+                        "keywords" => ["kernwaarden technolab", "waarden technolab", "technolab principes", "wat zijn de kernwaarden van technolab"],
+                        "answer" => "Technolab heeft 5 kernwaarden: Samenwerken (duurzame relaties met scholen, bedrijven en overheid), Groeien (continu verbeteren), Bijdragen (handelen met impact voor een duurzame wereld), Leren (talentontwikkeling centraal) en Spelen (samen plezier hebben in werken en leren). 🌟"
+                    ],
+                    "missie" => [
+                        "keywords" => ["missie technolab", "doel technolab", "waarom technolab", "wat doet technolab", "technolab doel"],
+                        "answer" => "Technolab verbindt onderwijs, techniek en talentontwikkeling. We helpen kinderen, jongeren én medewerkers ontdekken: wie ben ik, wat kan ik, wat wil ik? We enthousiasmeren ze voor natuur en techniek — de toekomst! 🚀"
+                    ],
+                    "werkwijze" => [
+                        "keywords" => ["hoe werkt technolab intern", "zelfsturend technolab", "holacratie technolab", "scrum technolab", "technolab teams", "hoe werkt technolab"],
+                        "answer" => "Technolab werkt in zelfsturende teams op basis van holacratie en scrum. We denken in mogelijkheden en vertalen ideeën snel naar concrete acties. Technolab bruist van energie! ⚡"
+                    ],
+                    "activiteiten" => [
+                        "keywords" => ["wat organiseert technolab", "activiteiten technolab", "projecten technolab", "workshops technolab", "technolab programma"],
+                        "answer" => "Technolab organiseert workshops, projecten, beroepsoriëntatieweken en leerwerktrajecten. Ook bieden we trainingsprogramma's aan voor medewerkers van scholen en bedrijven, en begeleiden we mbo-, hbo- en wo-studenten bij hun praktijkervaring. 🎓"
+                    ],
+                    "impact" => [
+                        "keywords" => ["technolab impact", "technolab bereik", "hoeveel leerlingen technolab", "technolab scholen"],
+                        "answer" => "Elk jaar doen ruim 36.000 leerlingen, meer dan 50 scholen en circa 100 bedrijven en organisaties mee aan de lessen en projecten van Technolab. Zo slaan we de brug tussen onderwijs en arbeidsmarkt! 🌍"
+                    ],
                 ]
             ],
 
@@ -576,7 +598,7 @@ class TechnoBot
                 ],
                 "sub_topics" => [
                     "welke" => [
-                        "keywords" => ["signal welke", "signal app", "appgroep welke", "whatsapp signal", "welke app gebruiken we voor werk"],
+                        "keywords" => ["welke app", "welke app gebruiken", "waarom signal", "niet whatsapp", "whatsapp verboden", "welke app gebruiken we voor werk"],
                         "answer" => "We gebruiken Signal voor werk gerelateerde dingen 📱 Geen WhatsApp voor werkzaken!"
                     ],
                     "ziek" => [
@@ -584,44 +606,49 @@ class TechnoBot
                         "answer" => "Ziekmeldingen moeten ook telefonisch doorgegeven worden aan de dagco. App alleen is niet genoeg! 📞"
                     ],
                     "aanmelden" => [
-                        "keywords" => ["signal aanmelden", "appgroep joinen", "signal link", "appgroep aanmelden", "hoe meld ik me aan voor de signal appgroep"],
+                        "keywords" => ["aanmelden signal", "signal groep joinen", "signal link", "toegang signal groep", "hoe meld ik me aan voor de signal appgroep"],
                         "answer" => "Meld je aan via de link die je van Technolab krijgt 🔗"
                     ],
-                ]
-            ],
-
-            // ── NOODNUMMER ────────────────────────────────────────────────────
-            "noodnummer" => [
-                "keywords" => ["noodnummer", "noodcontact", "nood formulier"],
-                "answer" => "Vul het noodnummerformulier in zodat Technolab jou in geval van nood kan bereiken. 📋",
-                "suggestions" => [
-                    "Waar vind ik het noodnummer formulier?",
-                    "Wie bel ik in geval van nood?",
-                    "Voor wie is het noodnummer formulier?"
                 ]
             ],
 
             // ── E-MAILHANDTEKENING ────────────────────────────────────────────
             "emailhandtekening" => [
                 "keywords" => ["emailhandtekening", "email handtekening", "handtekening outlook"],
-                "answer" => "Je emailhandtekening kan je aanpassen in Outlook met je Technolab plaatje en links. ✉️",
+                "answer" => "Je emailhandtekening kan je aanpassen via de Technolab Handtekening Editor. Kopieer je handtekening en plak die in Outlook. ✉️",
                 "suggestions" => [
                     "Hoe maak ik een emailhandtekening aan?",
-                    "Hoe voeg ik een plaatje toe aan mijn emailhandtekening?",
-                    "Hoe voeg ik een link toe aan mijn emailhandtekening?"
+                    "Hoe open ik de handtekening editor?",
+                    "Hoe plak ik mijn handtekening in Outlook?"
                 ],
                 "sub_topics" => [
                     "aanmaken" => [
                         "keywords" => ["emailhandtekening aanmaken", "handtekening maken outlook", "eerste handtekening outlook", "hoe maak ik een emailhandtekening aan"],
-                        "answer" => "Voor het aanmaken van je eerste emailhandtekening is er een handleiding beschikbaar. Vraag die op bij Technolab 📖"
+                        "answer" => "Ga naar de Handtekening Editor op https://technolab-intern.nl/Emailhandtekening/, vul je persoonsgegevens in, en klik op de paarse knop 'Kopieer voor Outlook'. Plak dit daarna in Outlook via Instellingen → Account → Handtekeningen → Handtekening toevoegen. 📖"
                     ],
-                    "plaatje" => [
-                        "keywords" => ["emailhandtekening plaatje", "handtekening afbeelding", "handtekening logo", "plaatje toevoegen handtekening", "hoe voeg ik een plaatje toe aan mijn emailhandtekening"],
-                        "answer" => "Nieuwe plaatjes worden via Teams gedeeld. Kopieer het plaatje, ga in Outlook naar Instellingen → e-mailhandtekening en voeg het toe 🖼️"
+                    "editor" => [
+                        "keywords" => ["handtekening editor", "emailhandtekening editor", "handtekening tool", "editor openen", "handtekening website"],
+                        "answer" => "De Handtekening Editor open je via: https://technolab-intern.nl/Emailhandtekening/. Vul je gegevens in, kies of je een banner wil, en kopieer je handtekening via de paarse knop. 🖥️"
                     ],
-                    "link" => [
-                        "keywords" => ["emailhandtekening link", "handtekening link toevoegen", "klikbare link handtekening", "hoe voeg ik een link toe aan mijn emailhandtekening"],
-                        "answer" => "Klik op de afbeelding → 'Koppeling invoegen' → voeg de passende link toe 🔗"
+                    "banner" => [
+                        "keywords" => ["banner handtekening", "emailhandtekening banner", "banner toevoegen", "banner aanzetten"],
+                        "answer" => "In de Handtekening Editor kan je een banner aanzetten door het vakje bij 'banner' aan te vinken. Er komen later mogelijk meer banner-opties — op 1 juli 2026 volgt de 'Techniek & Toekomst' banner. 🖼️"
+                    ],
+                    "plakken" => [
+                        "keywords" => ["handtekening plakken", "handtekening invoegen outlook", "ctrl v handtekening", "handtekening toevoegen outlook", "hoe plak ik mijn handtekening"],
+                        "answer" => "Kopieer je handtekening via de paarse knop in de editor. Ga in Outlook naar ⚙️ Instellingen → Account → Handtekeningen → Handtekening toevoegen. Geef hem een naam en plak met CTRL+V. Stel hem in als standaard voor nieuwe én doorgestuurde berichten en sla op. ✅"
+                    ],
+                    "svg" => [
+                        "keywords" => ["svg handtekening", "svg bestand outlook", "svg werkt niet", "afbeelding werkt niet handtekening"],
+                        "answer" => "SVG-bestanden worden niet meegenomen als je de handtekening via CTRL+V plakt, omdat Outlook Word als engine gebruikt. Wil je toch SVG gebruiken? Klik in het preview-vlak van de editor, selecteer alles met CTRL+A en sleep de handtekening via drag & drop naar het handtekening-veld in Outlook. 🔧"
+                    ],
+                    "opslaan" => [
+                        "keywords" => ["handtekening opslaan", "html downloaden handtekening", "handtekening bewaren", "html code handtekening"],
+                        "answer" => "Je kan je handtekening opslaan door de HTML-code te downloaden vanuit de editor. Zo kan je hem later opnieuw gebruiken zonder alles opnieuw in te vullen. 💾"
+                    ],
+                    "problemen" => [
+                        "keywords" => ["handtekening werkt niet", "fout handtekening", "handtekening ziet er raar uit", "mobiel handtekening", "handtekening probleem"],
+                        "answer" => "Op mobiele apparaten kan de handtekening er iets anders uitzien dan op desktop — dat is normaal. Gaat er iets fout? Neem contact op met Pieter via pieter@technolableiden.nl. 📬"
                     ],
                 ]
             ],
