@@ -108,7 +108,7 @@ function renderMessage(message, sender, buttons = [], image = null, persist = tr
 
 /**
  * Render suggestion buttons.
- * FIX: buttons are disabled immediately after one click to prevent spam.
+ * FIX: When any button is clicked, remove ALL previous button containers.
  */
 function renderButtons(buttons, persist = true) {
     const container = document.createElement("div");
@@ -119,11 +119,13 @@ function renderButtons(buttons, persist = true) {
         btn.classList.add("option-button");
         btn.textContent = button.label;
 
-        btn.addEventListener("click", () => {
-            // FIX: disable ALL buttons in this container immediately on any click
-            container.querySelectorAll(".option-button").forEach(b => {
-                b.disabled = true;
-                b.classList.add("option-button--used");
+        btn.addEventListener("click", (e) => {
+            // Stop event from bubbling up to document click handler
+            e.stopPropagation();
+
+            // Remove ALL button containers from chat (old suggestions disappear)
+            document.querySelectorAll(".buttons-container").forEach(bc => {
+                bc.remove();
             });
 
             renderMessage(button.value, "user");

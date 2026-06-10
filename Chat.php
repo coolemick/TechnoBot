@@ -12,6 +12,7 @@ class TechnoBot
     private int $messageCount = 0;
     private array $synonyms = [];
     private array $semanticGroups = [];
+    private array $suggestionMap = []; // Maps normalized suggestions to [intent, subTopic]
 
     // Tie threshold: if top scores are within this range, treat as a tie
     private const TIE_THRESHOLD = 0.08;
@@ -783,6 +784,7 @@ class TechnoBot
                 ]
             ],
         ];
+        $this->buildSuggestionMap();
     }
 
     private function initializeSynonyms(): void
@@ -815,6 +817,79 @@ class TechnoBot
             "rules" => ["huisregels", "gedrag", "regels", "protocol", "richtlijn"],
         ];
     }
+
+    private function buildSuggestionMap(): void
+    {
+        foreach ($this->intents as $intentName => $intent) {
+            if (!isset($intent["suggestions"]) || !isset($intent["sub_topics"])) {
+                continue;
+            }
+
+            foreach ($intent["suggestions"] as $suggestion) {
+                // Find the best matching sub-topic for this suggestion
+                $bestMatch = $this->findSubTopicForSuggestion($intentName, $suggestion);
+                if ($bestMatch) {
+                    $normalizedSuggestion = $this->normalizeMessage($suggestion);
+                    $this->suggestionMap[$normalizedSuggestion] = [$intentName, $bestMatch];
+                }
+            }
+        }
+    }
+
+    private function findSubTopicForSuggestion(string $intentName, string $suggestion): ?string
+    {
+        $intent = $this->intents[$intentName];
+        $suggestionWords = $this->tokenizeMessage($this->normalizeMessage($suggestion));
+
+        $bestMatch = null;
+        $bestScore = 0;
+
+        foreach ($intent["sub_topics"] as $subKey => $subTopic) {
+            $keywords = $subTopic["keywords"] ?? [];
+            $score = 0;
+
+            foreach ($keywords as $keyword) {
+                $keywordScore = $this->calculateWordToKeywordSemanticScore($this->normalizeMessage($suggestion), $suggestionWords, $keyword);
+                $score = max($score, $keywordScore);
+            }
+
+            if ($score > $bestScore) {
+                $bestScore = $score;
+                $bestMatch = $subKey;
+            }
+        }
+
+        return $bestMatch;
+    }
+
+    private function findSuggestionMatch(string $normalizedMessage): ?array
+    {
+        // Exact match
+        if (isset($this->suggestionMap[$normalizedMessage])) {
+            return $this->suggestionMap[$normalizedMessage];
+        }
+
+        // Fuzzy match with high threshold
+        foreach ($this->suggestionMap as $suggestion => $data) {
+            $similarity = $this->stringSimilarity($normalizedMessage, $suggestion);
+            if ($similarity > 0.85) {
+                return $data;
+            }
+        }
+
+        return null;
+    }
+
+    private function stringSimilarity(string $a, string $b): float
+    {
+        $distance = levenshtein($a, $b);
+        $maxLength = max(strlen($a), strlen($b));
+        if ($maxLength === 0) {
+            return 1.0;
+        }
+        return 1 - ($distance / $maxLength);
+    }
+
     private function normalizeMessage(string $message): string
     {
         $message = mb_strtolower(trim($message));
@@ -839,6 +914,13 @@ class TechnoBot
             "timestamp" => time()
         ];
         $_SESSION["conversation_history"] = $this->conversationHistory;
+
+        // Check if this message is a known suggestion
+        $suggestionMatch = $this->findSuggestionMatch($normalizedMessage);
+        if ($suggestionMatch) {
+            [$intentName, $subTopicKey] = $suggestionMatch;
+            return $this->getResponseForSuggestion($intentName, $subTopicKey, $normalizedMessage);
+        }
 
         // Score ALL intents and sub-topics in a single pass
         $allResults = $this->scoreAllIntents($normalizedMessage, $messageWords);
@@ -1054,6 +1136,48 @@ class TechnoBot
             "reply"   => "Ik weet het niet zeker 🤔 Bedoel je één van deze onderwerpen?",
             "buttons" => array_slice($buttons, 0, 4), // max 4 buttons
         ];
+    }
+
+    private function getResponseForSuggestion(string $intentName, string $subTopicKey, string $normalizedClickedSuggestion): array
+    {
+        $intent = $this->intents[$intentName];
+        $subTopic = $intent["sub_topics"][$subTopicKey] ?? null;
+
+        if (!$subTopic) {
+            return ["reply" => "Could not find that answer", "buttons" => []];
+        }
+
+        $response = [
+            "reply" => $subTopic["answer"],
+            "buttons" => []
+        ];
+
+        if (isset($subTopic["image"])) {
+            $response["image"] = $subTopic["image"];
+        }
+
+        // Include other suggestions minus the one clicked
+        if (isset($intent["suggestions"])) {
+            $suggestionCount = 0;
+            foreach ($intent["suggestions"] as $suggestion) {
+                $normalizedSuggestion = $this->normalizeMessage($suggestion);
+
+                // Skip the clicked suggestion
+                if ($normalizedSuggestion === $normalizedClickedSuggestion) {
+                    continue;
+                }
+
+                if ($suggestionCount < 3) {
+                    $response["buttons"][] = [
+                        "label" => $suggestion,
+                        "value" => $suggestion
+                    ];
+                    $suggestionCount++;
+                }
+            }
+        }
+
+        return $response;
     }
 
     private function getResponse(
