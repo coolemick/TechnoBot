@@ -706,11 +706,11 @@ class TechnoBot
                 "keywords" => ["vertrouwenspersoon", "vertrouwelijk bespreken"],
                 "answer" => "Heb je iets vertrouwelijks te bespreken? Ga naar onze vertrouwenspersoon! 🔒",
                 "suggestions" => [
-                    "Wie is de vertrouwenspersoon?",
+                    "Wie is de persoon?",
                 ],
                 "sub_topics" => [
                     "wie" => [
-                        "keywords" => ["wie is de vertouwenspersoon"],
+                        "keywords" => ["wie is de persoon"],
                         "answer" => "Maartje Kapteijn is onze vertrouwenspersoon."
                     ]
                 ]
@@ -777,11 +777,6 @@ class TechnoBot
             "papier" => [
                 "keywords" => ["papier hergebruiken", "papier recyclen", "papier brein", "papier dubbelzijdig"],
                 "answer" => "Op Technolab hergebruiken we papier! ♻️ Sorteer papier in het brein: dubbelzijdig of engelszijdig bedrukt.",
-                "suggestions" => [
-                    "Hoe sorteer ik papier in het brein?",
-                    "Wat is het papier brein?",
-                    "Hoe gaan we duurzaam om met papier?"
-                ]
             ],
         ];
         $this->buildSuggestionMap();
