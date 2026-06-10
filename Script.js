@@ -71,9 +71,9 @@ function restoreHistory() {
 
 /**
  * Render a message bubble (and optional buttons/image) into the chat box.
- * @param {boolean} persist  Whether to also write this to sessionStorage.
+ * @param {boolean} persist  Whether to also write this to sessionStorage (disabled by default).
  */
-function renderMessage(message, sender, buttons = [], image = null, persist = true) {
+function renderMessage(message, sender, buttons = [], image = null, persist = false) {
     const messageDiv = document.createElement("div");
     messageDiv.classList.add(sender === "user" ? "user-message" : "bot-message");
 
@@ -250,4 +250,5 @@ userInput.addEventListener("keydown", (e) => {
 
 // ── INIT ──────────────────────────────────────────────────────────────────────
 
-restoreHistory();
+// Chat persistence disabled — history will reset on refresh
+// restoreHistory();
