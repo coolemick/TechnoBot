@@ -67,13 +67,13 @@ class TechnoBot
                 ],
                 "answer" => "Technolab Leiden is een leerwerkbedrijf met passie voor onderwijs, techniek, wetenschap en talentontwikkeling.",
                 "suggestions" => [
+                    "Wat is Technolab",
                     "Hoe groot is Technolab?",
-                    "Wat voor projecten doen jullie?",
-                    "Hoe werkt Technolab?"
+                    "Wat voor projecten doen jullie?"
                 ],
                 "sub_topics" => [
                     "groot" => [
-                        "keywords" => ["groot", "hoeveel", "hoeveel scholen", "hoe groot", "hoe groot is"],
+                        "keywords" => ["groot", "hoeveel", "hoeveel scholen", "hoe groot", "hoe groot"],
                         "answer" => "Ruim 36.000 leerlingen, meer dan 50 scholen en circa 100 bedrijven en organisaties doen elk jaar mee aan de lessen en projecten van Technolab! 🏫",
                     ],
                     "wie" => [
@@ -85,7 +85,7 @@ class TechnoBot
                         "answer" => "We organiseren workshops, lessen (zoals TechniekWijs, ToekomstTaal en Toekomstkunde), POP-UP projectweken, beroepsoriëntatietrajecten (Talent & Toekomst), de Willie Wortel Wedstrijd, de Meesterchallenge en Expeditie Leerkracht. Ook bieden we stages en leerwerkplekken voor mbo-, hbo- en wo-studenten! 🚀",
                     ],
                     "hoe_werkt" => [
-                        "keywords" => ["hoe werkt technolab", "hoe werkt dit", "hoe werkt"],
+                        "keywords" => ["wat is technolab", "hoe werkt dit", "hoe werkt"],
                         "answer" => "Bij Technolab leer je door te doen! Leerlingen, studenten en professionals werken samen in een creatieve omgeving. We geven lessen op locatie in Leiden én op scholen (POP-UP). Medewerkers werken in cirkels (holacratie) en nemen verantwoordelijkheid voor hun eigen rol. Elke dag zijn er zo'n 20 stagiairs actief aan het werk! 💡",
                     ],
                     "wat_kan_vragen" => [
@@ -556,7 +556,7 @@ class TechnoBot
 
             // ── TECHNOLABBER ──────────────────────────────────────────────────
             "technolabber" => [
-                "keywords" => ["technolabber", "technolab cultuur", "technolab waarden", "technolab gedragscode", "wie is technolab", "over technolab", "wat is technolab"],
+                "keywords" => ["technolabber", "technolab cultuur", "technolab waarden", "technolab gedragscode", "wie is technolab", "over technolab"],
                 "answer" => "Technolab Leiden is een leerwerkbedrijf met passie voor onderwijs, techniek, wetenschap en talentontwikkeling. ✨ Als Technolabber draag je die missie actief uit!",
                 "suggestions" => [
                     "Wat zijn de kernwaarden van Technolab?",
@@ -565,7 +565,7 @@ class TechnoBot
                 ],
                 "sub_topics" => [
                     "kernwaarden" => [
-                        "keywords" => ["kernwaarden technolab", "waarden technolab", "technolab principes", "wat zijn de kernwaarden van technolab"],
+                        "keywords" => ["kernwaarden technolab", "waarden technolab", "technolab principes", "zijn de kernwaarden van"],
                         "answer" => "Technolab heeft 5 kernwaarden: Samenwerken (duurzame relaties met scholen, bedrijven en overheid), Groeien (continu verbeteren), Bijdragen (handelen met impact voor een duurzame wereld), Leren (talentontwikkeling centraal) en Spelen (samen plezier hebben in werken en leren). 🌟"
                     ],
                     "missie" => [

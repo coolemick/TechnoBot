@@ -226,6 +226,9 @@ async function sendMessageWithContent(message) {
             return;
         }
 
+        // Wait 1 second while typing indicator is visible
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
         removeTypingIndicator();
         renderMessage(data.reply, "bot", data.buttons || [], data.image || null);
 
