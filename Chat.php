@@ -13,6 +13,7 @@ class TechnoBot
     private array $synonyms = [];
     private array $semanticGroups = [];
     private array $suggestionMap = [];
+    private array $bannedWords = [];
 
     private const TIE_THRESHOLD = 0.08;
 
@@ -26,6 +27,8 @@ class TechnoBot
 
         $this->initializeSynonyms();
         $this->initializeSemanticGroups();
+
+        $this->initializeBannedWords();
 
         $this->intents = [
 
@@ -49,9 +52,35 @@ class TechnoBot
                 "suggestions" => [
                     "Wat is Technolab?",
                     "Wat is fika?",
+                    "Wat zijn de projectdagen?"
+                ]
+            ],
+            "hulp nodig" => [
+                "keywords" => [
+                    "hulp nodig",
+                    "ik heb hulp nodig",
+                    "help",
+                    "assistance"
+                ],
+                "answer" => "Waar kan ik je mee helpen?",
+                "suggestions" => [
+                    "Wat is Technolab?",
+                    "Wat is fika?",
                     "Hoe betaal ik zelf iets voor boekhouding?"
                 ]
             ],
+
+            "dankjewel" => [
+                "keywords" => [
+                    "dankjewel",
+                    "dankje",
+                    "bedankt",
+                    "thanks",
+                    "thx"
+                ],
+                "answer" => "Graag gedaan! Laat maar weten als je nog meer hulp nodig hebt.",
+            ],
+
 
             "technolab" => [
                 "keywords" => [
@@ -158,6 +187,11 @@ class TechnoBot
                     ],
                 ]
             ],
+            "small A" => [
+                "keywords" => ["small a", "albi"],
+                "answer" => "",
+                "image" => "Images/suppa.jpg"
+            ],
 
             "big D" => [
                 "keywords" => ["big d", "dayaan"],
@@ -210,11 +244,7 @@ class TechnoBot
                     "basisschool projecten"
                 ],
                 "answer" => "Technolab heeft zes projectdagen voor verschillende groepen! Van robotica tot duurzame architectuur — elk project combineert ontwerpen, samenwerken en onderzoek. 🔧🌱",
-                "suggestions" => [
-                    "Wat is Botsende Bots?",
-                    "Wat is Groene Daken?",
-                    "Wat is Duurzaam Huis?"
-                ],
+                "suggestions" => [],
                 "sub_topics" => [
                     "botsende_bots" => [
                         "keywords" => [
@@ -224,7 +254,11 @@ class TechnoBot
                             "bots programmeren",
                             "robots bouwen groep"
                         ],
-                        "answer" => "🤖 **Botsende Bots** (Groep 8)\n\n**Contactpersoon TK:** Julian\n**Opdrachtgever:** Melissa\n\n**Samenvatting:** Leerlingen lossen ontwerpproblemen op, leren de basis van programmeren en werken samen in drietallen.\n\n**Lesdoelen:**\n- Ontwerpproblemen oplossen door creativiteit en doorzettingsvermogen\n- De basis leren van programmeren\n- Samenwerken in drietallen\n- Leren werken met de ontwerpcyclus: testen en verbeteren",
+                        "answer" => "Voor groep 8: Leerlingen lossen ontwerpproblemen op, leren de basis van programmeren en werken samen in drietallen. Ze leren werken met de ontwerpcyclus: testen en verbeteren.",
+                        "suggestions" => [
+                            "Wat is Groene Daken?",
+                            "Wat is Mens en Robot?"
+                        ]
                     ],
                     "groene_daken" => [
                         "keywords" => [
@@ -235,7 +269,11 @@ class TechnoBot
                             "groen dak bouwen",
                             "zonneboiler project"
                         ],
-                        "answer" => "🌿 **Groene Daken** (Groep 7)\n\n**Contactpersoon TK:** Roos\n**Contactpersoon KIEM:** Alide / Johan (Solar Groep)\n**Opdrachtgever:** Johan / Solar Groep\n\n**Samenvatting:** Leerlingen ontwerpen en maken hun eigen groene dak, maken kennis met installatietechniek, doen onderzoek naar de optimale stand van een zonnepaneel, het beste materiaal voor een zonneboiler en geschikte planten voor een groen dak.\n\n**Lesdoelen:**\n- Ontwerpproblemen oplossen door creativiteit en doorzettingsvermogen\n- Samenwerken in drietallen\n- Leren zelf een praktisch onderzoek te doen",
+                        "answer" => "Voor groep 7: Leerlingen ontwerpen en maken hun eigen groene dak, maken kennis met installatietechniek, doen onderzoek naar de optimale stand van een zonnepaneel, het beste materiaal voor een zonneboiler en geschikte planten voor een groen dak.",
+                        "suggestions" => [
+                            "Wat is Botsende Bots?",
+                            "Wat is Mens en Robot?"
+                        ]
                     ],
                     "mens_en_robot" => [
                         "keywords" => [
@@ -245,7 +283,11 @@ class TechnoBot
                             "skelet bouwen",
                             "hartfunctie onderzoek"
                         ],
-                        "answer" => "🦾 **Mens en Robot** (Groep 6)\n\n**Contactpersoon TK:** Eline / Roos\n\n**Samenvatting:** Leerlingen bouwen een menselijk skelet met aandacht voor vorm en functie, doen onderzoek naar hartfunctie, bewegen en verhoudingen, en bouwen een robot die voor de mens van nut kan zijn.\n\n**Lesdoelen:**\n- Ontwerpproblemen oplossen door creativiteit en doorzettingsvermogen\n- Samenwerken in drietallen\n- Leren zelf een praktisch onderzoek te doen",
+                        "answer" => "Voor groep 6: Leerlingen bouwen een menselijk skelet met aandacht voor vorm en functie, doen onderzoek naar hartfunctie, bewegen en verhoudingen, en bouwen een robot die voor de mens van nut kan zijn.",
+                        "suggestions" => [
+                            "Wat is Ontwerp je Attractie?",
+                            "Wat is Duurzaam Huis?"
+                        ]
                     ],
                     "ontwerp_attractie" => [
                         "keywords" => [
@@ -255,7 +297,11 @@ class TechnoBot
                             "pretpark ontwerpen",
                             "attractie schaal programmeren"
                         ],
-                        "answer" => "🎢 **Ontwerp je Attractie** (Groep 5)\n\n**Contactpersoon TK:** Robert / Celine\n**Contactpersoon KIEM:** Coen (Joravision)\n**Opdrachtgever:** Coen\n\n**Samenvatting:** Leerlingen ontwerpen en bouwen hun eigen attractie op schaal als onderdeel van een nieuw pretpark. De groepen stemmen met elkaar af om samen een zo gevarieerd mogelijk pretpark te maken.\n\n**Lesdoelen:**\n- Ontwerpproblemen oplossen door creativiteit en doorzettingsvermogen\n- De basis leren van programmeren\n- Samenwerken in drietallen en afstemmen met andere groepen",
+                        "answer" => "Voor groep 5: Leerlingen ontwerpen en bouwen hun eigen attractie op schaal als onderdeel van een nieuw pretpark. De groepen stemmen met elkaar af om samen een zo gevarieerd mogelijk pretpark te maken.",
+                        "suggestions" => [
+                            "Wat is Duurzaam Huis?",
+                            "Wat is Avontuurlijke Architecten?"
+                        ]
                     ],
                     "duurzaam_huis" => [
                         "keywords" => [
@@ -265,7 +311,11 @@ class TechnoBot
                             "huis isolatie project",
                             "duurzaam bouwen groep"
                         ],
-                        "answer" => "🏡 **Duurzaam Huis** (Groep 4)\n\n**Contactpersoon TK:** Jolien / Roos\n\n**Samenvatting:** Leerlingen ontwerpen en bouwen een duurzaam huis, doen onderzoek naar isolatie, elektriciteit en verbruik van apparaten.\n\n**Lesdoelen:**\n- Ontwerpproblemen oplossen door creativiteit en doorzettingsvermogen\n- Samenwerken in viertallen\n- Leren zelf een praktisch onderzoek te doen",
+                        "answer" => "Voor groep 4: Leerlingen ontwerpen en bouwen een duurzaam huis, doen onderzoek naar isolatie, elektriciteit en verbruik van apparaten.",
+                        "suggestions" => [
+                            "Wat is Ontwerp je Attractie?",
+                            "Wat is Avontuurlijke Architecten?"
+                        ]
                     ],
                     "avontuurlijke_architecten" => [
                         "keywords" => [
@@ -275,7 +325,11 @@ class TechnoBot
                             "pretpark bouwen groep 3",
                             "bruggen bouwen project"
                         ],
-                        "answer" => "🏗️ **Avontuurlijke Architecten** (Groep 3)\n\n**Contactpersoon TK:** Sanne (Leiden)\n**Contactpersoon KIEM:** Alide\n\n**Samenvatting:** Leerlingen ontwerpen en bouwen hun eigen pretpark met verschillende constructiematerialen. De groepen stemmen samen af. Denk aan bruggen, omheiningen, wegen en bewegwijzering!\n\n**Lesdoelen:**\n- Ontwerpproblemen oplossen door creativiteit en doorzettingsvermogen\n- Samenwerken in drietallen en afstemmen met andere groepen",
+                        "answer" => "Voor groep 3: Leerlingen ontwerpen en bouwen hun eigen pretpark met verschillende constructiematerialen. De groepen stemmen samen af. Denk aan bruggen, omheiningen, wegen en bewegwijzering!",
+                        "suggestions" => [
+                            "Wat is Duurzaam Huis?",
+                            "Welke projecten zijn er?"
+                        ]
                     ],
                 ]
             ],
@@ -748,8 +802,8 @@ class TechnoBot
             ],
 
             // ── HOLACRATIE / WERKOVERLEG ──────────────────────────────────────
-            "holacratie" => [
-                "keywords" => ["holacratie", "holacratisch", "werkoverleg cirkel"],
+            "teams" => [
+                "keywords" => ["teams", "cirkel", "werkoverleg cirkel"],
                 "answer" => "Holacratisch werkoverleg is strak vergaderen volgens vaste regels. Elke cirkel heeft wekelijks zo'n overleg. 🔄",
                 "suggestions" => [
                     "Wat is holacratie?",
@@ -1040,7 +1094,7 @@ class TechnoBot
 
             // ── BUS RIJDEN ────────────────────────────────────────────────────
             "bus" => [
-                "keywords" => ["bus rijden", "bus reserveren technolab"],
+                "keywords" => ["vervoer", "bus rijden", "bus reserveren technolab"],
                 "answer" => "Heb je een rijbewijs? Dan moet je eerst een proefrit doen. Daarna mag je ermee rijden! 🚐",
                 "suggestions" => [
                     "Hoe reserveer ik de bus?",
@@ -1137,6 +1191,51 @@ class TechnoBot
         ];
     }
 
+    private function initializeBannedWords(): void
+    {
+      
+        $this->bannedWords = [
+            // Profanity and insults
+            "dom", "dumb", "stom", "idioot", "sukkel", "lul", "homo", "nigger", "kanker", "nigga",
+            "bitch", "asshole", "bastard", "jerk", "moron", "dope",
+            
+            // Vulgar language
+            "fuck", "shit", "damn", "hitler", "hell", "crap", "piss", "ass",
+            
+            // Explicit/adult content
+            "porn", "sex", "xxx", "adult", "nude", "naked",
+            
+            // Spam keywords
+            "viagra", "casino", "lottery", "poker", "blackjack",
+            "click here", "buy now", "free money", "earn fast",
+            
+            // Hate speech indicators (keeping it general)
+            "racist", "racism", "genocide", "fascist",
+            
+            // Other offensive terms
+            "terrorist", "bomb", "kill", "die", "suicide", "death"
+        ];
+    }
+
+    private function containsBannedWords(string $message): bool
+    {
+        $normalizedMessage = $this->normalizeMessage($message);
+        $messageWords = $this->tokenizeMessage($normalizedMessage);
+
+        foreach ($this->bannedWords as $bannedWord) {
+            // Check for exact word matches (not just substrings)
+            if (in_array($bannedWord, $messageWords)) {
+                return true;
+            }
+            // Also check if the banned word appears in the normalized message as a phrase
+            if (str_contains($normalizedMessage, $bannedWord)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     private function buildSuggestionMap(): void
     {
         foreach ($this->intents as $intentName => $intent) {
@@ -1222,6 +1321,21 @@ class TechnoBot
     public function respond(string $message): array
     {
         $normalizedMessage = $this->normalizeMessage($message);
+        
+        // Check for banned words - reject silently
+        if ($this->containsBannedWords($message)) {
+            return [
+                "reply" => "",
+                "buttons" => [],
+                "banned" => true
+            ];
+        }
+
+        // Special handling for "bekijk alle projecten"
+        if ($normalizedMessage === "bekijk alle projecten") {
+            return $this->getAllProjectdagen();
+        }
+
         $messageWords = $this->tokenizeMessage($normalizedMessage);
 
         $this->conversationHistory[] = [
@@ -1424,6 +1538,32 @@ class TechnoBot
         ];
     }
 
+    private function getAllProjectdagen(): array
+    {
+        $projectColors = [
+            "Wat is Botsende Bots?" => "#FF6B6B",
+            "Wat is Groene Daken?" => "#51CF66",
+            "Wat is Mens en Robot?" => "#FFD93D",
+            "Wat is Ontwerp je Attractie?" => "#FF922B",
+            "Wat is Duurzaam Huis?" => "#4ECDC4",
+            "Wat is Avontuurlijke Architecten?" => "#A8E6CF"
+        ];
+
+        $buttons = [];
+        foreach ($projectColors as $label => $color) {
+            $buttons[] = [
+                "label" => $label,
+                "value" => $label,
+                "borderColor" => $color
+            ];
+        }
+
+        return [
+            "reply" => "📋 Hier zijn alle 6 projectdagen! Kies er een:",
+            "buttons" => $buttons
+        ];
+    }
+
     private function getResponseForSuggestion(string $intentName, string $subTopicKey, string $normalizedClickedSuggestion): array
     {
         $intent = $this->intents[$intentName];
@@ -1442,7 +1582,34 @@ class TechnoBot
             $response["image"] = $subTopic["image"];
         }
 
-        if (isset($intent["suggestions"])) {
+        // For projectdag, show only "Bekijk alle" button
+        if ($intentName === "projectdag") {
+            $response["buttons"][] = [
+                "label" => "📋 Bekijk alle projecten",
+                "value" => "bekijk_alle_projecten",
+                "borderColor" => "#667eea"
+            ];
+            return $response;
+        }
+
+        // For other intents, use the default suggestion handling
+        if (isset($subTopic["suggestions"])) {
+            $suggestionCount = 0;
+            foreach ($subTopic["suggestions"] as $suggestion) {
+                $normalizedSuggestion = $this->normalizeMessage($suggestion);
+                if ($normalizedSuggestion === $normalizedClickedSuggestion) {
+                    continue;
+                }
+                if ($suggestionCount < 3) {
+                    $response["buttons"][] = [
+                        "label" => $suggestion,
+                        "value" => $suggestion
+                    ];
+                    $suggestionCount++;
+                }
+            }
+        } elseif (isset($intent["suggestions"])) {
+            // Fall back to parent intent suggestions if sub_topic has none
             $suggestionCount = 0;
             foreach ($intent["suggestions"] as $suggestion) {
                 $normalizedSuggestion = $this->normalizeMessage($suggestion);
@@ -1468,6 +1635,18 @@ class TechnoBot
         string $message,
         ?string $subTopic = null
     ): array {
+
+        // Special handling for main projectdag response
+        if ($intentName === "projectdag" && $subTopic === null) {
+            return [
+                "reply" => $intent["answer"],
+                "buttons" => [[
+                    "label" => "📋 Bekijk alle projecten",
+                    "value" => "bekijk_alle_projecten",
+                    "borderColor" => "#667eea"
+                ]]
+            ];
+        }
 
         if ($intentName === "hallo") {
             $greeting = $this->extractGreeting($message, $intent["keywords"]);

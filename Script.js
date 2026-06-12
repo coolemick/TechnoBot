@@ -119,6 +119,13 @@ function renderButtons(buttons, persist = true) {
         btn.classList.add("option-button");
         btn.textContent = button.label;
 
+        // Apply custom border color if provided
+        if (button.borderColor) {
+            btn.style.setProperty('--button-color', button.borderColor);
+            btn.style.borderColor = button.borderColor;
+            btn.style.color = button.borderColor;
+        }
+
         btn.addEventListener("click", (e) => {
             // Stop event from bubbling up to document click handler
             e.stopPropagation();
@@ -152,7 +159,52 @@ function sanitizeInput(raw) {
         .trim()
         .substring(0, 500);               // hard cap at 500 chars
 }
+// ── BANNED WORDS CHECK ────────────────────────────────────────────────────────
 
+const BANNED_WORDS = [
+    // Profanity and insults
+    "dom", "dumb", "stom", "idioot", "sukkel", "lul", "homo",
+    "bitch", "asshole", "bastard", "jerk", "moron", "dope",
+    
+    // Vulgar language
+    "fuck", "shit", "damn", "hell", "crap", "piss", "ass",
+    
+    // Explicit/adult content
+    "porn", "sex", "xxx", "adult", "nude", "naked",
+    
+    // Spam keywords
+    "viagra", "casino", "lottery", "poker", "blackjack",
+    "click here", "buy now", "free money", "earn fast",
+    
+    // Hate speech indicators
+    "racist", "racism", "genocide", "fascist",
+    
+    // Other offensive terms
+    "terrorist", "bomb", "kill", "die", "suicide", "death"
+];
+
+/**
+ * Check if a message contains banned words
+ * @param {string} message The message to check
+ * @returns {boolean} True if message contains banned words
+ */
+function containsBannedWords(message) {
+    const normalizedMessage = message.toLowerCase().trim();
+    const messageWords = normalizedMessage.split(/\s+/).filter(w => w.length >= 2);
+
+    for (let bannedWord of BANNED_WORDS) {
+        // Check for exact word match
+        if (messageWords.includes(bannedWord)) {
+            return true;
+        }
+        // Check if banned word appears as a phrase
+        if (normalizedMessage.includes(bannedWord)) {
+            return true;
+        }
+    }
+
+    return false;
+}
 // ── TYPING INDICATOR ──────────────────────────────────────────────────────────
 
 function showTypingIndicator() {
@@ -186,6 +238,12 @@ function sendMessage() {
     const message = sanitizeInput(raw);
 
     if (message === "") return;
+
+    // Check for banned words - silently prevent sending
+    if (containsBannedWords(message)) {
+        userInput.value = "";
+        return; // Do nothing, message doesn't send
+    }
 
     renderMessage(message, "user");
     userInput.value = "";
