@@ -37,18 +37,12 @@ document.addEventListener("click", (e) => {
 
 // ── SESSION HISTORY ───────────────────────────────────────────────────────────
 
-/**
- * Save a message to sessionStorage so the chat survives soft refreshes.
- * History is an array of { sender, message, buttons, image } objects.
- */
 function saveMessageToHistory(sender, message, buttons = [], image = null) {
     const history = loadHistory();
     history.push({ sender, message, buttons, image });
     try {
         sessionStorage.setItem(SESSION_KEY, JSON.stringify(history));
-    } catch (_) {
-        // sessionStorage full or unavailable — fail silently
-    }
+    } catch (_) { }
 }
 
 function loadHistory() {
@@ -59,19 +53,19 @@ function loadHistory() {
     }
 }
 
-/** Replay saved history into the chat box on page load */
 function restoreHistory() {
     const history = loadHistory();
     history.forEach(({ sender, message, buttons, image }) => {
-        renderMessage(message, sender, buttons, image, false); // false = don't re-save
+        renderMessage(message, sender, buttons, image, false);
     });
 }
 
 // ── RENDERING ─────────────────────────────────────────────────────────────────
 
 /**
- * Render a message bubble (and optional buttons/image) into the chat box.
- * @param {boolean} persist  Whether to also write this to sessionStorage (disabled by default).
+ * Render a message bubble into the chat box.
+ * - Bot messages: use innerHTML so links/bold from PHP render correctly.
+ * - User messages: use textContent to prevent XSS.
  */
 function renderMessage(message, sender, buttons = [], image = null, persist = false) {
     const messageDiv = document.createElement("div");
@@ -79,8 +73,20 @@ function renderMessage(message, sender, buttons = [], image = null, persist = fa
 
     const contentDiv = document.createElement("div");
     contentDiv.classList.add("message-content");
-    // FIX: use textContent to avoid XSS — never innerHTML with user data
-    contentDiv.textContent = message;
+
+    if (sender === "bot") {
+        // Bot content comes from our own PHP — safe to render HTML (links, bold, etc.)
+        contentDiv.innerHTML = message;
+        // Make sure all links open in a new tab
+        contentDiv.querySelectorAll("a").forEach(a => {
+            a.target = "_blank";
+            a.rel = "noopener noreferrer";
+        });
+    } else {
+        // User content — always escape to prevent XSS
+        contentDiv.textContent = message;
+    }
+
     messageDiv.appendChild(contentDiv);
 
     if (image) {
@@ -108,7 +114,7 @@ function renderMessage(message, sender, buttons = [], image = null, persist = fa
 
 /**
  * Render suggestion buttons.
- * FIX: When any button is clicked, remove ALL previous button containers.
+ * When any button is clicked, remove ALL previous button containers.
  */
 function renderButtons(buttons, persist = true) {
     const container = document.createElement("div");
@@ -119,7 +125,6 @@ function renderButtons(buttons, persist = true) {
         btn.classList.add("option-button");
         btn.textContent = button.label;
 
-        // Apply custom border color if provided
         if (button.borderColor) {
             btn.style.setProperty('--button-color', button.borderColor);
             btn.style.borderColor = button.borderColor;
@@ -127,10 +132,8 @@ function renderButtons(buttons, persist = true) {
         }
 
         btn.addEventListener("click", (e) => {
-            // Stop event from bubbling up to document click handler
             e.stopPropagation();
 
-            // Remove ALL button containers from chat (old suggestions disappear)
             document.querySelectorAll(".buttons-container").forEach(bc => {
                 bc.remove();
             });
@@ -148,63 +151,37 @@ function renderButtons(buttons, persist = true) {
 
 // ── INPUT SANITIZATION ────────────────────────────────────────────────────────
 
-/**
- * FIX: Strip HTML tags and control characters from user input client-side.
- * The server also sanitizes, so this is defence-in-depth.
- */
 function sanitizeInput(raw) {
     return raw
-        .replace(/<[^>]*>/g, "")           // strip HTML tags
-        .replace(/[\x00-\x1F\x7F]/g, "")  // strip control characters
+        .replace(/<[^>]*>/g, "")
+        .replace(/[\x00-\x1F\x7F]/g, "")
         .trim()
-        .substring(0, 500);               // hard cap at 500 chars
+        .substring(0, 500);
 }
+
 // ── BANNED WORDS CHECK ────────────────────────────────────────────────────────
 
 const BANNED_WORDS = [
-    // Profanity and insults
-    "dom", "dumb", "stom", "idioot", "sukkel", "lul", "homo",
-    "bitch", "asshole", "bastard", "jerk", "moron", "dope",
-    
-    // Vulgar language
-    "fuck", "shit", "damn", "hell", "crap", "piss", "ass",
-    
-    // Explicit/adult content
+    "dumb", "idioot", "sukkel", "lul", "bitch", "asshole", "bastard", "jerk", "moron", "dope",
+    "fuck", "shit", "damn", "hell", "crap", "piss",
     "porn", "sex", "xxx", "adult", "nude", "naked",
-    
-    // Spam keywords
     "viagra", "casino", "lottery", "poker", "blackjack",
     "click here", "buy now", "free money", "earn fast",
-    
-    // Hate speech indicators
     "racist", "racism", "genocide", "fascist",
-    
-    // Other offensive terms
-    "terrorist", "bomb", "kill", "die", "suicide", "death"
+    "terrorist", "bomb", "kill", "die", "suicide"
 ];
 
-/**
- * Check if a message contains banned words
- * @param {string} message The message to check
- * @returns {boolean} True if message contains banned words
- */
 function containsBannedWords(message) {
     const normalizedMessage = message.toLowerCase().trim();
     const messageWords = normalizedMessage.split(/\s+/).filter(w => w.length >= 2);
 
     for (let bannedWord of BANNED_WORDS) {
-        // Check for exact word match
-        if (messageWords.includes(bannedWord)) {
-            return true;
-        }
-        // Check if banned word appears as a phrase
-        if (normalizedMessage.includes(bannedWord)) {
-            return true;
-        }
+        if (messageWords.includes(bannedWord)) return true;
+        if (normalizedMessage.includes(bannedWord)) return true;
     }
-
     return false;
 }
+
 // ── TYPING INDICATOR ──────────────────────────────────────────────────────────
 
 function showTypingIndicator() {
@@ -239,15 +216,13 @@ function sendMessage() {
 
     if (message === "") return;
 
-    // Check for banned words - silently prevent sending
     if (containsBannedWords(message)) {
         userInput.value = "";
-        return; // Do nothing, message doesn't send
+        return;
     }
 
     renderMessage(message, "user");
     userInput.value = "";
-
     sendMessageWithContent(message);
 }
 
@@ -262,7 +237,6 @@ async function sendMessageWithContent(message) {
             body: `message=${encodeURIComponent(safeMessage)}`
         });
 
-        // Check HTTP status first
         if (!response.ok) {
             const text = await response.text();
             console.error("HTTP error", response.status, text);
@@ -271,8 +245,8 @@ async function sendMessageWithContent(message) {
             return;
         }
 
-        const text = await response.text(); // read as text first
-        console.log("Raw PHP response:", text);  // ← check browser console
+        const text = await response.text();
+        console.log("Raw PHP response:", text);
 
         let data;
         try {
@@ -284,9 +258,8 @@ async function sendMessageWithContent(message) {
             return;
         }
 
-        // Wait 1 second while typing indicator is visible
         await new Promise(resolve => setTimeout(resolve, 1000));
-        
+
         removeTypingIndicator();
         renderMessage(data.reply, "bot", data.buttons || [], data.image || null);
 
@@ -311,5 +284,4 @@ userInput.addEventListener("keydown", (e) => {
 
 // ── INIT ──────────────────────────────────────────────────────────────────────
 
-// Chat persistence disabled — history will reset on refresh
-// restoreHistory();
+// restoreHistory(); // Uncomment to persist chat across page refreshes

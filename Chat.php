@@ -13,7 +13,6 @@ class TechnoBot
     private array $synonyms = [];
     private array $semanticGroups = [];
     private array $suggestionMap = [];
-    private array $bannedWords = [];
 
     private const TIE_THRESHOLD = 0.08;
 
@@ -27,8 +26,6 @@ class TechnoBot
 
         $this->initializeSynonyms();
         $this->initializeSemanticGroups();
-
-        $this->initializeBannedWords();
 
         $this->intents = [
 
@@ -52,36 +49,11 @@ class TechnoBot
                 "suggestions" => [
                     "Wat is Technolab?",
                     "Wat is fika?",
-                    "Wat zijn de projectdagen?"
-                ]
-            ],
-            "hulp nodig" => [
-                "keywords" => [
-                    "hulp nodig",
-                    "ik heb hulp nodig",
-                    "help",
-                    "assistance"
-                ],
-                "answer" => "Waar kan ik je mee helpen?",
-                "suggestions" => [
-                    "Wat is Technolab?",
-                    "Wat is fika?",
                     "Hoe betaal ik zelf iets voor boekhouding?"
                 ]
             ],
 
-            "dankjewel" => [
-                "keywords" => [
-                    "dankjewel",
-                    "dankje",
-                    "bedankt",
-                    "thanks",
-                    "thx"
-                ],
-                "answer" => "Graag gedaan! Laat maar weten als je nog meer hulp nodig hebt.",
-            ],
-
-
+            // ── TECHNOLAB ─────────────────────────────────────────────────────
             "technolab" => [
                 "keywords" => [
                     "technolab",
@@ -90,7 +62,7 @@ class TechnoBot
                     "wat voor projecten doen jullie",
                     "wat kan ik vragen"
                 ],
-                "answer" => "Technolab Leiden is een leerwerkbedrijf met passie voor onderwijs, techniek, wetenschap en talentontwikkeling.",
+                "answer" => "Technolab Leiden is een leerwerkbedrijf met passie voor onderwijs, techniek, wetenschap en talentontwikkeling. 🌟 Meer weten? Bezoek <a href='https://www.technolableiden.nl/' target='_blank'>technolableiden.nl</a>",
                 "suggestions" => [
                     "Wat is Technolab?",
                     "Hoe groot is Technolab?",
@@ -99,15 +71,15 @@ class TechnoBot
                 "sub_topics" => [
                     "groot" => [
                         "keywords" => ["technolab groot", "hoeveel scholen technolab", "hoe groot is technolab"],
-                        "answer" => "Ruim 36.000 leerlingen, meer dan 50 scholen en circa 100 bedrijven en organisaties doen elk jaar mee aan de lessen en projecten van Technolab! 🏫",
+                        "answer" => "Ruim 36.000 leerlingen, meer dan 50 scholen en circa 100 bedrijven en organisaties doen elk jaar mee aan de lessen en projecten van Technolab! 🏫 Meer info: <a href='https://www.technolableiden.nl/' target='_blank'>technolableiden.nl</a>",
                     ],
                     "wie" => [
                         "keywords" => ["wie is technolab", "wie zijn wij technolab", "wat is technolab"],
-                        "answer" => "Bij Technolab verbinden we onderwijs, techniek en talentontwikkeling. Samen met scholen en bedrijven laten we kinderen, jongeren én medewerkers ontdekken: wie ben ik, wat kan ik, wat wil ik? We maken ze enthousiast voor natuur en techniek: de toekomst! 🌟",
+                        "answer" => "Bij Technolab verbinden we onderwijs, techniek en talentontwikkeling. Samen met scholen en bedrijven laten we kinderen, jongeren én medewerkers ontdekken: wie ben ik, wat kan ik, wat wil ik? We maken ze enthousiast voor natuur en techniek: de toekomst! 🌟 <a href='https://www.technolableiden.nl/' target='_blank'>technolableiden.nl</a>",
                     ],
                     "projecten" => [
                         "keywords" => ["wat doen jullie technolab", "technolab projecten", "wat voor projecten doen jullie"],
-                        "answer" => "We organiseren workshops, lessen (zoals TechniekWijs, ToekomstTaal en Toekomstkunde), POP-UP projectweken, beroepsoriëntatietrajecten (Talent & Toekomst), de Willie Wortel Wedstrijd, de Meesterchallenge en Expeditie Leerkracht. Ook bieden we stages en leerwerkplekken voor mbo-, hbo- en wo-studenten! 🚀",
+                        "answer" => "We organiseren workshops, lessen (zoals TechniekWijs, ToekomstTaal en Toekomstkunde), POP-UP projectweken, beroepsoriëntatietrajecten (Talent & Toekomst), de Willie Wortel Wedstrijd, de Meesterchallenge en Expeditie Leerkracht. Ook bieden we stages en leerwerkplekken voor mbo-, hbo- en wo-studenten! 🚀 <a href='https://www.technolableiden.nl/' target='_blank'>technolableiden.nl</a>",
                     ],
                     "hoe_werkt" => [
                         "keywords" => ["hoe werkt technolab intern", "hoe werkt dit technolab"],
@@ -187,11 +159,6 @@ class TechnoBot
                     ],
                 ]
             ],
-            "small A" => [
-                "keywords" => ["small a", "albi"],
-                "answer" => "",
-                "image" => "Images/suppa.jpg"
-            ],
 
             "big D" => [
                 "keywords" => ["big d", "dayaan"],
@@ -201,7 +168,7 @@ class TechnoBot
 
             // ── DAGCO ─────────────────────────────────────────────────────────
             "dagco" => [
-                "keywords" => ["dagco", "dagcoordinator", "dagcoördinator"],
+                "keywords" => ["dagco", "dagcoordinator", "dagcoördinator", "dag coordinator"],
                 "answer" => "De dagcoördinator (dagco) zorgt elke dag dat Technolab op tijd open is en de dag goed verloopt. 🗓️",
                 "suggestions" => [
                     "Wat doet de dagco?",
@@ -244,78 +211,61 @@ class TechnoBot
                     "basisschool projecten"
                 ],
                 "answer" => "Technolab heeft zes projectdagen voor verschillende groepen! Van robotica tot duurzame architectuur — elk project combineert ontwerpen, samenwerken en onderzoek. 🔧🌱",
-                "suggestions" => [],
+                "suggestions" => [
+                    "Wat is Botsende Bots?",
+                    "Wat is Groene Daken?",
+                    "Wat is Duurzaam Huis?"
+                ],
                 "sub_topics" => [
                     "botsende_bots" => [
                         "keywords" => [
                             "botsende bots",
                             "wat is botsende bots",
                             "botsende bots groep 8",
-                            "bots programmeren",
-                            "robots bouwen groep"
+                            "bots programmeren project",
+                            "robotica groep 8"
                         ],
-                        "answer" => "Voor groep 8: Leerlingen lossen ontwerpproblemen op, leren de basis van programmeren en werken samen in drietallen. Ze leren werken met de ontwerpcyclus: testen en verbeteren.",
-                        "suggestions" => [
-                            "Wat is Groene Daken?",
-                            "Wat is Mens en Robot?"
-                        ]
+                        "answer" => "🤖 <b>Botsende Bots</b> (Groep 8)<br><br><b>Contactpersoon TK:</b> Julian &nbsp;|&nbsp; <b>Opdrachtgever:</b> Melissa<br><br><b>Samenvatting:</b> Leerlingen lossen ontwerpproblemen op, leren de basis van programmeren en werken samen in drietallen.<br><br><b>Lesdoelen:</b><br>• Ontwerpproblemen oplossen door creativiteit en doorzettingsvermogen<br>• De basis leren van programmeren<br>• Samenwerken in drietallen<br>• Leren werken met de ontwerpcyclus: testen en verbeteren",
                     ],
                     "groene_daken" => [
                         "keywords" => [
                             "groene daken",
                             "wat is groene daken",
                             "groene daken groep 7",
-                            "zonnepaneel project",
-                            "groen dak bouwen",
-                            "zonneboiler project"
+                            "zonnepaneel project groep",
+                            "groen dak bouwen school"
                         ],
-                        "answer" => "Voor groep 7: Leerlingen ontwerpen en maken hun eigen groene dak, maken kennis met installatietechniek, doen onderzoek naar de optimale stand van een zonnepaneel, het beste materiaal voor een zonneboiler en geschikte planten voor een groen dak.",
-                        "suggestions" => [
-                            "Wat is Botsende Bots?",
-                            "Wat is Mens en Robot?"
-                        ]
+                        "answer" => "🌿 <b>Groene Daken</b> (Groep 7)<br><br><b>Contactpersoon TK:</b> Roos &nbsp;|&nbsp; <b>Contactpersoon KIEM:</b> Alide / Johan (Solar Groep) &nbsp;|&nbsp; <b>Opdrachtgever:</b> Johan / Solar Groep<br><br><b>Samenvatting:</b> Leerlingen ontwerpen en maken hun eigen groene dak, maken kennis met installatietechniek, doen onderzoek naar de optimale stand van een zonnepaneel, het beste materiaal voor een zonneboiler en geschikte planten voor een groen dak.<br><br><b>Lesdoelen:</b><br>• Ontwerpproblemen oplossen door creativiteit en doorzettingsvermogen<br>• Samenwerken in drietallen<br>• Leren zelf een praktisch onderzoek te doen",
                     ],
                     "mens_en_robot" => [
                         "keywords" => [
                             "mens en robot",
                             "wat is mens en robot",
                             "mens robot groep 6",
-                            "skelet bouwen",
-                            "hartfunctie onderzoek"
+                            "skelet bouwen project",
+                            "hartfunctie onderzoek groep"
                         ],
-                        "answer" => "Voor groep 6: Leerlingen bouwen een menselijk skelet met aandacht voor vorm en functie, doen onderzoek naar hartfunctie, bewegen en verhoudingen, en bouwen een robot die voor de mens van nut kan zijn.",
-                        "suggestions" => [
-                            "Wat is Ontwerp je Attractie?",
-                            "Wat is Duurzaam Huis?"
-                        ]
+                        "answer" => "🦾 <b>Mens en Robot</b> (Groep 6)<br><br><b>Contactpersoon TK:</b> Eline / Roos<br><br><b>Samenvatting:</b> Leerlingen bouwen een menselijk skelet met aandacht voor vorm en functie, doen onderzoek naar hartfunctie, bewegen en verhoudingen, en bouwen een robot die voor de mens van nut kan zijn.<br><br><b>Lesdoelen:</b><br>• Ontwerpproblemen oplossen door creativiteit en doorzettingsvermogen<br>• Samenwerken in drietallen<br>• Leren zelf een praktisch onderzoek te doen",
                     ],
                     "ontwerp_attractie" => [
                         "keywords" => [
                             "ontwerp je attractie",
                             "wat is ontwerp je attractie",
                             "attractie bouwen groep 5",
-                            "pretpark ontwerpen",
-                            "attractie schaal programmeren"
+                            "pretpark ontwerpen schaal",
+                            "attractie programmeren groep"
                         ],
-                        "answer" => "Voor groep 5: Leerlingen ontwerpen en bouwen hun eigen attractie op schaal als onderdeel van een nieuw pretpark. De groepen stemmen met elkaar af om samen een zo gevarieerd mogelijk pretpark te maken.",
-                        "suggestions" => [
-                            "Wat is Duurzaam Huis?",
-                            "Wat is Avontuurlijke Architecten?"
-                        ]
+                        "answer" => "🎢 <b>Ontwerp je Attractie</b> (Groep 5)<br><br><b>Contactpersoon TK:</b> Robert / Celine &nbsp;|&nbsp; <b>Contactpersoon KIEM:</b> Coen (Joravision) &nbsp;|&nbsp; <b>Opdrachtgever:</b> Coen<br><br><b>Samenvatting:</b> Leerlingen ontwerpen en bouwen hun eigen attractie op schaal als onderdeel van een nieuw pretpark. De groepen stemmen met elkaar af om samen een zo gevarieerd mogelijk pretpark te maken.<br><br><b>Lesdoelen:</b><br>• Ontwerpproblemen oplossen door creativiteit en doorzettingsvermogen<br>• De basis leren van programmeren<br>• Samenwerken in drietallen en afstemmen met andere groepen",
                     ],
                     "duurzaam_huis" => [
                         "keywords" => [
                             "duurzaam huis",
                             "wat is duurzaam huis",
                             "duurzaam huis groep 4",
-                            "huis isolatie project",
-                            "duurzaam bouwen groep"
+                            "huis isolatie project groep",
+                            "duurzaam bouwen basisschool"
                         ],
-                        "answer" => "Voor groep 4: Leerlingen ontwerpen en bouwen een duurzaam huis, doen onderzoek naar isolatie, elektriciteit en verbruik van apparaten.",
-                        "suggestions" => [
-                            "Wat is Ontwerp je Attractie?",
-                            "Wat is Avontuurlijke Architecten?"
-                        ]
+                        "answer" => "🏡 <b>Duurzaam Huis</b> (Groep 4)<br><br><b>Contactpersoon TK:</b> Jolien / Roos<br><br><b>Samenvatting:</b> Leerlingen ontwerpen en bouwen een duurzaam huis, doen onderzoek naar isolatie, elektriciteit en verbruik van apparaten.<br><br><b>Lesdoelen:</b><br>• Ontwerpproblemen oplossen door creativiteit en doorzettingsvermogen<br>• Samenwerken in viertallen<br>• Leren zelf een praktisch onderzoek te doen",
                     ],
                     "avontuurlijke_architecten" => [
                         "keywords" => [
@@ -323,13 +273,9 @@ class TechnoBot
                             "wat is avontuurlijke architecten",
                             "architecten groep 3",
                             "pretpark bouwen groep 3",
-                            "bruggen bouwen project"
+                            "bruggen bouwen basisschool"
                         ],
-                        "answer" => "Voor groep 3: Leerlingen ontwerpen en bouwen hun eigen pretpark met verschillende constructiematerialen. De groepen stemmen samen af. Denk aan bruggen, omheiningen, wegen en bewegwijzering!",
-                        "suggestions" => [
-                            "Wat is Duurzaam Huis?",
-                            "Welke projecten zijn er?"
-                        ]
+                        "answer" => "🏗️ <b>Avontuurlijke Architecten</b> (Groep 3)<br><br><b>Contactpersoon TK:</b> Sanne (Leiden) &nbsp;|&nbsp; <b>Contactpersoon KIEM:</b> Alide<br><br><b>Samenvatting:</b> Leerlingen ontwerpen en bouwen hun eigen pretpark met verschillende constructiematerialen. De groepen stemmen samen af. Denk aan bruggen, omheiningen, wegen en bewegwijzering!<br><br><b>Lesdoelen:</b><br>• Ontwerpproblemen oplossen door creativiteit en doorzettingsvermogen<br>• Samenwerken in drietallen en afstemmen met andere groepen",
                     ],
                 ]
             ],
@@ -353,7 +299,7 @@ class TechnoBot
                         "answer" => "De leskisten horen bij de lessen van Technolab, zoals TechniekWijs (wetenschap & techniek), ToekomstTaal (programmeren & mediawijsheid) en Toekomstkunde (duurzaamheid & technologie). 📚",
                     ],
                     "gebruik" => [
-                        "keywords" => ["leskist gebruik", "leskist school", "waar worden leskisten gebruikt"],
+                        "keywords" => ["leskist gebruik school", "waar worden leskisten gebruikt"],
                         "answer" => "Leskisten worden gebruikt bij lessen op Technolab zelf én bij POP-UP lessen op scholen in de regio Leiden. Zo brengen we de Technolab-ervaring direct naar de klas! 🏫",
                     ],
                 ]
@@ -378,11 +324,11 @@ class TechnoBot
                         "answer" => "Tijdens je stage werk je mee aan inspirerend techniekonderwijs voor kinderen en jongeren. Je werkt in een multidisciplinair team, krijgt ruimte voor eigen ideeën en begeleiding gericht op jouw leerdoelen. Elke dag zijn er zo'n 20 stagiairs actief! 💪",
                     ],
                     "richtingen" => [
-                        "keywords" => ["stage richtingen", "stage opleiding", "voor welke studierichtingen is stage mogelijk"],
+                        "keywords" => ["stage richtingen opleiding", "voor welke studierichtingen is stage mogelijk"],
                         "answer" => "Technolab zoekt stagiairs uit diverse richtingen, zoals Toegepaste Psychologie, HBO-ICT / Innovative Development, Media Vormgeven en MLO. De mix van achtergronden zorgt voor een inspirerende leeromgeving! 🎨💻",
                     ],
                     "contact" => [
-                        "keywords" => ["stage contact", "stage email", "stage vragen bellen"],
+                        "keywords" => ["stage contact email vragen bellen"],
                         "answer" => "Vragen over je stage? Bel 071-5191324 of mail naar stage@technolableiden.nl. Let op: tijdens schoolvakanties wordt mail minder vaak gelezen 📧",
                     ],
                 ]
@@ -403,7 +349,7 @@ class TechnoBot
                     "willie wortel",
                     "pop up les"
                 ],
-                "answer" => "Technolab biedt inspirerende lessen en workshops voor PO en VO op het gebied van techniek, wetenschap en talentontwikkeling! 📚",
+                "answer" => "Technolab biedt inspirerende lessen en workshops voor PO en VO op het gebied van techniek, wetenschap en talentontwikkeling! 📚 Bekijk het aanbod op <a href='https://www.technolableiden.nl/' target='_blank'>technolableiden.nl</a>",
                 "suggestions" => [
                     "Wat zijn alle lesprogramma's?",
                     "Wat is TechniekWijs?",
@@ -419,15 +365,15 @@ class TechnoBot
                         "answer" => "TechniekWijs is de leerlijn voor wetenschap en techniekonderwijs. Met een rijk aanbod aan apparatuur halen we de uitvinder in leerlingen naar boven! Denk aan workshops over stroomcircuits, katrollen, tandwielen en elektriciteit. 🔧⚡",
                     ],
                     "toekomsttaal" => [
-                        "keywords" => ["toekomsttaal les", "programmeren les", "mediawijsheid les", "wat is toekomsttaal"],
+                        "keywords" => ["toekomsttaal les", "programmeren les toekomsttaal", "mediawijsheid les", "wat is toekomsttaal"],
                         "answer" => "ToekomstTaal is de leerlijn voor programmeren en mediawijsheid. Leerlingen leren hoe digitale technologie werkt, programmeren met Micro:bit en bouwen eigen robots! 🤖📱",
                     ],
                     "toekomstkunde_les" => [
-                        "keywords" => ["toekomstkunde les", "duurzaamheid les", "klimaat les", "wat is toekomstkunde les"],
-                        "answer" => "Toekomstkunde gaat over duurzaamheid, hernieuwbare energie, biodiversiteit en klimaatactie. Leerlingen werken hands-on aan oplossingen voor duurzaamheidsvraagstukken. 🌿🌍",
+                        "keywords" => ["toekomstkunde les lessen", "duurzaamheid les lessen", "klimaat les leerlingen", "wat is toekomstkunde les"],
+                        "answer" => "Toekomstkunde gaat over duurzaamheid, hernieuwbare energie, biodiversiteit en klimaatactie. Leerlingen werken hands-on aan oplossingen voor duurzaamheidsvraagstukken. 🌿🌍 Meer info: <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>technolableiden.nl/toekomstkunde</a>",
                     ],
                     "popup" => [
-                        "keywords" => ["popup les technolab", "pop up projectweek", "les op school popup"],
+                        "keywords" => ["popup les technolab school", "pop up projectweek", "les op school popup"],
                         "answer" => "Met POP-UP Technolab komen wij naar jouw school! We verzorgen een week vullend programma met activiteiten op school én bijzondere dagdelen bij Technolab of de Hortus. Er is een programmeer/maakweek én een uitvindersweek. Afgesloten met een tentoonstelling! 🎉",
                     ],
                     "willie_wortel" => [
@@ -452,24 +398,24 @@ class TechnoBot
                         "answer" => "Fika is elke woensdag 📅"
                     ],
                     "budget" => [
-                        "keywords" => ["fika budget", "fika hoeveel geld", "hoeveel is het fika budget"],
+                        "keywords" => ["fika budget hoeveel geld", "hoeveel is het fika budget"],
                         "answer" => "Er mag rond de €50,- voor Fika worden uitgegeven 💶"
                     ],
                     "boodschappen" => [
-                        "keywords" => ["fika boodschappen winkel", "fika plus supermarkt"],
+                        "keywords" => ["fika boodschappen winkel plus"],
                         "answer" => "Boodschappen worden meestal bij de Plus beneden gedaan 🛒"
                     ],
                     "eten" => [
-                        "keywords" => ["fika eten wat", "fika koken wat", "wat eten we bij fika", "fika vegetarisch veganistisch"],
+                        "keywords" => ["fika eten wat koken", "wat eten we bij fika", "fika vegetarisch veganistisch"],
                         "answer" => "We koken veganistisch/vegetarisch 🌱 en consumeren geen alcohol."
                     ],
                     "team" => [
-                        "keywords" => ["fika team kookt", "wie kookt er bij fika", "fika rad draaien"],
+                        "keywords" => ["fika team kookt wie", "wie kookt er bij fika", "fika rad draaien"],
                         "answer" => "Na elke Fika wordt door behulp van een rad een nieuw team gekozen, plus nieuwe ingrediënten🍳",
                         "image" => "Images/Fika.png"
                     ],
                     "verhindering" => [
-                        "keywords" => ["fika verhinderd vervanging", "fika geen tijd vervanging"],
+                        "keywords" => ["fika verhinderd geen tijd vervanging"],
                         "answer" => "Ben je gekozen maar heb je geen tijd? Zoek dan zelf vervanging! 🔄"
                     ],
                 ]
@@ -486,7 +432,7 @@ class TechnoBot
                 ],
                 "sub_topics" => [
                     "wat" => [
-                        "keywords" => ["bhv wat betekent", "wat is bhv uitleg", "wat betekent bhv"],
+                        "keywords" => ["bhv wat betekent uitleg", "wat is bhv", "wat betekent bhv"],
                         "answer" => "BHV staat voor BedrijfsHulpVerlening. BHV'ers zijn aanwezig om te helpen bij noodgevallen 🚨"
                     ],
                     "wie" => [
@@ -499,7 +445,7 @@ class TechnoBot
                         "answer" => "Elk jaar volgen medewerkers een BHV training 📚"
                     ],
                     "regels" => [
-                        "keywords" => ["bhv regels noodgeval", "wat zijn de bhv regels", "bhv procedure noodgeval"],
+                        "keywords" => ["bhv regels noodgeval procedure", "wat zijn de bhv regels"],
                         "answer" => "Lees de regels goed door zodat je weet wat te doen is bij een noodgeval 📋"
                     ],
                 ]
@@ -516,7 +462,7 @@ class TechnoBot
                 ],
                 "sub_topics" => [
                     "aanvragen" => [
-                        "keywords" => ["pasje aanvragen hoe", "hoe vraag ik een pasje aan", "badge aanvragen"],
+                        "keywords" => ["pasje aanvragen hoe", "hoe vraag ik een pasje aan", "badge aanvragen coordinator"],
                         "answer" => "Je kunt een pasje aanvragen bij de coördinator medewerkers. 🔑",
                         "image" => "Images/Pasje.jpg"
                     ],
@@ -525,11 +471,11 @@ class TechnoBot
                         "answer" => "Sommige medewerkers hebben een liftpas waarmee je de lift kunt gebruiken. Ook hiermee kun je de deur van het gebouw openen."
                     ],
                     "sleutel" => [
-                        "keywords" => ["pasje sleutel alarm", "sleutel alarm dagco"],
+                        "keywords" => ["pasje sleutel alarm dagco"],
                         "answer" => "Als dagco krijg je een sleutel van Technolab en wordt uitgelegd hoe het alarm werkt."
                     ],
                     "nacht" => [
-                        "keywords" => ["pasje nacht weekend vakantie", "nachtwerk pasje regels", "wat zijn de regels voor nachtwerk met een pasje"],
+                        "keywords" => ["pasje nacht weekend vakantie laat", "nachtwerk pasje regels", "wat zijn de regels voor nachtwerk met een pasje"],
                         "answer" => "Tussen 23:00-06:00 uur, weekend of vakantie? Informeer Bernard van Da Vinci College. Anders krijgt Technolab een boete! 📞"
                     ],
                 ]
@@ -546,7 +492,7 @@ class TechnoBot
                 ],
                 "sub_topics" => [
                     "regeling" => [
-                        "keywords" => ["pensioen collectief regeling"],
+                        "keywords" => ["pensioen collectief regeling technolab"],
                         "answer" => "Technolab biedt geen collectieve pensioenregeling 📋"
                     ],
                     "bright" => [
@@ -554,11 +500,11 @@ class TechnoBot
                         "answer" => "BrightPensioen lidmaatschap wordt door Technolab vergoed zolang je een arbeidscontract hebt 💙"
                     ],
                     "aanmelden" => [
-                        "keywords" => ["pensioen aanmelden hoe", "hoe meld ik me aan voor pensioen", "bright pensioen formulier"],
+                        "keywords" => ["pensioen aanmelden hoe formulier", "hoe meld ik me aan voor pensioen"],
                         "answer" => "Ga naar de coördinator medewerker voor het aanmeldformulier 📝"
                     ],
                     "kosten" => [
-                        "keywords" => ["pensioen kosten prijs", "wat kost het pensioen"],
+                        "keywords" => ["pensioen kosten prijs bedrag", "wat kost het pensioen"],
                         "answer" => "BrightPensioen lidmaatschap wordt volledig vergoed door Technolab 💰"
                     ],
                 ]
@@ -574,15 +520,15 @@ class TechnoBot
                 ],
                 "sub_topics" => [
                     "wat" => [
-                        "keywords" => ["mdt wat is uitleg"],
+                        "keywords" => ["mdt wat is uitleg betekent"],
                         "answer" => "MDT staat voor Maatschappelijke DienstTijd. Technolab krijgt subsidie voor MDT uren."
                     ],
                     "wie" => [
-                        "keywords" => ["mdt voor wie leeftijd", "mdt jonger dan 30", "voor wie is mdt"],
+                        "keywords" => ["mdt voor wie leeftijd jonger 30", "voor wie is mdt"],
                         "answer" => "Ben je jonger dan 30 jaar? Ga naar de MDT coördinator om een formulier in te vullen."
                     ],
                     "uren" => [
-                        "keywords" => ["mdt uren registreren", "hoe registreer ik mijn mdt uren", "mdt wekelijks schrijven"],
+                        "keywords" => ["mdt uren registreren wekelijks", "hoe registreer ik mijn mdt uren"],
                         "answer" => "Registreer wekelijks je gewerkte uren. Uren ophopen of compenseren is niet de bedoeling! ⏱️"
                     ],
                 ]
@@ -599,15 +545,15 @@ class TechnoBot
                 ],
                 "sub_topics" => [
                     "hoe" => [
-                        "keywords" => ["loon hoe wordt betaald", "loon betaling hoe werkt", "hoe wordt mijn loon betaald"],
+                        "keywords" => ["loon hoe wordt betaald boekhoudingsbureau", "hoe wordt mijn loon betaald"],
                         "answer" => "De betaling van je loon gaat via een boekhoudingsbureau."
                     ],
                     "nodig" => [
-                        "keywords" => ["loon wat heb ik nodig", "loonverklaring nodig id", "wat heb ik nodig voor mijn loon"],
+                        "keywords" => ["loon wat heb ik nodig id loonverklaring", "wat heb ik nodig voor mijn loon"],
                         "answer" => "Voor je uitbetaling is een loonverklaring én een kopie van je ID nodig."
                     ],
                     "sturen" => [
-                        "keywords" => ["loonverklaring sturen naar", "loon email sturen", "naar wie stuur ik mijn loonverklaring"],
+                        "keywords" => ["loonverklaring sturen naar email boekhouding", "naar wie stuur ik mijn loonverklaring"],
                         "answer" => "Stuur je loonverklaring naar boekhouding@technolableiden.nl. Zorg dat het op tijd aankomt!"
                     ],
                 ]
@@ -624,15 +570,15 @@ class TechnoBot
                 ],
                 "sub_topics" => [
                     "wat" => [
-                        "keywords" => ["vog wat is uitleg", "verklaring omtrent gedrag wat"],
+                        "keywords" => ["vog wat is uitleg betekent"],
                         "answer" => "Een VOG (Verklaring Omtrent Gedrag) is verplicht om in het onderwijs te werken 🏫"
                     ],
                     "aanvragen" => [
-                        "keywords" => ["vog aanvragen wie", "wie vraagt de vog aan", "vog technolab aanvragen"],
+                        "keywords" => ["vog aanvragen wie vraagt", "wie vraagt de vog aan technolab"],
                         "answer" => "De VOG wordt voor jou aangevraagd door Technolab 👍"
                     ],
                     "ontvangen" => [
-                        "keywords" => ["vog ontvangen doorsturen", "wat doe ik als ik mijn vog ontvang", "naar wie stuur ik mijn vog"],
+                        "keywords" => ["vog ontvangen doorsturen coordinator", "wat doe ik als ik mijn vog ontvang", "naar wie stuur ik mijn vog"],
                         "answer" => "Na ontvangst stuur je de VOG door naar de coördinator medewerker 📬"
                     ],
                 ]
@@ -649,23 +595,23 @@ class TechnoBot
                 ],
                 "sub_topics" => [
                     "tijd" => [
-                        "keywords" => ["huisregels beginnen tijden", "huisregels 8 uur"],
+                        "keywords" => ["huisregels beginnen tijden aanwezig"],
                         "answer" => "Zorg dat je rond 8:15 uur binnen bent, dan starten we samen om 8:30 uur 🕗"
                     ],
                     "ziek" => [
-                        "keywords" => ["huisregels ziek melden", "wat doe ik als ik ziek ben volgens de huisregels"],
+                        "keywords" => ["huisregels ziek melden bellen", "wat doe ik als ik ziek ben volgens de huisregels"],
                         "answer" => "Bel tussen 8:10 en 8:25 uur naar de dagco: 071-5191324 en zeg het je stagebegeleider 📞"
                     ],
                     "gedrag" => [
-                        "keywords" => ["huisregels gedrag verboden", "wat mag niet volgens de huisregels", "huisregels telefoon kauwgom"],
+                        "keywords" => ["huisregels gedrag verboden mag niet", "wat mag niet volgens de huisregels"],
                         "answer" => "Geen kauwgom, telefoon in tas, geen pet in de les, privé blijft privé. 🙅"
                     ],
                     "verlaten" => [
-                        "keywords" => ["huisregels pand verlaten", "huisregels weggaan dagco"],
+                        "keywords" => ["huisregels pand verlaten weggaan dagco"],
                         "answer" => "Verlaat je het pand? Meld het altijd bij de dagco 🚪"
                     ],
                     "klusjes" => [
-                        "keywords" => ["huisregels klusjes opruimen", "welke klusjes horen bij de huisregels"],
+                        "keywords" => ["huisregels klusjes opruimen taken", "welke klusjes horen bij de huisregels"],
                         "answer" => "Klusjes zoals opruimen horen erbij — wij zijn 1 team, 1 taak 💪"
                     ],
                 ]
@@ -682,15 +628,15 @@ class TechnoBot
                 ],
                 "sub_topics" => [
                     "hoe" => [
-                        "keywords" => ["urenregistratie hoe werkt", "hoe werkt de urenregistratie"],
+                        "keywords" => ["urenregistratie hoe werkt wekelijks", "hoe werkt de urenregistratie"],
                         "answer" => "Registreer wekelijks je gewerkte uren. Uren ophopen of compenseren is niet de bedoeling!⏱️"
                     ],
                     "opbouwen" => [
-                        "keywords" => ["urenregistratie opbouwen compenseren", "mag ik uren opbouwen via urenregistratie"],
+                        "keywords" => ["urenregistratie opbouwen compenseren ophopen", "mag ik uren opbouwen via urenregistratie"],
                         "answer" => "Uren opbouwen of compenseren is niet de bedoeling ❌ Bespreek meer werken met je rolverdeler."
                     ],
                     "schema" => [
-                        "keywords" => ["urenregistratie schema aanpassen", "werkschema aanpassen rolverdeler", "hoe pas ik mijn werkschema aan via urenregistratie"],
+                        "keywords" => ["urenregistratie schema aanpassen rolverdeler", "hoe pas ik mijn werkschema aan via urenregistratie"],
                         "answer" => "Wijzigingen in het werkschema worden van tevoren afgesproken met de rolverdeler 📋"
                     ],
                 ]
@@ -705,7 +651,7 @@ class TechnoBot
                     "technolab gedragscode",
                     "kernwaarden technolab"
                 ],
-                "answer" => "Technolab Leiden is een leerwerkbedrijf met passie voor onderwijs, techniek, wetenschap en talentontwikkeling. ✨ Als Technolabber draag je die missie actief uit!",
+                "answer" => "Technolab Leiden is een leerwerkbedrijf met passie voor onderwijs, techniek, wetenschap en talentontwikkeling. ✨ Als Technolabber draag je die missie actief uit! Meer op <a href='https://www.technolableiden.nl/' target='_blank'>technolableiden.nl</a>",
                 "suggestions" => [
                     "Wat zijn de kernwaarden van Technolab?",
                     "Hoe werkt Technolab intern?",
@@ -713,23 +659,23 @@ class TechnoBot
                 ],
                 "sub_topics" => [
                     "kernwaarden" => [
-                        "keywords" => ["kernwaarden van technolab", "waarden technolab principes", "zijn de kernwaarden van"],
+                        "keywords" => ["kernwaarden van technolab principes", "zijn de kernwaarden van technolab"],
                         "answer" => "Technolab heeft 5 kernwaarden: Samenwerken (duurzame relaties met scholen, bedrijven en overheid), Groeien (continu verbeteren), Bijdragen (handelen met impact voor een duurzame wereld), Leren (talentontwikkeling centraal) en Spelen (samen plezier hebben in werken en leren). 🌟"
                     ],
                     "missie" => [
-                        "keywords" => ["missie technolab doel", "wat doet technolab missie", "waarom technolab bestaat"],
-                        "answer" => "Technolab verbindt onderwijs, techniek en talentontwikkeling. We helpen kinderen, jongeren én medewerkers ontdekken: wie ben ik, wat kan ik, wat wil ik? We enthousiasmeren ze voor natuur en techniek — de toekomst! 🚀"
+                        "keywords" => ["missie technolab doel wat doet technolab", "waarom technolab bestaat"],
+                        "answer" => "Technolab verbindt onderwijs, techniek en talentontwikkeling. We helpen kinderen, jongeren én medewerkers ontdekken: wie ben ik, wat kan ik, wat wil ik? We enthousiasmeren ze voor natuur en techniek — de toekomst! 🚀 <a href='https://www.technolableiden.nl/' target='_blank'>technolableiden.nl</a>"
                     ],
                     "werkwijze" => [
-                        "keywords" => ["hoe werkt technolab intern zelfsturend", "holacratie technolab scrum teams", "technolab teams werkwijze"],
+                        "keywords" => ["hoe werkt technolab intern werkwijze", "holacratie scrum technolab teams"],
                         "answer" => "Technolab werkt in zelfsturende teams op basis van holacratie en scrum. We denken in mogelijkheden en vertalen ideeën snel naar concrete acties. Technolab bruist van energie! ⚡"
                     ],
                     "activiteiten" => [
-                        "keywords" => ["activiteiten technolab organiseert", "technolab programma workshops"],
+                        "keywords" => ["activiteiten technolab organiseert programma workshops"],
                         "answer" => "Technolab organiseert workshops, projecten, beroepsoriëntatieweken en leerwerktrajecten. Ook bieden we trainingsprogramma's aan voor medewerkers van scholen en bedrijven, en begeleiden we mbo-, hbo- en wo-studenten bij hun praktijkervaring. 🎓"
                     ],
                     "impact" => [
-                        "keywords" => ["technolab impact bereik leerlingen scholen", "hoeveel leerlingen technolab heeft"],
+                        "keywords" => ["technolab impact bereik leerlingen scholen aantallen"],
                         "answer" => "Elk jaar doen ruim 36.000 leerlingen, meer dan 50 scholen en circa 100 bedrijven en organisaties mee aan de lessen en projecten van Technolab. Zo slaan we de brug tussen onderwijs en arbeidsmarkt! 🌍"
                     ],
                 ]
@@ -750,11 +696,11 @@ class TechnoBot
                         "answer" => "We gebruiken Signal voor werk gerelateerde dingen 📱 Geen WhatsApp voor werkzaken!"
                     ],
                     "ziek" => [
-                        "keywords" => ["signal ziek melden", "hoe meld ik me ziek via signal", "appgroep ziek melden"],
+                        "keywords" => ["signal ziek melden appgroep", "hoe meld ik me ziek via signal"],
                         "answer" => "Ziekmeldingen moeten ook telefonisch doorgegeven worden aan de dagco. App alleen is niet genoeg! 📞"
                     ],
                     "aanmelden" => [
-                        "keywords" => ["aanmelden signal groep", "hoe meld ik me aan voor de signal appgroep", "signal link joinen"],
+                        "keywords" => ["aanmelden signal groep joinen link", "hoe meld ik me aan voor de signal appgroep"],
                         "answer" => "Meld je aan via de link die je van Technolab krijgt 🔗"
                     ],
                 ]
@@ -771,39 +717,39 @@ class TechnoBot
                 ],
                 "sub_topics" => [
                     "aanmaken" => [
-                        "keywords" => ["emailhandtekening aanmaken hoe", "hoe maak ik een emailhandtekening aan", "eerste handtekening outlook maken"],
-                        "answer" => "Ga naar de Handtekening Editor op https://technolab-intern.nl/Emailhandtekening/, vul je persoonsgegevens in, en klik op de paarse knop 'Kopieer voor Outlook'. Plak dit daarna in Outlook via Instellingen → Account → Handtekeningen → Handtekening toevoegen. 📖"
+                        "keywords" => ["emailhandtekening aanmaken hoe maken", "hoe maak ik een emailhandtekening aan"],
+                        "answer" => "Ga naar de Handtekening Editor op <a href='https://technolab-intern.nl/Emailhandtekening/' target='_blank'>technolab-intern.nl/Emailhandtekening/</a>, vul je persoonsgegevens in, en klik op de paarse knop 'Kopieer voor Outlook'. Plak dit daarna in Outlook via Instellingen → Account → Handtekeningen → Handtekening toevoegen. 📖"
                     ],
                     "editor" => [
-                        "keywords" => ["handtekening editor openen", "hoe open ik de handtekening editor", "handtekening tool website"],
-                        "answer" => "De Handtekening Editor open je via: https://technolab-intern.nl/Emailhandtekening/. Vul je gegevens in, kies of je een banner wil, en kopieer je handtekening via de paarse knop. 🖥️"
+                        "keywords" => ["handtekening editor openen website", "hoe open ik de handtekening editor"],
+                        "answer" => "De Handtekening Editor open je via: <a href='https://technolab-intern.nl/Emailhandtekening/' target='_blank'>technolab-intern.nl/Emailhandtekening/</a>. Vul je gegevens in, kies of je een banner wil, en kopieer je handtekening via de paarse knop. 🖥️"
                     ],
                     "banner" => [
-                        "keywords" => ["banner handtekening toevoegen", "emailhandtekening banner aanzetten"],
+                        "keywords" => ["banner handtekening toevoegen aanzetten"],
                         "answer" => "In de Handtekening Editor kan je een banner aanzetten door het vakje bij 'banner' aan te vinken. Er komen later mogelijk meer banner-opties — op 1 juli 2026 volgt de 'Techniek & Toekomst' banner. 🖼️"
                     ],
                     "plakken" => [
-                        "keywords" => ["handtekening plakken outlook", "hoe plak ik mijn handtekening in outlook", "handtekening toevoegen outlook ctrl v"],
+                        "keywords" => ["handtekening plakken outlook ctrl v", "hoe plak ik mijn handtekening in outlook"],
                         "answer" => "Kopieer je handtekening via de paarse knop in de editor. Ga in Outlook naar ⚙️ Instellingen → Account → Handtekeningen → Handtekening toevoegen. Geef hem een naam en plak met CTRL+V. Stel hem in als standaard voor nieuwe én doorgestuurde berichten en sla op. ✅"
                     ],
                     "svg" => [
-                        "keywords" => ["svg handtekening werkt niet outlook", "svg bestand handtekening probleem"],
+                        "keywords" => ["svg handtekening werkt niet outlook probleem"],
                         "answer" => "SVG-bestanden worden niet meegenomen als je de handtekening via CTRL+V plakt, omdat Outlook Word als engine gebruikt. Wil je toch SVG gebruiken? Klik in het preview-vlak van de editor, selecteer alles met CTRL+A en sleep de handtekening via drag & drop naar het handtekening-veld in Outlook. 🔧"
                     ],
                     "opslaan" => [
-                        "keywords" => ["handtekening opslaan html", "html downloaden handtekening bewaren"],
+                        "keywords" => ["handtekening opslaan html downloaden bewaren"],
                         "answer" => "Je kan je handtekening opslaan door de HTML-code te downloaden vanuit de editor. Zo kan je hem later opnieuw gebruiken zonder alles opnieuw in te vullen. 💾"
                     ],
                     "problemen" => [
-                        "keywords" => ["handtekening werkt niet fout", "handtekening probleem ziet er raar uit", "handtekening mobiel"],
+                        "keywords" => ["handtekening werkt niet fout probleem mobiel"],
                         "answer" => "Op mobiele apparaten kan de handtekening er iets anders uitzien dan op desktop — dat is normaal. Gaat er iets fout? Neem contact op met Pieter via pieter@technolableiden.nl. 📬"
                     ],
                 ]
             ],
 
             // ── HOLACRATIE / WERKOVERLEG ──────────────────────────────────────
-            "teams" => [
-                "keywords" => ["teams", "cirkel", "werkoverleg cirkel"],
+            "holacratie" => [
+                "keywords" => ["holacratie", "holacratisch", "werkoverleg cirkel"],
                 "answer" => "Holacratisch werkoverleg is strak vergaderen volgens vaste regels. Elke cirkel heeft wekelijks zo'n overleg. 🔄",
                 "suggestions" => [
                     "Wat is holacratie?",
@@ -812,15 +758,15 @@ class TechnoBot
                 ],
                 "sub_topics" => [
                     "wat" => [
-                        "keywords" => ["holacratie wat is uitleg", "wat is holacratie holacratisch"],
+                        "keywords" => ["holacratie wat is uitleg betekent", "wat is holacratie"],
                         "answer" => "Holacratisch werkoverleg is strak vergaderen volgens vaste regels. Elke cirkel heeft wekelijks zo'n overleg 📅"
                     ],
                     "facilitator" => [
-                        "keywords" => ["holacratie facilitator secretaris", "wie is de facilitator bij holacratie"],
+                        "keywords" => ["holacratie facilitator secretaris leider", "wie is de facilitator bij holacratie"],
                         "answer" => "De facilitator (gekozen per periode) leidt het overleg. De secretaris zorgt dat taken in de teamsplanner worden vastgelegd ✍️"
                     ],
                     "cirkel" => [
-                        "keywords" => ["holacratie cirkel wat is", "wat is een holacratie cirkel"],
+                        "keywords" => ["holacratie cirkel wat is team", "wat is een holacratie cirkel"],
                         "answer" => "Een cirkel is een team binnen Technolab. Elke cirkel heeft een eigen werkoverleg en planner 🔵"
                     ],
                 ]
@@ -837,15 +783,15 @@ class TechnoBot
                 ],
                 "sub_topics" => [
                     "hoe" => [
-                        "keywords" => ["planner hoe werkt agenda", "hoe werkt de planner"],
+                        "keywords" => ["planner hoe werkt agenda cirkel", "hoe werkt de planner"],
                         "answer" => "Elke cirkel heeft een planner die de agenda beheert en veranderingen afstemmt 📋"
                     ],
                     "wachtwoord" => [
-                        "keywords" => ["planner wachtwoord toegang", "waar vind ik het planner wachtwoord"],
+                        "keywords" => ["planner wachtwoord toegang vergrendeld", "waar vind ik het planner wachtwoord"],
                         "answer" => "De agenda is vergrendeld met wachtwoord. Vraag het bij de hoofdplanner in overleg met je rolverdeler 🔒"
                     ],
                     "teamleden" => [
-                        "keywords" => ["planner teamleden overzicht werkdagen", "wie staan er in de planner als teamleden"],
+                        "keywords" => ["planner teamleden overzicht werkdagen tabblad", "wie staan er in de planner als teamleden"],
                         "answer" => "In de agenda zit een tabblad met alle teamleden, stagiairs en hun werkdagen. Zorg dat jij er ook bij staat! 👥"
                     ],
                 ]
@@ -858,7 +804,7 @@ class TechnoBot
                     "natuur en techniek lessen",
                     "natuur techniek po vo"
                 ],
-                "answer" => "Toekomstkunde is ons lesaanbod natuur- & technieklessen voor PO en VO, gericht op drie thema's: Energie en milieu, Technologische innovatie, en Leven en omgeving 🌱⚙️🌍",
+                "answer" => "Toekomstkunde is ons lesaanbod natuur- & technieklessen voor PO en VO, gericht op drie thema's: Energie en milieu, Technologische innovatie, en Leven en omgeving 🌱⚙️🌍 Meer info: <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>technolableiden.nl/toekomstkunde</a>",
                 "suggestions" => [
                     "Wat is Energie en milieu?",
                     "Wat is Technologische innovatie?",
@@ -866,35 +812,36 @@ class TechnoBot
                 ],
                 "sub_topics" => [
                     "energie_milieu" => [
-                        "keywords" => ["toekomstkunde energie en milieu", "duurzaamheid lessen toekomstkunde", "klimaatactie les toekomstkunde"],
-                        "answer" => "Leerlingen onderzoeken hernieuwbare energie, biodiversiteit, circulaire economie en klimaatactie, en bedenken zelf oplossingen voor duurzaamheidsvraagstukken 🌱"
+                        "keywords" => ["toekomstkunde energie en milieu duurzaamheid", "klimaatactie les toekomstkunde"],
+                        "answer" => "Leerlingen onderzoeken hernieuwbare energie, biodiversiteit, circulaire economie en klimaatactie, en bedenken zelf oplossingen voor duurzaamheidsvraagstukken 🌱 <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>Meer info</a>"
                     ],
                     "technologische_innovatie" => [
-                        "keywords" => ["toekomstkunde technologische innovatie", "stroomcircuits tandwielen toekomstkunde"],
-                        "answer" => "Leerlingen verkennen technologie en wetenschap via workshops over stroomcircuits, tandwielen en katrollen, en ontwikkelen creativiteit en probleemoplossend vermogen ⚙️"
+                        "keywords" => ["toekomstkunde technologische innovatie stroomcircuits"],
+                        "answer" => "Leerlingen verkennen technologie en wetenschap via workshops over stroomcircuits, tandwielen en katrollen, en ontwikkelen creativiteit en probleemoplossend vermogen ⚙️ <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>Meer info</a>"
                     ],
                     "leven_omgeving" => [
-                        "keywords" => ["toekomstkunde leven en omgeving", "micro bit programmeren toekomstkunde", "robots bouwen toekomstkunde"],
-                        "answer" => "Leerlingen leren programmeren via o.a. de Micro:bit en bouwen eigen robots om problemen op te lossen, en leggen zo een basis voor computatief denken 🤖"
+                        "keywords" => ["toekomstkunde leven en omgeving programmeren robots"],
+                        "answer" => "Leerlingen leren programmeren via o.a. de Micro:bit en bouwen eigen robots om problemen op te lossen, en leggen zo een basis voor computatief denken 🤖 <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>Meer info</a>"
                     ],
                     "groepen" => [
-                        "keywords" => ["toekomstkunde lessen per groep", "voor welke groepen toekomstkunde", "groep 1 tot 8 vo mbo toekomstkunde"],
+                        "keywords" => ["toekomstkunde lessen per groep po vo mbo"],
                         "answer" => "Er is lesaanbod voor groep 1/2 t/m groep 8, VO en MBO – van Robot Ontdeklab en Kleine Muis tot Hackerspace, DNA, Marsbots en Techniek en Duurzaamheid 📚"
                     ],
                     "onderzoekend_ontwerpend" => [
-                        "keywords" => ["toekomstkunde onderzoekend leren ontwerpend", "wat is onderzoekend ontwerpend leren"],
+                        "keywords" => ["toekomstkunde onderzoekend ontwerpend leren", "wat is onderzoekend ontwerpend leren"],
                         "answer" => "Bij onderzoekend leren staat vragen stellen en experimenteren centraal, bij ontwerpend leren gaat het om bedenken, bouwen en testen van oplossingen in interactieve stappen 🔍"
                     ],
                     "locatie_lessen" => [
-                        "keywords" => ["toekomstkunde lessen locatie", "kluslokaal technolab lessen"],
+                        "keywords" => ["toekomstkunde lessen locatie kluslokaal school"],
                         "answer" => "Lessen sluiten zoveel mogelijk aan op het curriculum en worden deels op school gegeven. Materiaalintensieve workshops worden bij Technolab gegeven, in een volledig uitgerust kluslokaal 🏫"
                     ],
                 ]
             ],
 
+            // ── ZIJINSTROMERS ─────────────────────────────────────────────────
             "zijinstromers" => [
                 "keywords" => ["zijinstromers", "zij instromers", "carriere switch onderwijs", "overstap naar onderwijs"],
-                "answer" => "Voor mensen die een carrièreswitch naar het onderwijs of de techniek overwegen, biedt Technolab drie programma's: Expeditie Leerkracht, Meesterchallenge en Techniek en Toekomst 🚀",
+                "answer" => "Voor mensen die een carrièreswitch naar het onderwijs of de techniek overwegen, biedt Technolab drie programma's: Expeditie Leerkracht, Meesterchallenge en Techniek en Toekomst 🚀 Meer info: <a href='https://www.technolableiden.nl/zijinstromers/' target='_blank'>technolableiden.nl/zijinstromers</a>",
                 "suggestions" => [
                     "Wat is Expeditie Leerkracht?",
                     "Wat is de Meesterchallenge?",
@@ -902,15 +849,16 @@ class TechnoBot
                 ],
                 "sub_topics" => [
                     "overzicht" => [
-                        "keywords" => ["welke programmas voor zijinstromers", "opties zijinstromers overzicht"],
-                        "answer" => "Expeditie Leerkracht is een tweedaagse kennismaking met het onderwijsvak, de Meesterchallenge is een 10 weken durend leer-werktraject in het onderwijs, en Techniek en Toekomst helpt je de stap te zetten naar de techniek 🎯"
+                        "keywords" => ["welke programmas voor zijinstromers overzicht opties"],
+                        "answer" => "Expeditie Leerkracht is een tweedaagse kennismaking met het onderwijsvak, de Meesterchallenge is een 10 weken durend leer-werktraject in het onderwijs, en Techniek en Toekomst helpt je de stap te zetten naar de techniek 🎯 <a href='https://www.technolableiden.nl/zijinstromers/' target='_blank'>Meer info</a>"
                     ],
                 ]
             ],
 
+            // ── EXPEDITIE LEERKRACHT ──────────────────────────────────────────
             "expeditie_leerkracht" => [
                 "keywords" => ["expeditie leerkracht", "tweedaagse onderwijs", "kennismaken met onderwijs"],
-                "answer" => "Expeditie Leerkracht is een tweedaagse waarin je op een actieve, speelse en persoonlijke manier je eerste stappen zet in het onderwijsvak. Een samenwerking tussen Hogeschool Leiden en Technolab 👩‍🏫",
+                "answer" => "Expeditie Leerkracht is een tweedaagse waarin je op een actieve, speelse en persoonlijke manier je eerste stappen zet in het onderwijsvak. Een samenwerking tussen Hogeschool Leiden en Technolab 👩‍🏫 Meer info: <a href='https://www.technolableiden.nl/zijinstromers/expeditie-leerkracht/' target='_blank'>technolableiden.nl/expeditie-leerkracht</a>",
                 "suggestions" => [
                     "Wat kost Expeditie Leerkracht?",
                     "Wanneer is de volgende Expeditie Leerkracht?",
@@ -918,27 +866,28 @@ class TechnoBot
                 ],
                 "sub_topics" => [
                     "kosten" => [
-                        "keywords" => ["expeditie leerkracht kosten prijs", "wat kost expeditie leerkracht"],
-                        "answer" => "De kosten zijn voor schooljaar 2025-2026 verlaagd van €500,- naar €250,-, dankzij bijdrage van de onderwijsregio's Leiden, Duin- en Bollenstreek en Haaglanden 💶"
+                        "keywords" => ["expeditie leerkracht kosten prijs bedrag", "wat kost expeditie leerkracht"],
+                        "answer" => "De kosten zijn voor schooljaar 2025-2026 verlaagd van €500,- naar €250,-, dankzij bijdrage van de onderwijsregio's Leiden, Duin- en Bollenstreek en Haaglanden 💶 <a href='https://www.technolableiden.nl/zijinstromers/expeditie-leerkracht/' target='_blank'>Meer info & aanmelden</a>"
                     ],
                     "data" => [
-                        "keywords" => ["expeditie leerkracht data wanneer", "wanneer is de volgende expeditie leerkracht", "expeditie leerkracht aanmelden datum"],
-                        "answer" => "Komende edities: 15-16 juni (VOL), 5-6 oktober 2026 (Den Haag, Inholland), 8-9 maart 2027 (Den Haag, HHS), 7-8 juni 2027 (Den Haag, Inholland) 📅"
+                        "keywords" => ["expeditie leerkracht data wanneer datum", "wanneer is de volgende expeditie leerkracht"],
+                        "answer" => "Komende edities: 15-16 juni (VOL), 5-6 oktober 2026 (Den Haag, Inholland), 8-9 maart 2027 (Den Haag, HHS), 7-8 juni 2027 (Den Haag, Inholland) 📅 <a href='https://www.technolableiden.nl/zijinstromers/expeditie-leerkracht/' target='_blank'>Aanmelden</a>"
                     ],
                     "programma" => [
-                        "keywords" => ["expeditie leerkracht dag 1 dag 2", "hoe ziet dag 1 en dag 2 eruit", "expeditie leerkracht programma"],
-                        "answer" => "Dag 1 (8:30-17:00): 'De drempel over' - kennismaken, klas op Technolab bekijken en zelf een mini-les ontwerpen en testen. Dag 2 (8:00-16:00): 'De beproeving' - zelf een les geven op een school 📖"
+                        "keywords" => ["expeditie leerkracht dag 1 dag 2 programma", "hoe ziet dag 1 en dag 2 eruit"],
+                        "answer" => "Dag 1 (8:30-17:00): 'De drempel over' — kennismaken, klas op Technolab bekijken en zelf een mini-les ontwerpen en testen. Dag 2 (8:00-16:00): 'De beproeving' — zelf een les geven op een school 📖"
                     ],
                     "locatie" => [
-                        "keywords" => ["expeditie leerkracht locatie waar", "expeditie leerkracht den haag"],
+                        "keywords" => ["expeditie leerkracht locatie waar den haag"],
                         "answer" => "De edities vinden plaats in Den Haag, bij Inholland of HHS 📍"
                     ],
                 ]
             ],
 
+            // ── MEESTERCHALLENGE ──────────────────────────────────────────────
             "meesterchallenge" => [
                 "keywords" => ["meesterchallenge", "10 weken challenge onderwijs", "leer werktraject onderwijs"],
-                "answer" => "De Meesterchallenge is een 10 weken durende challenge waarbij je 3 dagen per week, samen met je team, workshops ontwikkelt en geeft binnen natuur, techniek en technologie. Ideaal als tussenjaar of carrièreswitch! 🎓",
+                "answer" => "De Meesterchallenge is een 10 weken durende challenge waarbij je 3 dagen per week, samen met je team, workshops ontwikkelt en geeft binnen natuur, techniek en technologie. Ideaal als tussenjaar of carrièreswitch! 🎓 Meer info: <a href='https://www.technolableiden.nl/zijinstromers/meesterchallenge-2/' target='_blank'>technolableiden.nl/meesterchallenge</a>",
                 "suggestions" => [
                     "Hoeveel vergoeding krijg ik bij de Meesterchallenge?",
                     "Wanneer kan ik starten met de Meesterchallenge?",
@@ -946,31 +895,32 @@ class TechnoBot
                 ],
                 "sub_topics" => [
                     "vergoeding" => [
-                        "keywords" => ["meesterchallenge vergoeding geld", "hoeveel verdien je meesterchallenge"],
-                        "answer" => "Voor de Meesterchallenge ontvang je een vergoeding van €700 💶"
+                        "keywords" => ["meesterchallenge vergoeding geld betaling", "hoeveel vergoeding krijg ik bij de meesterchallenge"],
+                        "answer" => "Voor de Meesterchallenge ontvang je een vergoeding van €700 💶 <a href='https://www.technolableiden.nl/zijinstromers/meesterchallenge-2/' target='_blank'>Meer info</a>"
                     ],
                     "data" => [
-                        "keywords" => ["meesterchallenge data wanneer startdata", "wanneer kan ik starten met de meesterchallenge"],
-                        "answer" => "Komende periodes: 14 sept t/m 27 nov 2026, 26 okt t/m 15 jan 2027, 4 jan t/m 19 mrt 2027, 15 mrt t/m 4 juni 2027, 10 mei t/m 16 juli 2027 (Technolab is dicht in schoolvakanties) 📅"
+                        "keywords" => ["meesterchallenge data wanneer starten periodes", "wanneer kan ik starten met de meesterchallenge"],
+                        "answer" => "Komende periodes: 14 sept t/m 27 nov 2026, 26 okt t/m 15 jan 2027, 4 jan t/m 19 mrt 2027, 15 mrt t/m 4 juni 2027, 10 mei t/m 16 juli 2027 (Technolab is dicht in schoolvakanties) 📅 <a href='https://www.technolableiden.nl/zijinstromers/meesterchallenge-2/' target='_blank'>Aanmelden</a>"
                     ],
                     "doelgroep" => [
-                        "keywords" => ["voor wie meesterchallenge doelgroep", "meesterchallenge eisen diploma"],
-                        "answer" => "Voor iedereen die zijn/haar talenten wil ontdekken: een tussenjaar, carrièreswitch of zij-instroomtraject. Geen diploma of bèta-achtergrond nodig, wel een aanpakker die houdt van doen 🙌"
+                        "keywords" => ["meesterchallenge voor wie doelgroep eisen diploma", "voor wie is de meesterchallenge"],
+                        "answer" => "Voor iedereen die zijn/haar talenten wil ontdekken: een tussenjaar, carrièreswitch of zij-instroomtraject. Geen diploma of bèta-achtergrond nodig, wel een aanpakker die houdt van doen 🙌 <a href='https://www.technolableiden.nl/zijinstromers/meesterchallenge-2/' target='_blank'>Meer info</a>"
                     ],
                     "inhoud" => [
-                        "keywords" => ["meesterchallenge programma trainingen", "wat leer je bij meesterchallenge"],
+                        "keywords" => ["meesterchallenge programma trainingen inhoud", "wat leer je bij de meesterchallenge"],
                         "answer" => "Je ontwikkelt en geeft workshops in teamverband en krijgt trainingen 'pedagogiek en didactiek' en 'persoonlijke ontwikkeling', waarbij je leert wat actief leren is en hoe je orde houdt 📚"
                     ],
                     "sollicitatie" => [
-                        "keywords" => ["meesterchallenge solliciteren aanmelden", "meesterchallenge procedure meeloopdag"],
-                        "answer" => "De procedure bestaat uit een kennismakingscall met een coach en een meeloopdag, waarna jullie samen ontdekken of er een match is ✅"
+                        "keywords" => ["meesterchallenge solliciteren aanmelden procedure"],
+                        "answer" => "De procedure bestaat uit een kennismakingscall met een coach en een meeloopdag, waarna jullie samen ontdekken of er een match is ✅ <a href='https://www.technolableiden.nl/zijinstromers/meesterchallenge-2/' target='_blank'>Aanmelden</a>"
                     ],
                 ]
             ],
 
+            // ── TECHNIEK EN TOEKOMST ──────────────────────────────────────────
             "techniek_en_toekomst" => [
                 "keywords" => ["techniek en toekomst", "techniek toekomst leerwerktraject"],
-                "answer" => "Techniek & Toekomst verbindt bedrijven met technisch talent. Het bestaat uit drie stappen: een Expeditie (2 dagen), een Challenge (2 weken) en een Stage (10 weken) 🔧",
+                "answer" => "Techniek & Toekomst verbindt bedrijven met technisch talent. Het bestaat uit drie stappen: een Expeditie (2 dagen), een Challenge (2 weken) en een Stage (10 weken) 🔧 Meer info: <a href='https://www.technolableiden.nl/zijinstromer-techniek-en-toekomst/' target='_blank'>technolableiden.nl/techniek-en-toekomst</a>",
                 "suggestions" => [
                     "Wat is de Expeditie Techniek en Toekomst?",
                     "Wat is de Challenge?",
@@ -978,27 +928,28 @@ class TechnoBot
                 ],
                 "sub_topics" => [
                     "expeditie" => [
-                        "keywords" => ["expeditie techniek en toekomst 2 dagen", "wanneer expeditie techniek toekomst"],
-                        "answer" => "De Expeditie duurt 2 dagen: je zet op een actieve manier je eerste stappen in de wereld van techniek en ontdekt welke sector bij je past. Komende editie: 29-30 juni 2026 📅"
+                        "keywords" => ["expeditie techniek en toekomst 2 dagen oriëntatie", "wat is de expeditie techniek en toekomst"],
+                        "answer" => "De Expeditie duurt 2 dagen: je zet op een actieve manier je eerste stappen in de wereld van techniek en ontdekt welke sector bij je past. Komende editie: 29-30 juni 2026 📅 <a href='https://www.technolableiden.nl/zijinstromer-techniek-en-toekomst/' target='_blank'>Aanmelden</a>"
                     ],
                     "challenge" => [
-                        "keywords" => ["techniek en toekomst challenge 2 weken opdracht"],
-                        "answer" => "De Challenge duurt 2 weken: je werkt aan een echte techniekopdracht bij een bedrijf en verdiept je in een specifieke sector 🔨"
+                        "keywords" => ["techniek en toekomst challenge 2 weken opdracht bedrijf", "wat is de challenge techniek toekomst"],
+                        "answer" => "De Challenge duurt 2 weken: je werkt aan een echte techniekopdracht bij een bedrijf en verdiept je in een specifieke sector 🔨 <a href='https://www.technolableiden.nl/zijinstromer-techniek-en-toekomst/' target='_blank'>Meer info</a>"
                     ],
                     "stage" => [
-                        "keywords" => ["techniek en toekomst stage 10 weken bedrijf"],
-                        "answer" => "De Stage duurt 10 weken: je loopt drie dagen per week mee bij een bedrijf in jouw gekozen sector, gericht op een opleiding of baan in de techniek 💼"
+                        "keywords" => ["techniek en toekomst stage 10 weken bedrijf sector", "wat is de stage bij techniek en toekomst"],
+                        "answer" => "De Stage duurt 10 weken: je loopt drie dagen per week mee bij een bedrijf in jouw gekozen sector, gericht op een opleiding of baan in de techniek 💼 <a href='https://www.technolableiden.nl/zijinstromer-techniek-en-toekomst/' target='_blank'>Meer info</a>"
                     ],
                     "aanmelden" => [
-                        "keywords" => ["aanmelden techniek en toekomst formulier"],
-                        "answer" => "Je kunt je aanmelden voor de Expeditie Techniek en Toekomst via het aanmeldformulier op de website, of contact opnemen voor meer informatie 📝"
+                        "keywords" => ["aanmelden techniek en toekomst formulier website"],
+                        "answer" => "Je kunt je aanmelden voor de Expeditie Techniek en Toekomst via het aanmeldformulier op de website, of contact opnemen voor meer informatie 📝 <a href='https://www.technolableiden.nl/zijinstromer-techniek-en-toekomst/' target='_blank'>Aanmelden</a>"
                     ],
                 ]
             ],
 
+            // ── BEDRIJVEN ─────────────────────────────────────────────────────
             "bedrijven" => [
                 "keywords" => ["bedrijven partner technolab", "samenwerking bedrijven technolab"],
-                "answer" => "Technolab werkt samen met bedrijven via Techniek en Toekomst (technisch talent vinden), Talent & Toekomst (loopbaanoriëntatie voor scholieren) en workshops voor volwassen teams 🤝",
+                "answer" => "Technolab werkt samen met bedrijven via Techniek en Toekomst (technisch talent vinden), Talent & Toekomst (loopbaanoriëntatie voor scholieren) en workshops voor volwassen teams 🤝 Meer info: <a href='https://www.technolableiden.nl/bedrijven/' target='_blank'>technolableiden.nl/bedrijven</a>",
                 "suggestions" => [
                     "Wat is Techniek en Toekomst voor bedrijven?",
                     "Wat is Talent & Toekomst?",
@@ -1006,27 +957,28 @@ class TechnoBot
                 ],
                 "sub_topics" => [
                     "techniek_toekomst_bedrijven" => [
-                        "keywords" => ["bedrijven techniek en toekomst talent", "technisch talent vinden bedrijven"],
-                        "answer" => "Via Techniek en Toekomst vinden technisch talent en bedrijven elkaar: van oriënteren tot opleiden, wij maken de stap van dromen naar doen 🔧"
+                        "keywords" => ["wat is techniek en toekomst voor bedrijven", "bedrijven techniek talent vinden"],
+                        "answer" => "Via Techniek en Toekomst vinden technisch talent en bedrijven elkaar: van oriënteren tot opleiden, wij maken de stap van dromen naar doen 🔧 <a href='https://www.technolableiden.nl/bedrijven/' target='_blank'>Meer info voor bedrijven</a>"
                     ],
                     "talent_toekomst_bedrijven" => [
-                        "keywords" => ["talent en toekomst voor bedrijven stage mavo"],
-                        "answer" => "Bij Talent & Toekomst lopen mavoleerlingen van het Bonaventura College stage bij bedrijven zoals PLNT, Kleine Planeet en Easyfiets, in sectoren als ICT, Ondernemen, Onderwijs en Zorg 🏢"
+                        "keywords" => ["wat is talent toekomst voor bedrijven", "talent toekomst stage mavo bedrijven"],
+                        "answer" => "Bij Talent & Toekomst lopen mavoleerlingen van het Bonaventura College stage bij bedrijven zoals PLNT, Kleine Planeet en Easyfiets, in sectoren als ICT, Ondernemen, Onderwijs en Zorg 🏢 <a href='https://www.technolableiden.nl/bedrijven/' target='_blank'>Meer info</a>"
                     ],
                     "workshops_volwassenen" => [
-                        "keywords" => ["workshops teams volwassenen technolab", "teamuitje technolab duurzaamheid robotica"],
-                        "answer" => "Ben je op zoek naar een unieke manier om je team aan te zetten voor duurzaamheid, robotica of de digitale wereld? Meld je team aan voor een workshopdag op Technolab. Binnenkort meer informatie 🛠️"
+                        "keywords" => ["bieden jullie ook workshops voor teams", "workshops teams bedrijven technolab duurzaamheid"],
+                        "answer" => "Ben je op zoek naar een unieke manier om je team aan te zetten voor duurzaamheid, robotica of de digitale wereld? Meld je team aan voor een workshopdag op Technolab. Binnenkort meer informatie 🛠️ <a href='https://www.technolableiden.nl/bedrijven/' target='_blank'>Meer info voor bedrijven</a>"
                     ],
                     "partners" => [
-                        "keywords" => ["partners technolab wie zijn de partners"],
-                        "answer" => "Onder andere Ondernemersfonds Leiden, Plus, DZB, MBO Rijnland, UWV, Hortus Botanicus, Leiden Bio Science Park, CHDR, Gemeente Leiden, Zooma, Holland Rijnland en meer 🤝"
+                        "keywords" => ["partners technolab wie zijn de partners bedrijven"],
+                        "answer" => "Onder andere Ondernemersfonds Leiden, Plus, DZB, MBO Rijnland, UWV, Hortus Botanicus, Leiden Bio Science Park, CHDR, Gemeente Leiden, Zooma, Holland Rijnland en meer 🤝 <a href='https://www.technolableiden.nl/bedrijven/' target='_blank'>technolableiden.nl/bedrijven</a>"
                     ],
                 ]
             ],
 
+            // ── TALENT EN TOEKOMST ────────────────────────────────────────────
             "talent_en_toekomst" => [
                 "keywords" => ["talent en toekomst", "vijfdaagse stage leerlingen", "stage vo leerlingen"],
-                "answer" => "Talent & Toekomst is een vijfdaagse activerende stage voor VO-leerlingen om alle ins en outs van vier vakgebieden te ontdekken: Ondernemen, Onderwijs, Techniek en Zorg 🧭",
+                "answer" => "Talent & Toekomst is een vijfdaagse activerende stage voor VO-leerlingen om alle ins en outs van vier vakgebieden te ontdekken: Ondernemen, Onderwijs, Techniek en Zorg 🧭 Meer info: <a href='https://www.technolableiden.nl/scholen/voortgezet-onderwijs/talent-en-toekomst/' target='_blank'>technolableiden.nl/talent-en-toekomst</a>",
                 "suggestions" => [
                     "Voor welke leerlingen is Talent & Toekomst?",
                     "Bij welke bedrijven loop je stage?",
@@ -1034,20 +986,20 @@ class TechnoBot
                 ],
                 "sub_topics" => [
                     "doelgroep" => [
-                        "keywords" => ["talent en toekomst doelgroep voor welke school"],
-                        "answer" => "Talent & Toekomst is bedoeld voor middelbare scholieren, momenteel mavoleerlingen van het Bonaventura College 🎓"
+                        "keywords" => ["voor welke leerlingen is talent toekomst", "talent toekomst doelgroep school mavo"],
+                        "answer" => "Talent & Toekomst is bedoeld voor middelbare scholieren, momenteel mavoleerlingen van het Bonaventura College 🎓 <a href='https://www.technolableiden.nl/scholen/voortgezet-onderwijs/talent-en-toekomst/' target='_blank'>Meer info</a>"
                     ],
                     "sectoren" => [
-                        "keywords" => ["talent en toekomst sectoren vakgebieden"],
+                        "keywords" => ["talent toekomst sectoren vakgebieden ict zorg"],
                         "answer" => "Leerlingen verkennen vier sectoren: ICT, Ondernemen, Onderwijs en Zorg 🔍"
                     ],
                     "bedrijven_stage" => [
-                        "keywords" => ["talent en toekomst stagebedrijven", "bij welke bedrijven loop je stage talent toekomst"],
-                        "answer" => "Leerlingen lopen stage bij bedrijven zoals PLNT, Kleine Planeet en Easyfiets 🏢"
+                        "keywords" => ["bij welke bedrijven loop je stage talent toekomst", "talent toekomst stagebedrijven plnt"],
+                        "answer" => "Leerlingen lopen stage bij bedrijven zoals PLNT, Kleine Planeet en Easyfiets 🏢 <a href='https://www.technolableiden.nl/scholen/voortgezet-onderwijs/talent-en-toekomst/' target='_blank'>Meer info</a>"
                     ],
                     "doel" => [
-                        "keywords" => ["doel talent en toekomst waarom", "hoe werkt de stageweek talent toekomst"],
-                        "answer" => "Het programma helpt leerlingen groeien in beroepsbeelden, beroepsgerichte kennis en vaardigheden, zodat ze een betere studiekeuze kunnen maken 🎯"
+                        "keywords" => ["hoe werkt de stageweek talent toekomst", "doel talent toekomst studiekeuze"],
+                        "answer" => "Het programma helpt leerlingen groeien in beroepsbeelden, beroepsgerichte kennis en vaardigheden, zodat ze een betere studiekeuze kunnen maken 🎯 <a href='https://www.technolableiden.nl/scholen/voortgezet-onderwijs/talent-en-toekomst/' target='_blank'>Meer info</a>"
                     ],
                 ]
             ],
@@ -1063,15 +1015,15 @@ class TechnoBot
                 ],
                 "sub_topics" => [
                     "buddy" => [
-                        "keywords" => ["buddy systeem leerdoel technolab", "wat is het buddy systeem"],
+                        "keywords" => ["buddy systeem leerdoel technolab evalueren", "wat is het buddy systeem"],
                         "answer" => "Elke medewerker zoekt een buddy binnen Technolab om eigen leerdoelen te bespreken en te evalueren 🎯"
                     ],
                     "coach" => [
-                        "keywords" => ["coaching traject afspraken", "hoe werkt het coaching traject"],
+                        "keywords" => ["coaching traject afspraken persoonlijk", "hoe werkt het coaching traject"],
                         "answer" => "Coaches helpen in een traject van 3-4 afspraken met persoonlijke uitdagingen 💬"
                     ],
                     "wie" => [
-                        "keywords" => ["coach wie is mijn coach", "coaching organigram talentontwikkeling"],
+                        "keywords" => ["coach wie is mijn coach organigram", "wie is mijn coach technolab"],
                         "answer" => "Cirkel Talentontwikkeling verzorgt Coaching en trainingen. Zie het organigram voor wie op dit moment coach is 🗂️"
                     ],
                 ]
@@ -1086,7 +1038,7 @@ class TechnoBot
                 ],
                 "sub_topics" => [
                     "wie" => [
-                        "keywords" => ["wie is de vertrouwenspersoon", "vertrouwenspersoon naam"],
+                        "keywords" => ["wie is de vertrouwenspersoon naam", "vertrouwenspersoon maartje"],
                         "answer" => "Maartje Kapteijn is onze vertrouwenspersoon."
                     ]
                 ]
@@ -1094,7 +1046,7 @@ class TechnoBot
 
             // ── BUS RIJDEN ────────────────────────────────────────────────────
             "bus" => [
-                "keywords" => ["vervoer", "bus rijden", "bus reserveren technolab"],
+                "keywords" => ["bus rijden", "bus reserveren technolab", "vervoer technolab", "vervoer"],
                 "answer" => "Heb je een rijbewijs? Dan moet je eerst een proefrit doen. Daarna mag je ermee rijden! 🚐",
                 "suggestions" => [
                     "Hoe reserveer ik de bus?",
@@ -1102,11 +1054,11 @@ class TechnoBot
                 ],
                 "sub_topics" => [
                     "rijden" => [
-                        "keywords" => ["bus rijden proefrit rijbewijs", "wat zijn de regels voor het rijden met de bus"],
+                        "keywords" => ["bus rijden proefrit rijbewijs technolab", "wat zijn de regels voor het rijden met de bus"],
                         "answer" => "Heb je een rijbewijs? Dan moet je eerst een proefrit met de Technolab bus doen. Pas daarna mag je ermee rijden 🚗"
                     ],
                     "reserveren" => [
-                        "keywords" => ["bus reserveren dagco wiki", "hoe reserveer ik de bus", "fiets reserveren technolab"],
+                        "keywords" => ["bus reserveren dagco wiki fiets", "hoe reserveer ik de bus"],
                         "answer" => "Reserveer via de Dagco Wiki! Dit geldt ook voor fietsen! 📅"
                     ],
                 ]
@@ -1123,27 +1075,27 @@ class TechnoBot
                 ],
                 "sub_topics" => [
                     "gamma_plus" => [
-                        "keywords" => ["boekhouding gamma plus pasje", "inkopen gamma plus technolab"],
+                        "keywords" => ["boekhouding gamma plus pasje inkopen"],
                         "answer" => "Bij de Gamma of Plus koop je met je Technolab pasje 🪪 Neem bij de Gamma ook de Gamma-pas mee! Bonnetje in kast in de Groei!"
                     ],
                     "voorschieten" => [
-                        "keywords" => ["boekhouding zelf betalen voorschieten", "hoe betaal ik zelf iets voor boekhouding", "declareren terugkrijgen"],
+                        "keywords" => ["boekhouding zelf betalen voorschieten terugkrijgen", "hoe betaal ik zelf iets voor boekhouding"],
                         "answer" => "Stuur foto van bonnetje + rekeninggegevens naar boekhouding@technolableiden.nl ✉️ Vraag altijd akkoord van producteigenaar!"
                     ],
                     "pinpas" => [
-                        "keywords" => ["boekhouding pinpas gebruiken code", "hoe gebruik ik de pinpas voor boekhouding"],
+                        "keywords" => ["boekhouding pinpas gebruiken code bonnetje", "hoe gebruik ik de pinpas voor boekhouding"],
                         "answer" => "Foto van bonnetje naar boekhouding en origineel in kast in Groei 🧾 Vraag waar pinpas en code zijn!"
                     ],
                     "online" => [
-                        "keywords" => ["boekhouding online bestellen", "hoe bestel ik iets online via boekhouding"],
+                        "keywords" => ["boekhouding online bestellen link", "hoe bestel ik iets online via boekhouding"],
                         "answer" => "Stuur op tijd een link naar boekhouding — liefst met akkoord van producteigenaar 🛒"
                     ],
                     "overig" => [
-                        "keywords" => ["boekhouding overige kosten geen bonnetje", "parkeren bus wassen boekhouding"],
+                        "keywords" => ["boekhouding overige kosten geen bonnetje parkeren"],
                         "answer" => "Andere uitgaven zonder bonnetje? Bespreek met boekhouding, we vinden samen een oplossing 🤝"
                     ],
                     "voorraad" => [
-                        "keywords" => ["boekhouding voorraad op toiletpapier koffie", "voorraad technolab op raakt"],
+                        "keywords" => ["boekhouding voorraad op toiletpapier koffie thee"],
                         "answer" => "Voorraad op raakt? Laat het boekhouding/inkoop weten! 📦"
                     ],
                 ]
@@ -1161,79 +1113,136 @@ class TechnoBot
     private function initializeSynonyms(): void
     {
         $this->synonyms = [
-            "loon" => ["salaris", "betaling", "uitbetaling", "verdienste", "inkomsten"],
-            "betaling" => ["uitbetaling", "loon", "salaris", "geld", "giro"],
-            "lessen" => ["les", "workshop", "lesaanbod", "lesprogramma", "les geven", "training"],
-            "techniekwijs" => ["techniek", "wetenschap", "electronics", "maker"],
-            "programmeren" => ["coderen", "coding", "digitaal", "toekomsttaal"],
-            "duurzaamheid" => ["groen", "klimaat", "toekomstkunde", "milieu"],
-            "dagco" => ["dagcoordinator", "dagcoördinator", "coordinator"],
-            "stage" => ["stagiair", "stageplaats", "stagelopen", "praktijk"],
-            "holacratie" => ["werkoverleg", "cirkel", "team overleg", "cirkeloverleg"],
-            "wie" => ["welke persoon", "naam", "contact"],
-            "wat" => ["welke", "soort", "type"],
-            "hoe" => ["op welke manier", "werkwijze", "proces"],
-            "waar" => ["locatie", "plek", "plaats", "adres"],
-            "wanneer" => ["tijdstip", "moment", "dag", "uur"],
-            "projectdag" => ["project dag", "project voor leerlingen", "basisschool project"],
+            // Loon / salaris
+            "loon"              => ["salaris", "betaling", "uitbetaling", "verdienste", "inkomsten", "geld", "loonstrook", "vergoeding", "inkomen", "gage", "arbeidsvergoeding"],
+            "salaris"           => ["loon", "betaling", "uitbetaling", "verdienste", "inkomen", "vergoeding", "gage"],
+            "betaling"          => ["uitbetaling", "loon", "salaris", "geld", "giro", "overschrijving", "storting", "betalingen"],
+
+            // Lessen / onderwijs
+            "lessen"            => ["les", "workshop", "lesaanbod", "lesprogramma", "training", "cursus", "les geven", "onderwijs", "educatie", "instructie", "activiteit"],
+            "workshop"          => ["les", "training", "cursus", "sessie", "bijeenkomst", "werksessie", "activiteit", "programma", "les geven"],
+            "techniekwijs"      => ["techniek", "wetenschap", "electronics", "maker", "stroomcircuit", "tandwiel", "katrol", "uitvinder"],
+            "programmeren"      => ["coderen", "coding", "digitaal", "toekomsttaal", "computeren", "software", "scripting", "algoritme", "microbit"],
+            "duurzaamheid"      => ["groen", "klimaat", "toekomstkunde", "milieu", "circulair", "energie", "hernieuwbaar", "biodiversiteit", "ecologie"],
+
+            // Dagco / organisatie
+            "dagco"             => ["dagcoordinator", "dagcoördinator", "coordinator", "dagplanner", "openingsdienst", "dienstdoende"],
+            "holacratie"        => ["werkoverleg", "cirkel", "team overleg", "cirkeloverleg", "zelfsturend", "scrum", "agile", "autonomie", "zelforganisatie"],
+            "planner"           => ["agenda", "teamplanner", "rooster", "planning", "schema", "kalender", "werkschema", "dienstrooster"],
+
+            // Stage / werk
+            "stage"             => ["stagiair", "stageplaats", "stagelopen", "praktijk", "leertraject", "beroepspraktijk", "werkplek", "stageplek", "leerwerkplek"],
+            "medewerker"        => ["werknemer", "collega", "teamlid", "personeel", "stagiair", "medewerkers"],
+
+            // Pasje / toegang
+            "pasje"             => ["badge", "liftpas", "toegangspas", "kaart", "keycard", "pas", "toegangskaart", "identiteitskaart"],
+
+            // BHV / veiligheid
+            "bhv"               => ["bedrijfshulpverlening", "noodgeval", "ehbo", "veiligheid", "brandwacht", "calamiteit", "hulpverlener", "ontruiming"],
+            "noodgeval"         => ["calamiteit", "incident", "brand", "ongeluk", "gevaar", "emergency", "alarm", "ontruiming"],
+
+            // Fika / koken
+            "fika"              => ["lunch", "samen eten", "gezamenlijke maaltijd", "woensdag lunch", "koken", "maaltijd", "groepslunch", "community lunch"],
+
+            // Bus / vervoer
+            "bus"               => ["vervoer", "auto", "voertuig", "busje", "transport", "minibus", "wagen", "rijden", "mobiliteit"],
+            "vervoer"           => ["bus", "fiets", "auto", "transport", "mobiliteit", "rijden", "reizen"],
+
+            // Boekhouding / geld
+            "boekhouding"       => ["administratie", "financiën", "declaratie", "inkoop", "bonnetje", "rekening", "uitgaven", "factuur", "begroting"],
+            "declareren"        => ["terugkrijgen", "vergoed krijgen", "voorschieten", "indienen", "declaratie", "terugvorderen"],
+
+            // Pensioen
+            "pensioen"          => ["brightpensioen", "pensioenfonds", "ouderdomspensioen", "lijfrente", "pensioenregeling", "pensioenbijdrage", "pensioenopbouw"],
+
+            // MDT
+            "mdt"               => ["maatschappelijke diensttijd", "vrijwilligerswerk", "maatschappelijk", "gemeenschap", "subsidie", "jongerenwerk"],
+
+            // VOG
+            "vog"               => ["verklaring omtrent gedrag", "integriteitsverklaring", "screenen", "screening", "achtergrondcheck", "bewijs goed gedrag"],
+
+            // Huisregels / gedrag
+            "huisregels"        => ["regels", "gedragscode", "protocol", "richtlijnen", "afspraken", "normen", "huisorde", "werkafspraken"],
+
+            // Email handtekening
+            "emailhandtekening" => ["handtekening", "outlook handtekening", "mail handtekening", "signature", "email signature", "visitekaartje email"],
+
+            // Urenregistratie
+            "urenregistratie"   => ["uren", "tijdregistratie", "werkuren", "tijdschrijven", "klokken", "uren bijhouden", "uren noteren"],
+
+            // Zijinstromers
+            "zijinstromers"     => ["zij-instromers", "carriere switch", "overstap", "herintreder", "omscholing", "beroepsverandering", "nieuw vak", "van baan wisselen"],
+            "meesterchallenge"  => ["10 weken", "challenge onderwijs", "leer werktraject", "traject", "programma onderwijs"],
+
+            // Techniek en Toekomst
+            "techniek"          => ["technisch", "ambacht", "vakman", "installatie", "constructie", "bouw", "machinerie", "engineering"],
+
+            // Bedrijven / samenwerking
+            "bedrijven"         => ["bedrijf", "organisatie", "werkgever", "partners", "samenwerking", "ondernemers", "sponsoren", "opdrachtgevers"],
+
+            // Leskisten
+            "leskisten"         => ["kisten", "blauwe kisten", "materiaalkoffer", "lesmateriaal", "leskist", "materiaalbox", "lesbox"],
+
+            // Coaching / buddy
+            "coaching"          => ["begeleiding", "mentoring", "ondersteuning", "persoonlijke ontwikkeling", "coach", "buddy", "leerbegeleiding"],
+
+            // Who / how / when — question helpers
+            "wie"               => ["welke persoon", "naam", "contact", "medewerker", "collega"],
+            "wat"               => ["welke", "soort", "type", "betekenis", "uitleg"],
+            "hoe"               => ["op welke manier", "werkwijze", "proces", "stappen", "procedure"],
+            "waar"              => ["locatie", "plek", "plaats", "adres", "gebouw"],
+            "wanneer"           => ["tijdstip", "moment", "dag", "uur", "datum", "periode"],
         ];
     }
 
     private function initializeSemanticGroups(): void
     {
         $this->semanticGroups = [
-            "financial" => ["loon", "salaris", "betaling", "geld", "verdienen", "uitbetaling", "pensioen"],
-            "education" => ["lessen", "les", "workshop", "techniekwijs", "toekomsttaal", "toekomstkunde", "programmeren"],
-            "organization" => ["dagco", "holacratie", "cirkel", "team", "planner", "werkoverleg"],
-            "work" => ["stage", "werk", "job", "stagiair", "medewerker", "contract"],
-            "rules" => ["huisregels", "gedrag", "regels", "protocol", "richtlijn"],
-            "projects" => ["projectdag", "botsende bots", "groene daken", "mens en robot", "duurzaam huis"],
+            // Financieel
+            "financial"         => ["loon", "salaris", "betaling", "geld", "verdienen", "uitbetaling", "pensioen", "brightpensioen", "declareren", "boekhouding", "vergoeding", "inkomen", "factuur"],
+
+            // Onderwijs / lessen
+            "education"         => ["lessen", "les", "workshop", "techniekwijs", "toekomsttaal", "toekomstkunde", "programmeren", "educatie", "lesaanbod", "lesprogramma", "leskisten", "popup"],
+
+            // Organisatie / structuur
+            "organization"      => ["dagco", "holacratie", "cirkel", "team", "planner", "werkoverleg", "rolverdeler", "facilitator", "secretaris", "agenda", "teamplanner"],
+
+            // Werk / stage / loopbaan
+            "work"              => ["stage", "werk", "job", "stagiair", "medewerker", "contract", "arbeidscontract", "leerwerkplek", "beroepspraktijk", "leertraject"],
+
+            // Regels / beleid
+            "rules"             => ["huisregels", "gedrag", "regels", "protocol", "richtlijn", "gedragscode", "afspraken", "normen"],
+
+            // Veiligheid / noodgevallen
+            "safety"            => ["bhv", "bedrijfshulpverlening", "noodgeval", "ehbo", "brandwacht", "calamiteit", "hulpverlener", "alarm", "ontruiming", "veiligheid"],
+
+            // Projectdagen / basisschool
+            "projects"          => ["projectdag", "botsende bots", "groene daken", "mens en robot", "duurzaam huis", "avontuurlijke architecten", "ontwerp je attractie", "basisschool", "leerlingen"],
+
+            // Vervoer / mobiliteit
+            "transport"         => ["bus", "fiets", "vervoer", "auto", "rijden", "mobiliteit", "transport", "busje", "wagen", "reserveren"],
+
+            // Communicatie / digitaal
+            "communication"     => ["signal", "appgroep", "whatsapp", "emailhandtekening", "email", "handtekening", "outlook", "app", "communicatie", "berichten"],
+
+            // Toegang / gebouw
+            "access"            => ["pasje", "badge", "liftpas", "sleutel", "alarm", "toegang", "gebouw", "pand", "keycard", "inchecken"],
+
+            // Carrière switch / zijinstromers
+            "career_switch"     => ["zijinstromers", "meesterchallenge", "expeditie leerkracht", "techniek en toekomst", "carriere switch", "omscholing", "herintreder", "beroepsverandering"],
+
+            // Bedrijven / partners
+            "business"          => ["bedrijven", "partner", "samenwerking", "opdrachtgever", "sponsors", "ondernemers", "organisaties", "bedrijf"],
+
+            // Persoonlijke ontwikkeling
+            "personal_growth"   => ["coaching", "buddy", "begeleiding", "mentoring", "leerdoel", "talentontwikkeling", "groeien", "vertrouwenspersoon"],
+
+            // Talent & toekomst / scholen
+            "schools"           => ["talent en toekomst", "scholen", "leerlingen", "vo", "mavo", "basisschool", "po", "mbo", "hbo", "studenten"],
+
+            // Tijdregistratie / uren
+            "time"              => ["urenregistratie", "uren", "tijdregistratie", "werkuren", "mdt", "maatschappelijke diensttijd", "rooster", "werkschema"],
         ];
-    }
-
-    private function initializeBannedWords(): void
-    {
-      
-        $this->bannedWords = [
-            // Profanity and insults
-            "dom", "dumb", "stom", "idioot", "sukkel", "lul", "homo", "nigger", "kanker", "nigga",
-            "bitch", "asshole", "bastard", "jerk", "moron", "dope",
-            
-            // Vulgar language
-            "fuck", "shit", "damn", "hitler", "hell", "crap", "piss", "ass",
-            
-            // Explicit/adult content
-            "porn", "sex", "xxx", "adult", "nude", "naked",
-            
-            // Spam keywords
-            "viagra", "casino", "lottery", "poker", "blackjack",
-            "click here", "buy now", "free money", "earn fast",
-            
-            // Hate speech indicators (keeping it general)
-            "racist", "racism", "genocide", "fascist",
-            
-            // Other offensive terms
-            "terrorist", "bomb", "kill", "die", "suicide", "death"
-        ];
-    }
-
-    private function containsBannedWords(string $message): bool
-    {
-        $normalizedMessage = $this->normalizeMessage($message);
-        $messageWords = $this->tokenizeMessage($normalizedMessage);
-
-        foreach ($this->bannedWords as $bannedWord) {
-            // Check for exact word matches (not just substrings)
-            if (in_array($bannedWord, $messageWords)) {
-                return true;
-            }
-            // Also check if the banned word appears in the normalized message as a phrase
-            if (str_contains($normalizedMessage, $bannedWord)) {
-                return true;
-            }
-        }
-
-        return false;
     }
 
     private function buildSuggestionMap(): void
@@ -1321,21 +1330,6 @@ class TechnoBot
     public function respond(string $message): array
     {
         $normalizedMessage = $this->normalizeMessage($message);
-        
-        // Check for banned words - reject silently
-        if ($this->containsBannedWords($message)) {
-            return [
-                "reply" => "",
-                "buttons" => [],
-                "banned" => true
-            ];
-        }
-
-        // Special handling for "bekijk alle projecten"
-        if ($normalizedMessage === "bekijk alle projecten") {
-            return $this->getAllProjectdagen();
-        }
-
         $messageWords = $this->tokenizeMessage($normalizedMessage);
 
         $this->conversationHistory[] = [
@@ -1538,32 +1532,6 @@ class TechnoBot
         ];
     }
 
-    private function getAllProjectdagen(): array
-    {
-        $projectColors = [
-            "Wat is Botsende Bots?" => "#FF6B6B",
-            "Wat is Groene Daken?" => "#51CF66",
-            "Wat is Mens en Robot?" => "#FFD93D",
-            "Wat is Ontwerp je Attractie?" => "#FF922B",
-            "Wat is Duurzaam Huis?" => "#4ECDC4",
-            "Wat is Avontuurlijke Architecten?" => "#A8E6CF"
-        ];
-
-        $buttons = [];
-        foreach ($projectColors as $label => $color) {
-            $buttons[] = [
-                "label" => $label,
-                "value" => $label,
-                "borderColor" => $color
-            ];
-        }
-
-        return [
-            "reply" => "📋 Hier zijn alle 6 projectdagen! Kies er een:",
-            "buttons" => $buttons
-        ];
-    }
-
     private function getResponseForSuggestion(string $intentName, string $subTopicKey, string $normalizedClickedSuggestion): array
     {
         $intent = $this->intents[$intentName];
@@ -1582,47 +1550,21 @@ class TechnoBot
             $response["image"] = $subTopic["image"];
         }
 
-        // For projectdag, show only "Bekijk alle" button
-        if ($intentName === "projectdag") {
-            $response["buttons"][] = [
-                "label" => "📋 Bekijk alle projecten",
-                "value" => "bekijk_alle_projecten",
-                "borderColor" => "#667eea"
-            ];
-            return $response;
-        }
+        // Prefer sub-topic's own suggestions list; fall back to the parent intent's list
+        $suggestionSource = $subTopic["suggestions"] ?? $intent["suggestions"] ?? [];
 
-        // For other intents, use the default suggestion handling
-        if (isset($subTopic["suggestions"])) {
-            $suggestionCount = 0;
-            foreach ($subTopic["suggestions"] as $suggestion) {
-                $normalizedSuggestion = $this->normalizeMessage($suggestion);
-                if ($normalizedSuggestion === $normalizedClickedSuggestion) {
-                    continue;
-                }
-                if ($suggestionCount < 3) {
-                    $response["buttons"][] = [
-                        "label" => $suggestion,
-                        "value" => $suggestion
-                    ];
-                    $suggestionCount++;
-                }
+        $suggestionCount = 0;
+        foreach ($suggestionSource as $suggestion) {
+            $normalizedSuggestion = $this->normalizeMessage($suggestion);
+            if ($normalizedSuggestion === $normalizedClickedSuggestion) {
+                continue;
             }
-        } elseif (isset($intent["suggestions"])) {
-            // Fall back to parent intent suggestions if sub_topic has none
-            $suggestionCount = 0;
-            foreach ($intent["suggestions"] as $suggestion) {
-                $normalizedSuggestion = $this->normalizeMessage($suggestion);
-                if ($normalizedSuggestion === $normalizedClickedSuggestion) {
-                    continue;
-                }
-                if ($suggestionCount < 3) {
-                    $response["buttons"][] = [
-                        "label" => $suggestion,
-                        "value" => $suggestion
-                    ];
-                    $suggestionCount++;
-                }
+            if ($suggestionCount < 3) {
+                $response["buttons"][] = [
+                    "label" => $suggestion,
+                    "value" => $suggestion
+                ];
+                $suggestionCount++;
             }
         }
 
@@ -1635,18 +1577,6 @@ class TechnoBot
         string $message,
         ?string $subTopic = null
     ): array {
-
-        // Special handling for main projectdag response
-        if ($intentName === "projectdag" && $subTopic === null) {
-            return [
-                "reply" => $intent["answer"],
-                "buttons" => [[
-                    "label" => "📋 Bekijk alle projecten",
-                    "value" => "bekijk_alle_projecten",
-                    "borderColor" => "#667eea"
-                ]]
-            ];
-        }
 
         if ($intentName === "hallo") {
             $greeting = $this->extractGreeting($message, $intent["keywords"]);
