@@ -53,6 +53,7 @@ class TechnoBot
                 ]
             ],
 
+
             // ── TECHNOLAB ─────────────────────────────────────────────────────
             "technolab" => [
                 "keywords" => [
@@ -65,13 +66,13 @@ class TechnoBot
                 "answer" => "Technolab Leiden is een leerwerkbedrijf met passie voor onderwijs, techniek, wetenschap en talentontwikkeling. 🌟 Meer weten? Bezoek <a href='https://www.technolableiden.nl/' target='_blank'>technolableiden.nl</a>",
                 "suggestions" => [
                     "Wat is Technolab?",
-                    "Hoe groot is Technolab?",
+                    "hoe werkt technolab?",
                     "Wat voor projecten doen jullie?"
                 ],
                 "sub_topics" => [
                     "groot" => [
                         "keywords" => ["technolab groot", "hoeveel scholen technolab", "hoe groot is technolab"],
-                        "answer" => "Ruim 36.000 leerlingen, meer dan 50 scholen en circa 100 bedrijven en organisaties doen elk jaar mee aan de lessen en projecten van Technolab! 🏫 Meer info: <a href='https://www.technolableiden.nl/' target='_blank'>technolableiden.nl</a>",
+                        "answer" => "Ruim 36.000 leerlingen, meer dan 50 scholen en circa 100 bedrijven en organisaties doen elk jaar mee aan de lessen en projecten van Technolab! 🏫 <a href='https://www.technolableiden.nl/' target='_blank'>technolableiden.nl</a>",
                     ],
                     "wie" => [
                         "keywords" => ["wie is technolab", "wie zijn wij technolab", "wat is technolab"],
@@ -82,7 +83,7 @@ class TechnoBot
                         "answer" => "We organiseren workshops, lessen (zoals TechniekWijs, ToekomstTaal en Toekomstkunde), POP-UP projectweken, beroepsoriëntatietrajecten (Talent & Toekomst), de Willie Wortel Wedstrijd, de Meesterchallenge en Expeditie Leerkracht. Ook bieden we stages en leerwerkplekken voor mbo-, hbo- en wo-studenten! 🚀 <a href='https://www.technolableiden.nl/' target='_blank'>technolableiden.nl</a>",
                     ],
                     "hoe_werkt" => [
-                        "keywords" => ["hoe werkt technolab intern", "hoe werkt dit technolab"],
+                        "keywords" => ["hoe werkt technolab intern", "hoe werkt technolab", "hoe werkt dit technolab"],
                         "answer" => "Bij Technolab leer je door te doen! Leerlingen, studenten en professionals werken samen in een creatieve omgeving. We geven lessen op locatie in Leiden én op scholen (POP-UP). Medewerkers werken in cirkels (holacratie) en nemen verantwoordelijkheid voor hun eigen rol. Elke dag zijn er zo'n 20 stagiairs actief aan het werk! 💡",
                     ],
                     "wat_kan_vragen" => [
@@ -165,6 +166,66 @@ class TechnoBot
                 "answer" => "",
                 "image" => "Images/DiddyD.jpg"
             ],
+            "inspiratie_aanmelden" => [
+                "keywords" => [
+                    "inspiratie aanmelden",
+                    "inspiratie",
+                    "inspiratie middag",
+                    "aanmelden inspiratiemiddag",
+
+                    "welke trajecten zijn er",
+                    "welke trajecten",
+                    "trajecten",
+                    "wat kan ik doen",
+                    "mogelijkheden",
+                    "opleidingen",
+                    "leertrajecten"
+                ],
+                "answer" => "Wil je ontdekken of werken in de techniek of het onderwijs bij je past? Kom naar onze Inspiratiemiddag of Terugkomdag! 🌟 Meer weten of aanmelden? Bezoek <a href='https://www.technolableiden.nl/' target='_blank'>technolableiden.nl</a>",
+                "suggestions" => [
+                    "Wanneer is de Inspiratiemiddag?",
+                    "Wat is de Terugkomdag?",
+                    "Welke trajecten zijn er?"
+                ],
+                "sub_topics" => [
+                    "inspiratiemiddag" => [
+                        "keywords" => [
+                            "inspiratiemiddag",
+                            "inspiratieavond",
+                            "wanneer inspiratiemiddag",
+                            "speeddaten coaches"
+                        ],
+                        "answer" => "✨ <b>Inspiratiemiddag & -avond</b><br>Ontdek laagdrempelig wat werken met techniek en onderwijs inhoudt. Inclusief leskennismaking, rondleiding, speeddates met coaches en een netwerkborrel!<br>📅 <b>Komende data:</b><br>• Woensdag 24 juni 2026 | 14:00 – 16:15 (Onderwijs)<br>• Woensdag 15 juli 2026 | 19:00 – 21:15 (Techniek)<br><a href='https://www.technolableiden.nl/' target='_blank'>Meer informatie →</a>",
+                    ],
+                    "terugkomdag" => [
+                        "keywords" => [
+                            "terugkomdag",
+                            "meesterchallenge terugkomdag",
+                            "terugkomdag technolab"
+                        ],
+                        "answer" => "🔄 <b>Terugkomdag</b><br>Ben je een (oud-)deelnemer of betrokken bij de Meesterchallenge? Kom gezellig netwerken en ervaringen uitwisselen tijdens de terugkomdag.<br>📅 <b>Komende Terugkomdag:</b><br>Woensdag 20 mei 2026 | 14:00 – 16:15<br><a href='https://www.technolableiden.nl/' target='_blank'>Meer informatie →</a>",
+                    ],
+                    "ontdek_onderwijs" => [
+                        "keywords" => [
+                            "ontdek onderwijs",
+                            "expeditie leerkracht",
+                            "meesterchallenge",
+                            "trajecten onderwijs",
+                            "onderwijs ontdekken"
+                        ],
+                        "answer" => "🍎 <b>Ontdek het onderwijs</b><br>Sta je op het punt om een nieuwe weg in te slaan met meer impact? Ervaar via twee inspirerende trajecten of het onderwijs bij je past: <i>Expeditie Leerkracht</i> of de <i>Meesterchallenge</i>. <a href='https://www.technolableiden.nl/' target='_blank'>Meer informatie →</a>",
+                    ],
+                    "ontdek_techniek" => [
+                        "keywords" => [
+                            "ontdek techniek",
+                            "expeditie techniek",
+                            "techniek en toekomst",
+                            "techniek trajecten"
+                        ],
+                        "answer" => "🛠️ <b>Ontdek de techniek</b><br>Wil je met je handen werken maar weet je nog niet welke richting? Start met onze 2-daagse Expeditie Techniek en groei door via een challenge of praktijkgerichte stage bij Techniek & Toekomst. <a href='https://www.technolableiden.nl/' target='_blank'>Meer informatie →</a>",
+                    ],
+                ]
+            ],
 
             // ── DAGCO ─────────────────────────────────────────────────────────
             "dagco" => [
@@ -210,17 +271,19 @@ class TechnoBot
                     "projecten voor leerlingen",
                     "basisschool projecten"
                 ],
-                "answer" => "Technolab heeft zes projectdagen voor verschillende groepen! Van robotica tot duurzame architectuur — elk project combineert ontwerpen, samenwerken en onderzoek. 🔧🌱",
+                "answer" => "Technolab heeft zes projectdagen voor verschillende groepen! Klik op een project voor meer informatie. 🔧🌱",
                 "suggestions" => [
-                    "Wat is Botsende Bots?",
-                    "Wat is Groene Daken?",
-                    "Wat is Duurzaam Huis?"
+                    "Botsende Bots",
+                    "Groene Daken",
+                    "Mens en Robot",
+                    "Ontwerp je Attractie",
+                    "Duurzaam Huis",
+                    "Avontuurlijke Architecten"
                 ],
                 "sub_topics" => [
                     "botsende_bots" => [
                         "keywords" => [
                             "botsende bots",
-                            "wat is botsende bots",
                             "botsende bots groep 8",
                             "bots programmeren project",
                             "robotica groep 8"
@@ -230,7 +293,6 @@ class TechnoBot
                     "groene_daken" => [
                         "keywords" => [
                             "groene daken",
-                            "wat is groene daken",
                             "groene daken groep 7",
                             "zonnepaneel project groep",
                             "groen dak bouwen school"
@@ -240,7 +302,6 @@ class TechnoBot
                     "mens_en_robot" => [
                         "keywords" => [
                             "mens en robot",
-                            "wat is mens en robot",
                             "mens robot groep 6",
                             "skelet bouwen project",
                             "hartfunctie onderzoek groep"
@@ -250,7 +311,6 @@ class TechnoBot
                     "ontwerp_attractie" => [
                         "keywords" => [
                             "ontwerp je attractie",
-                            "wat is ontwerp je attractie",
                             "attractie bouwen groep 5",
                             "pretpark ontwerpen schaal",
                             "attractie programmeren groep"
@@ -260,7 +320,6 @@ class TechnoBot
                     "duurzaam_huis" => [
                         "keywords" => [
                             "duurzaam huis",
-                            "wat is duurzaam huis",
                             "duurzaam huis groep 4",
                             "huis isolatie project groep",
                             "duurzaam bouwen basisschool"
@@ -270,7 +329,6 @@ class TechnoBot
                     "avontuurlijke_architecten" => [
                         "keywords" => [
                             "avontuurlijke architecten",
-                            "wat is avontuurlijke architecten",
                             "architecten groep 3",
                             "pretpark bouwen groep 3",
                             "bruggen bouwen basisschool"
@@ -347,40 +405,176 @@ class TechnoBot
                     "toekomsttaal",
                     "popup",
                     "willie wortel",
-                    "pop up les"
+                    "pop up les",
+                    "welke lessen zijn er",
+                    "alle lessen",
+                    "lessen overzicht"
                 ],
-                "answer" => "Technolab biedt inspirerende lessen en workshops voor PO en VO op het gebied van techniek, wetenschap en talentontwikkeling! 📚 Bekijk het aanbod op <a href='https://www.technolableiden.nl/' target='_blank'>technolableiden.nl</a>",
+                "answer" => "📚 Klik op een les hieronder voor meer info! Bekijk alles op <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>technolableiden.nl/toekomstkunde</a>",
                 "suggestions" => [
-                    "Wat zijn alle lesprogramma's?",
-                    "Wat is TechniekWijs?",
-                    "Wat is ToekomstTaal?"
+                    "Robot Ontdeklab",
+                    "Kleine Muis",
+                    "Experimenten met elementen",
+                    "Electriciteit",
+                    "Avontuurlijke Architecten",
+                    "Praten met apparaten",
+                    "Zintuigen",
+                    "Landbouwspel",
+                    "Duurzaam huis",
+                    "Draadkunst",
+                    "Space Jam",
+                    "Dierenavontuur",
+                    "Schatten van de Aarde",
+                    "Ontwerp je attractie",
+                    "Bewegende beesten",
+                    "Spelen met electriciteit",
+                    "Weg met de klere(n)berg",
+                    "Energie zuinig",
+                    "Boot bouwen",
+                    "Bouw je eigen robot",
+                    "Bruggen bouwen",
+                    "Ruimteraadsels",
+                    "Game design",
+                    "CSI",
+                    "Hackerspace",
+                    "DNA",
+                    "Mens en Microbiologie",
+                    "Weefkunst",
+                    "Marsbots",
+                    "Groene Daken",
+                    "Techniek en Duurzaamheid",
+                    "Upcycle"
                 ],
                 "sub_topics" => [
-                    "overzicht" => [
-                        "keywords" => ["alle lessen technolab", "welke lessen zijn er", "wat zijn de lesprogrammas van technolab"],
-                        "answer" => "Technolab heeft drie hoofdleerlijnen: TechniekWijs (wetenschap & techniek), ToekomstTaal (programmeren & mediawijsheid) en Toekomstkunde (duurzaamheid & technologie). Daarnaast zijn er POP-UP projectweken, mini-stages en de Willie Wortel Wedstrijd! 🔭💻🌱",
+                    "robot_ontdeklab" => [
+                        "keywords" => ["robot ontdeklab", "cubetto", "pixelen dashes", "kleuters programmeren"],
+                        "answer" => "🤖 <b>Robot Ontdeklab</b> — Groep 1/2<br>Een eerste verkenning van programmeren. Vier onderdelen: Cubetto, Let's go Code, Pixelen en Dashes. Leerlingen ontdekken spelenderwijs hoe je 'praat met apparaten'. <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>Meer informatie →</a>"
                     ],
-                    "techniekwijs" => [
-                        "keywords" => ["techniekwijs les", "wat is techniekwijs", "wetenschap techniek les"],
-                        "answer" => "TechniekWijs is de leerlijn voor wetenschap en techniekonderwijs. Met een rijk aanbod aan apparatuur halen we de uitvinder in leerlingen naar boven! Denk aan workshops over stroomcircuits, katrollen, tandwielen en elektriciteit. 🔧⚡",
+                    "kleine_muis" => [
+                        "keywords" => ["kleine muis", "kleine muis zoekt een huis", "koude karel warme wilma"],
+                        "answer" => "🐭 <b>Kleine Muis</b> — Groep 1/2<br>We lezen voor uit 'Kleine Muis zoekt een huis'. Leerlingen onderzoeken hoe dieren en planten op het schoolplein wonen, maken kennis met Koude Karel en Warme Wilma en bedenken waar zij zelf het liefst wonen. <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>Meer informatie →</a>"
                     ],
-                    "toekomsttaal" => [
-                        "keywords" => ["toekomsttaal les", "programmeren les toekomsttaal", "mediawijsheid les", "wat is toekomsttaal"],
-                        "answer" => "ToekomstTaal is de leerlijn voor programmeren en mediawijsheid. Leerlingen leren hoe digitale technologie werkt, programmeren met Micro:bit en bouwen eigen robots! 🤖📱",
+                    "experimenten_elementen" => [
+                        "keywords" => ["experimenten met elementen", "elementen ontdekken vergrootglas"],
+                        "answer" => "🔬 <b>Experimenten met elementen</b> — Groep 1/2<br>Leerlingen ontdekken spelenderwijs de verschillende elementen, observeren en benoemen wat ze waarnemen, en bedenken oplossingen for (technische) problemen. <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>Meer informatie →</a>"
                     ],
-                    "toekomstkunde_les" => [
-                        "keywords" => ["toekomstkunde les lessen", "duurzaamheid les lessen", "klimaat les leerlingen", "wat is toekomstkunde les"],
-                        "answer" => "Toekomstkunde gaat over duurzaamheid, hernieuwbare energie, biodiversiteit en klimaatactie. Leerlingen werken hands-on aan oplossingen voor duurzaamheidsvraagstukken. 🌿🌍 Meer info: <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>technolableiden.nl/toekomstkunde</a>",
+                    "electriciteit" => [
+                        "keywords" => ["electriciteit les", "statische elektriciteit ballon", "plasmabol geleiding"],
+                        "answer" => "⚡ <b>Electriciteit</b> — Groep 1/2<br>Kinderen ontdekken statische elektriciteit, leren welke materialen geleiden, ervaren zichtbare stroom met een plasmabol en ontdekken hoe elektriciteit zich gedraagt. <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>Meer informatie →</a>"
                     ],
-                    "popup" => [
-                        "keywords" => ["popup les technolab school", "pop up projectweek", "les op school popup"],
-                        "answer" => "Met POP-UP Technolab komen wij naar jouw school! We verzorgen een week vullend programma met activiteiten op school én bijzondere dagdelen bij Technolab of de Hortus. Er is een programmeer/maakweek én een uitvindersweek. Afgesloten met een tentoonstelling! 🎉",
+                    "avontuurlijke_architecten_les" => [
+                        "keywords" => ["avontuurlijke architecten les", "pretpark bouwen groepen architecten"],
+                        "answer" => "🏗️ <b>Avontuurlijke Architecten</b> — Groep 3<br>De klas bouwt in groepjes een pretpark. Per groepje verzinnen en bouwen de leerlingen zelf hun attractie met verschillende materialen. <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>Meer informatie →</a>"
                     ],
-                    "willie_wortel" => [
-                        "keywords" => ["willie wortel wedstrijd", "uitvinderswedstrijd technolab"],
-                        "answer" => "De Willie Wortel Wedstrijd is een uitvinderswedstrijd voor jonge geniën uit de regio Leiden. Ze bedenken creatieve oplossingen voor uiteenlopende problemen. Er is ook een junior versie voor jongere leerlingen! 🏆💡",
+                    "praten_met_apparaten" => [
+                        "keywords" => ["praten met apparaten", "cubetto verdieping groep 3"],
+                        "answer" => "💬 <b>Praten met apparaten</b> — Groep 3<br>Verdieping op Robot Ontdeklab voor kleuters. Zelfde vier onderdelen (Cubetto, Let's go Code, Pixelen, Dashes) maar nu met extra uitdagingen. <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>Meer informatie →</a>"
                     ],
-                ]
+                    "zintuigen" => [
+                        "keywords" => ["zintuigen les", "kermis zintuigen ruiken proeven"],
+                        "answer" => "👂 <b>Zintuigen</b> — Groep 3<br>Kinderen ontdekken de kermis met al hun zintuigen via vrolijke opdrachten. De les eindigt met een kermisquiz en een dansfeestje! <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>Meer informatie →</a>"
+                    ],
+                    "landbouwspel" => [
+                        "keywords" => ["landbouwspel", "boerderij bouwen land water eiwit"],
+                        "answer" => "🌾 <b>Landbouwspel</b> — Groep 3<br>Kinderen bouwen hun eigen boerderij en puzzelen hoeveel land en water nodig is om genoeg eiwit te verbouwen. Ze ontdekken welke voedingsmiddelen duurzaam zijn. <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>Meer informatie →</a>"
+                    ],
+                    "duurzaam_huis_les" => [
+                        "keywords" => ["duurzaam huis les", "isolatie waterdichtheid duurzaam bouwen les"],
+                        "answer" => "🏡 <b>Duurzaam Huis</b> — Groep 4<br>Leerlingen ontwerpen en bouwen een duurzaam huis, doen onderzoek naar isolatie en waterdichtheid, met zoveel mogelijk hergebruikte materialen. <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>Meer informatie →</a>"
+                    ],
+                    "draadkunst" => [
+                        "keywords" => ["draadkunst", "dier ontwerpen woestijn draad"],
+                        "answer" => "🎨 <b>Draadkunst</b> — Groep 4<br>Leerlingen ontwerpen een dier dat kan overleven op een aangegeven locatie. Ze maken eerst een 2D-ontwerp en bouwen dit in 3D. <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>Meer informatie →</a>"
+                    ],
+                    "space_jam" => [
+                        "keywords" => ["space jam les", "makey makey stroomkring instrument"],
+                        "answer" => "🚀 <b>Space Jam</b> — Groep 4<br>Leerlingen leren wat een stroomkring is, onderzoeken geleiding en bouwen een papieren/kartonnen instrument met Makey Makey. <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>Meer informatie →</a>"
+                    ],
+                    "dierenavontuur" => [
+                        "keywords" => ["dierenavontuur", "scratch junior dieren programmeren"],
+                        "answer" => "🦁 <b>Dierenavontuur</b> — Groep 4<br>Leerlingen ontdekken de basis van programmeren via een dierenavontuur in Scratch Junior. Ze bouwen een digitaal verhaal met bewegende dieren en geluid. <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>Meer informatie →</a>"
+                    ],
+                    "schatten_aarde" => [
+                        "keywords" => ["schatten van de aarde", "aardplaten bodemdieren zaden"],
+                        "answer" => "🌍 <b>Schatten van de Aarde</b> — Groep 4<br>Leerlingen ontdekken hoe de planeet werkt: bergen, kringloop van steen, bodemdieren en verspreiding van zaden. Ze zaaien hun eigen boontje! <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>Meer informatie →</a>"
+                    ],
+                    "ontwerp_attractie_les" => [
+                        "keywords" => ["ontwerp je attractie les", "kermisattractie lego wedo programmeren"],
+                        "answer" => "🎢 <b>Ontwerp je attractie</b> — Groep 5, VO, MBO<br>Leerlingen ontwerpen hun eigen kermisattractie, bouwen deze met technisch Lego en brengen deze tot leven met Lego WeDo. <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>Meer informatie →</a>"
+                    ],
+                    "bewegende_beesten" => [
+                        "keywords" => ["bewegende beesten", "byor zoob robot dier bouwen"],
+                        "answer" => "🐾 <b>Bewegende beesten</b> — Groep 5<br>Met BYOR (Build Your Own Robot) en Zoob ontwerpen en bouwen leerlingen 3D bewegende dieren, rekening houdend met de leefomgeving. <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>Meer informatie →</a>"
+                    ],
+                    "spelen_electriciteit" => [
+                        "keywords" => ["spelen met electriciteit", "bibberspiraal stroomkring electrospel"],
+                        "answer" => "⚡ <b>Spelen met electriciteit</b> — Groep 5<br>Leerlingen ontgevallen elektrische schakelingen: een bibberspiraal, stroomkringopdrachten en een electrospel, via plan-do-check. <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>Meer informatie →</a>"
+                    ],
+                    "klerenberg" => [
+                        "keywords" => ["weg met de klerenberg", "naaimachine tasje textiel duurzaamheid"],
+                        "answer" => "👗 <b>Weg met de klere(n)berg</b> — Groep 6<br>Leerlingen maken kennis met duurzaamheid en textiel. Ze leren over circulaire textielverwerking en maken hun eigen tasje van hergebruikt materiaal. <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>Meer informatie →</a>"
+                    ],
+                    "energie_zuinig" => [
+                        "keywords" => ["energie zuinig", "lamp aansluiten water opwarmen zon"],
+                        "answer" => "💡 <b>Energie zuinig</b> — Groep 6<br>Twee onderdelen: 'fit de lamp' (lamp aansluiten op stekker) en onderzoek naar water opwarmen met kunstmatige zon. <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>Meer informatie →</a>"
+                    ],
+                    "boot_bouwen" => [
+                        "keywords" => ["boot bouwen", "schip ontwerpen drijven lading"],
+                        "answer" => "⛵ <b>Boot bouwen</b> — Groep 6<br>Leerlingen ontwerpen, bouwen en testen een schip: passend bij een thema, max 30×15cm, blijft drijven, draagt 0,5 kg lading. <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>Meer informatie →</a>"
+                    ],
+                    "bouw_eigen_robot" => [
+                        "keywords" => ["bouw je eigen robot", "byor robot sensoren moederbord restmateriaal"],
+                        "answer" => "🤖 <b>Bouw je eigen robot</b> — Groep 6, VO, MBO<br>Leerlingen maken kennis met robotica via sensoren en actoren en bouwen een robot van restmaterialen (karton, papier, plastic). <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>Meer informatie →</a>"
+                    ],
+                    "bruggen_bouwen" => [
+                        "keywords" => ["bruggen bouwen les", "brug constructie ontwerpen groep 7"],
+                        "answer" => "🌉 <b>Bruggen bouwen</b> — Groep 7<br>Leerlingen leren verschillende brugvormen en constructies kennen. In groepjes ontwerpen, testen en bouwen ze hun eigen brug. <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>Meer informatie →</a>"
+                    ],
+                    "ruimteraadsels" => [
+                        "keywords" => ["ruimteraadsels microbit", "astronaut radiosignalen cluedo microbit"],
+                        "answer" => "🚀 <b>Ruimteraadsels (Micro:bit)</b> — Groep 7, VO, MBO<br>Radiosignalen van een onbekende astronaut zijn binnengekomen. Via een cluedo-achtige aanpak ontdekken leerlingen de identiteit van de astronaut met de Micro:bit. <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>Meer informatie →</a>"
+                    ],
+                    "game_design" => [
+                        "keywords" => ["game design les", "scratch makey mario spel ontwerpen"],
+                        "answer" => "🎮 <b>Game design</b> — Groep 7, VO, MBO<br>Leerlingen bedenken zelf een spel dat ze verlevendigen met Scratch en verbinden via MakeyMakey met een laptop. Denk aan een eigen Mario-level! <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>Meer informatie →</a>"
+                    ],
+                    "csi" => [
+                        "keywords" => ["csi les", "misdaad onderzoek bodem vingerafdrukken"],
+                        "answer" => "🔍 <b>CSI</b> — Groep 7, VO, MBO<br>Leerlingen onderzoeken een fictieve misdaad met proefjes rond bodem, haar, vingerafdrukken en poeders. Ze presenteren hun bevindingen en bepalen samen wie de dader is. <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>Meer informatie →</a>"
+                    ],
+                    "hackerspace" => [
+                        "keywords" => ["hackerspace les", "microbit hack professor curiosa geheugen"],
+                        "answer" => "💻 <b>Hackerspace</b> — Groep 8, VO, MBO<br>Leerlingen wanen zich in een wereld waar een medicijn tegen geheugenverlies is gehackt. Ze ontdekken hoe de Micro:bit werkt en hoe de hack heeft kunnen plaatsvinden. <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>Meer informatie →</a>"
+                    ],
+                    "dna" => [
+                        "keywords" => ["dna les", "dna kralenketting wangslijmcel mini me"],
+                        "answer" => "🧬 <b>DNA</b> — Groep 8, VO<br>Leerlingen ontdekken hoe DNA informatie opslaat. Ze bouwen een mini-me en skelet, maken een DNA-kralenketting og isoleren hun eigen DNA uit wangslijmcel. <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>Meer informatie →</a>"
+                    ],
+                    "mens_microbiologie" => [
+                        "keywords" => ["mens microbiologie", "botten organen microbioom microscopen"],
+                        "answer" => "🔬 <b>Mens & Microbiologie</b> — Groep 8<br>Hoe zit ons lichaam er van binnen uit? Leerlingen onderzoeken botten, organen, gezondheid en het microbioom via proefjes en microscopen. <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>Meer informatie →</a>"
+                    ],
+                    "weefkunst" => [
+                        "keywords" => ["weefkunst", "weefraam weven inslagdraden kettingdraden"],
+                        "answer" => "🧵 <b>Weefkunst</b> — Groep 8<br>Leerlingen maken kennis met een eeuwenoude weefmethode. Ze zetten zelf een klein weefraam in elkaar en weven daarop een lapje. <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>Meer informatie →</a>"
+                    ],
+                    "marsbots" => [
+                        "keywords" => ["marsbots", "mars autobot makecode microbit programmeren"],
+                        "answer" => "🔴 <b>Marsbots</b> — Groep 8, VO, MBO<br>Leerlingen bouwen en programmeren een autobot voor Mars-expeditie via de MakeCode editor. Ze leren stroomkringen, programmeren en samenwerken. <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>Meer informatie →</a>"
+                    ],
+                    "groene_daken_les" => [
+                        "keywords" => ["groene daken les", "zonnepaneel zonneboiler installatietechniek les"],
+                        "answer" => "🌿 <b>Groene Daken</b> — PO, VO<br>Leerlingen ontwerpen een groen dak, maken kennis met installatietechniek en doen onderzoek naar zonnepanelen, zonneboilers en planten. <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>Meer informatie →</a>"
+                    ],
+                    "techniek_duurzaamheid_les" => [
+                        "keywords" => ["techniek en duurzaamheid les", "ledlamp isolatie zonnepaneel stad ontwerpen"],
+                        "answer" => "🏙️ <b>Techniek en Duurzaamheid</b> — VO, MBO<br>9-delige lessenreeks: ledlamp aansluiten, isolatie, zonnepaneel, energievoorziening en het ontwerpen van een duurzame online stad. <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>Meer informatie →</a>"
+                    ],
+                    "upcycle" => [
+                        "keywords" => ["upcycle les", "afval hergebruik product ontwerpen pitchen"],
+                        "answer" => "♻️ <b>Upcycle</b> — VO, MBO<br>Afgedankte producten krijgen een nieuw leven. Leerlingen verdiepen zich in afvalstromen en maken hun eigen Upcycle product: van schets tot realisatie en pitch. <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>Meer informatie →</a>"
+                    ],
+                ],
             ],
 
             // ── FIKA ──────────────────────────────────────────────────────────
@@ -804,7 +998,7 @@ class TechnoBot
                     "natuur en techniek lessen",
                     "natuur techniek po vo"
                 ],
-                "answer" => "Toekomstkunde is ons lesaanbod natuur- & technieklessen voor PO en VO, gericht op drie thema's: Energie en milieu, Technologische innovatie, en Leven en omgeving 🌱⚙️🌍 Meer info: <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>technolableiden.nl/toekomstkunde</a>",
+                "answer" => "Toekomstkunde is ons lesaanbod natuur- & technieklessen voor PO en VO, gericht op drie thema's: Energie en milieu, Technologische innovatie, en Leven en omgeving 🌱⚙️🌍 <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>technolableiden.nl/toekomstkunde</a>",
                 "suggestions" => [
                     "Wat is Energie en milieu?",
                     "Wat is Technologische innovatie?",
@@ -813,15 +1007,15 @@ class TechnoBot
                 "sub_topics" => [
                     "energie_milieu" => [
                         "keywords" => ["toekomstkunde energie en milieu duurzaamheid", "klimaatactie les toekomstkunde"],
-                        "answer" => "Leerlingen onderzoeken hernieuwbare energie, biodiversiteit, circulaire economie en klimaatactie, en bedenken zelf oplossingen voor duurzaamheidsvraagstukken 🌱 <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>Meer info</a>"
+                        "answer" => "Leerlingen onderzoeken hernieuwbare energie, biodiversiteit, circulaire economie en klimaatactie, en bedenken zelf oplossingen voor duurzaamheidsvraagstukken 🌱 <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>Meer info — klik hier! →</a>"
                     ],
                     "technologische_innovatie" => [
                         "keywords" => ["toekomstkunde technologische innovatie stroomcircuits"],
-                        "answer" => "Leerlingen verkennen technologie en wetenschap via workshops over stroomcircuits, tandwielen en katrollen, en ontwikkelen creativiteit en probleemoplossend vermogen ⚙️ <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>Meer info</a>"
+                        "answer" => "Leerlingen verkennen technologie en wetenschap via workshops over stroomcircuits, tandwielen en katrollen, en ontwikkelen creativiteit en probleemoplossend vermogen ⚙️ <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>Meer info — klik hier! →</a>"
                     ],
                     "leven_omgeving" => [
                         "keywords" => ["toekomstkunde leven en omgeving programmeren robots"],
-                        "answer" => "Leerlingen leren programmeren via o.a. de Micro:bit en bouwen eigen robots om problemen op te lossen, en leggen zo een basis voor computatief denken 🤖 <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>Meer info</a>"
+                        "answer" => "Leerlingen leren programmeren via o.a. de Micro:bit en bouwen eigen robots om problemen op te lossen, en leggen zo een basis voor computatief denken 🤖 <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>Meer info — klik hier! →</a>"
                     ],
                     "groepen" => [
                         "keywords" => ["toekomstkunde lessen per groep po vo mbo"],
@@ -841,7 +1035,7 @@ class TechnoBot
             // ── ZIJINSTROMERS ─────────────────────────────────────────────────
             "zijinstromers" => [
                 "keywords" => ["zijinstromers", "zij instromers", "carriere switch onderwijs", "overstap naar onderwijs"],
-                "answer" => "Voor mensen die een carrièreswitch naar het onderwijs of de techniek overwegen, biedt Technolab drie programma's: Expeditie Leerkracht, Meesterchallenge en Techniek en Toekomst 🚀 Meer info: <a href='https://www.technolableiden.nl/zijinstromers/' target='_blank'>technolableiden.nl/zijinstromers</a>",
+                "answer" => "Voor mensen die een carrièreswitch naar het onderwijs of de techniek overwegen, biedt Technolab drie programma's: Expeditie Leerkracht, Meesterchallenge en Techniek en Toekomst 🚀 <a href='https://www.technolableiden.nl/zijinstromers/' target='_blank'>technolableiden.nl/zijinstromers</a>",
                 "suggestions" => [
                     "Wat is Expeditie Leerkracht?",
                     "Wat is de Meesterchallenge?",
@@ -850,7 +1044,7 @@ class TechnoBot
                 "sub_topics" => [
                     "overzicht" => [
                         "keywords" => ["welke programmas voor zijinstromers overzicht opties"],
-                        "answer" => "Expeditie Leerkracht is een tweedaagse kennismaking met het onderwijsvak, de Meesterchallenge is een 10 weken durend leer-werktraject in het onderwijs, en Techniek en Toekomst helpt je de stap te zetten naar de techniek 🎯 <a href='https://www.technolableiden.nl/zijinstromers/' target='_blank'>Meer info</a>"
+                        "answer" => "Expeditie Leerkracht is een tweedaagse kennismaking met het onderwijsvak, de Meesterchallenge is een 10 weken durend leer-werktraject in het onderwijs, en Techniek en Toekomst helpt je de stap te zetten naar de techniek 🎯 <a href='https://www.technolableiden.nl/zijinstromers/' target='_blank'>Meer info — klik hier! →</a>"
                     ],
                 ]
             ],
@@ -858,7 +1052,7 @@ class TechnoBot
             // ── EXPEDITIE LEERKRACHT ──────────────────────────────────────────
             "expeditie_leerkracht" => [
                 "keywords" => ["expeditie leerkracht", "tweedaagse onderwijs", "kennismaken met onderwijs"],
-                "answer" => "Expeditie Leerkracht is een tweedaagse waarin je op een actieve, speelse en persoonlijke manier je eerste stappen zet in het onderwijsvak. Een samenwerking tussen Hogeschool Leiden en Technolab 👩‍🏫 Meer info: <a href='https://www.technolableiden.nl/zijinstromers/expeditie-leerkracht/' target='_blank'>technolableiden.nl/expeditie-leerkracht</a>",
+                "answer" => "Expeditie Leerkracht is een tweedaagse waarin je op een actieve, speelse en persoonlijke manier je eerste stappen zet in het onderwijsvak. Een samenwerking tussen Hogeschool Leiden en Technolab 👩‍🏫 <a href='https://www.technolableiden.nl/zijinstromers/expeditie-leerkracht/' target='_blank'>technolableiden.nl/expeditie-leerkracht</a>",
                 "suggestions" => [
                     "Wat kost Expeditie Leerkracht?",
                     "Wanneer is de volgende Expeditie Leerkracht?",
@@ -867,11 +1061,11 @@ class TechnoBot
                 "sub_topics" => [
                     "kosten" => [
                         "keywords" => ["expeditie leerkracht kosten prijs bedrag", "wat kost expeditie leerkracht"],
-                        "answer" => "De kosten zijn voor schooljaar 2025-2026 verlaagd van €500,- naar €250,-, dankzij bijdrage van de onderwijsregio's Leiden, Duin- en Bollenstreek en Haaglanden 💶 <a href='https://www.technolableiden.nl/zijinstromers/expeditie-leerkracht/' target='_blank'>Meer info & aanmelden</a>"
+                        "answer" => "De kosten zijn voor schooljaar 2025-2026 verlaagd van €500,- naar €250,-, dankzij bijdrage van de onderwijsregio's Leiden, Duin- en Bollenstreek en Haaglanden 💶 <a href='https://www.technolableiden.nl/zijinstromers/expeditie-leerkracht/' target='_blank'>Meer info & aanmelden — klik hier! →</a>"
                     ],
                     "data" => [
                         "keywords" => ["expeditie leerkracht data wanneer datum", "wanneer is de volgende expeditie leerkracht"],
-                        "answer" => "Komende edities: 15-16 juni (VOL), 5-6 oktober 2026 (Den Haag, Inholland), 8-9 maart 2027 (Den Haag, HHS), 7-8 juni 2027 (Den Haag, Inholland) 📅 <a href='https://www.technolableiden.nl/zijinstromers/expeditie-leerkracht/' target='_blank'>Aanmelden</a>"
+                        "answer" => "Komende edities: 15-16 juni (VOL), 5-6 oktober 2026 (Den Haag, Inholland), 8-9 maart 2027 (Den Haag, HHS), 7-8 juni 2027 (Den Haag, Inholland) 📅 <a href='https://www.technolableiden.nl/zijinstromers/expeditie-leerkracht/' target='_blank'>Aanmelden — klik hier! →</a>"
                     ],
                     "programma" => [
                         "keywords" => ["expeditie leerkracht dag 1 dag 2 programma", "hoe ziet dag 1 en dag 2 eruit"],
@@ -887,7 +1081,7 @@ class TechnoBot
             // ── MEESTERCHALLENGE ──────────────────────────────────────────────
             "meesterchallenge" => [
                 "keywords" => ["meesterchallenge", "10 weken challenge onderwijs", "leer werktraject onderwijs"],
-                "answer" => "De Meesterchallenge is een 10 weken durende challenge waarbij je 3 dagen per week, samen met je team, workshops ontwikkelt en geeft binnen natuur, techniek en technologie. Ideaal als tussenjaar of carrièreswitch! 🎓 Meer info: <a href='https://www.technolableiden.nl/zijinstromers/meesterchallenge-2/' target='_blank'>technolableiden.nl/meesterchallenge</a>",
+                "answer" => "De Meesterchallenge is een 10 weken durende challenge waarbij je 3 dagen per week, samen met je team, workshops ontwikkelt en geeft binnen natuur, techniek en technologie. Ideaal als tussenjaar of carrièreswitch! 🎓 <a href='https://www.technolableiden.nl/zijinstromers/meesterchallenge-2/' target='_blank'>technolableiden.nl/meesterchallenge</a>",
                 "suggestions" => [
                     "Hoeveel vergoeding krijg ik bij de Meesterchallenge?",
                     "Wanneer kan ik starten met de Meesterchallenge?",
@@ -896,15 +1090,15 @@ class TechnoBot
                 "sub_topics" => [
                     "vergoeding" => [
                         "keywords" => ["meesterchallenge vergoeding geld betaling", "hoeveel vergoeding krijg ik bij de meesterchallenge"],
-                        "answer" => "Voor de Meesterchallenge ontvang je een vergoeding van €700 💶 <a href='https://www.technolableiden.nl/zijinstromers/meesterchallenge-2/' target='_blank'>Meer info</a>"
+                        "answer" => "Voor de Meesterchallenge ontvang je een vergoeding van €700 💶 <a href='https://www.technolableiden.nl/zijinstromers/meesterchallenge-2/' target='_blank'>Meer info — klik hier! →</a>"
                     ],
                     "data" => [
                         "keywords" => ["meesterchallenge data wanneer starten periodes", "wanneer kan ik starten met de meesterchallenge"],
-                        "answer" => "Komende periodes: 14 sept t/m 27 nov 2026, 26 okt t/m 15 jan 2027, 4 jan t/m 19 mrt 2027, 15 mrt t/m 4 juni 2027, 10 mei t/m 16 juli 2027 (Technolab is dicht in schoolvakanties) 📅 <a href='https://www.technolableiden.nl/zijinstromers/meesterchallenge-2/' target='_blank'>Aanmelden</a>"
+                        "answer" => "Komende periodes: 14 sept t/m 27 nov 2026, 26 okt t/m 15 jan 2027, 4 jan t/m 19 mrt 2027, 15 mrt t/m 4 juni 2027, 10 mei t/m 16 juli 2027 (Technolab is dicht in schoolvakanties) 📅 <a href='https://www.technolableiden.nl/zijinstromers/meesterchallenge-2/' target='_blank'>Aanmelden — klik hier! →</a>"
                     ],
                     "doelgroep" => [
                         "keywords" => ["meesterchallenge voor wie doelgroep eisen diploma", "voor wie is de meesterchallenge"],
-                        "answer" => "Voor iedereen die zijn/haar talenten wil ontdekken: een tussenjaar, carrièreswitch of zij-instroomtraject. Geen diploma of bèta-achtergrond nodig, wel een aanpakker die houdt van doen 🙌 <a href='https://www.technolableiden.nl/zijinstromers/meesterchallenge-2/' target='_blank'>Meer info</a>"
+                        "answer" => "Voor iedereen die zijn/haar talenten wil ontdekken: een tussenjaar, carrièreswitch of zij-instroomtraject. Geen diploma of bèta-achtergrond nodig, wel een aanpakker die houdt van doen 🙌 <a href='https://www.technolableiden.nl/zijinstromers/meesterchallenge-2/' target='_blank'>Meer info — klik hier! →</a>"
                     ],
                     "inhoud" => [
                         "keywords" => ["meesterchallenge programma trainingen inhoud", "wat leer je bij de meesterchallenge"],
@@ -912,7 +1106,7 @@ class TechnoBot
                     ],
                     "sollicitatie" => [
                         "keywords" => ["meesterchallenge solliciteren aanmelden procedure"],
-                        "answer" => "De procedure bestaat uit een kennismakingscall met een coach en een meeloopdag, waarna jullie samen ontdekken of er een match is ✅ <a href='https://www.technolableiden.nl/zijinstromers/meesterchallenge-2/' target='_blank'>Aanmelden</a>"
+                        "answer" => "De procedure bestaat uit een kennismakingscall met een coach en een meeloopdag, waarna jullie samen ontdekken of er een match is ✅ <a href='https://www.technolableiden.nl/zijinstromers/meesterchallenge-2/' target='_blank'>Aanmelden — klik hier! →</a>"
                     ],
                 ]
             ],
@@ -920,7 +1114,7 @@ class TechnoBot
             // ── TECHNIEK EN TOEKOMST ──────────────────────────────────────────
             "techniek_en_toekomst" => [
                 "keywords" => ["techniek en toekomst", "techniek toekomst leerwerktraject"],
-                "answer" => "Techniek & Toekomst verbindt bedrijven met technisch talent. Het bestaat uit drie stappen: een Expeditie (2 dagen), een Challenge (2 weken) en een Stage (10 weken) 🔧 Meer info: <a href='https://www.technolableiden.nl/zijinstromer-techniek-en-toekomst/' target='_blank'>technolableiden.nl/techniek-en-toekomst</a>",
+                "answer" => "Techniek & Toekomst verbindt bedrijven met technisch talent. Het bestaat uit drie stappen: een Expeditie (2 dagen), een Challenge (2 weken) en een Stage (10 weken) 🔧 <a href='https://www.technolableiden.nl/zijinstromer-techniek-en-toekomst/' target='_blank'>technolableiden.nl/techniek-en-toekomst</a>",
                 "suggestions" => [
                     "Wat is de Expeditie Techniek en Toekomst?",
                     "Wat is de Challenge?",
@@ -929,19 +1123,19 @@ class TechnoBot
                 "sub_topics" => [
                     "expeditie" => [
                         "keywords" => ["expeditie techniek en toekomst 2 dagen oriëntatie", "wat is de expeditie techniek en toekomst"],
-                        "answer" => "De Expeditie duurt 2 dagen: je zet op een actieve manier je eerste stappen in de wereld van techniek en ontdekt welke sector bij je past. Komende editie: 29-30 juni 2026 📅 <a href='https://www.technolableiden.nl/zijinstromer-techniek-en-toekomst/' target='_blank'>Aanmelden</a>"
+                        "answer" => "De Expeditie duurt 2 dagen: je zet op een actieve manier je eerste stappen in de wereld van techniek en ontdekt welke sector bij je past. Komende editie: 29-30 juni 2026 📅 <a href='https://www.technolableiden.nl/zijinstromer-techniek-en-toekomst/' target='_blank'>Aanmelden — klik hier! →</a>"
                     ],
                     "challenge" => [
                         "keywords" => ["techniek en toekomst challenge 2 weken opdracht bedrijf", "wat is de challenge techniek toekomst"],
-                        "answer" => "De Challenge duurt 2 weken: je werkt aan een echte techniekopdracht bij een bedrijf en verdiept je in een specifieke sector 🔨 <a href='https://www.technolableiden.nl/zijinstromer-techniek-en-toekomst/' target='_blank'>Meer info</a>"
+                        "answer" => "De Challenge duurt 2 weken: je werkt aan een echte techniekopdracht bij een bedrijf en verdiept je in een specifieke sector 🔨 <a href='https://www.technolableiden.nl/zijinstromer-techniek-en-toekomst/' target='_blank'>Meer info — klik hier! →</a>"
                     ],
                     "stage" => [
                         "keywords" => ["techniek en toekomst stage 10 weken bedrijf sector", "wat is de stage bij techniek en toekomst"],
-                        "answer" => "De Stage duurt 10 weken: je loopt drie dagen per week mee bij een bedrijf in jouw gekozen sector, gericht op een opleiding of baan in de techniek 💼 <a href='https://www.technolableiden.nl/zijinstromer-techniek-en-toekomst/' target='_blank'>Meer info</a>"
+                        "answer" => "De Stage duurt 10 weken: je loopt drie dagen per week mee bij een bedrijf in jouw gekozen sector, gericht op een opleiding of baan in de techniek 💼 <a href='https://www.technolableiden.nl/zijinstromer-techniek-en-toekomst/' target='_blank'>Meer info — klik hier! →</a>"
                     ],
                     "aanmelden" => [
                         "keywords" => ["aanmelden techniek en toekomst formulier website"],
-                        "answer" => "Je kunt je aanmelden voor de Expeditie Techniek en Toekomst via het aanmeldformulier op de website, of contact opnemen voor meer informatie 📝 <a href='https://www.technolableiden.nl/zijinstromer-techniek-en-toekomst/' target='_blank'>Aanmelden</a>"
+                        "answer" => "Je kunt je aanmelden voor de Expeditie Techniek en Toekomst via het aanmeldformulier op de website, of contact opnemen voor meer informatie 📝 <a href='https://www.technolableiden.nl/zijinstromer-techniek-en-toekomst/' target='_blank'>Aanmelden — klik hier! →</a>"
                     ],
                 ]
             ],
@@ -949,7 +1143,7 @@ class TechnoBot
             // ── BEDRIJVEN ─────────────────────────────────────────────────────
             "bedrijven" => [
                 "keywords" => ["bedrijven partner technolab", "samenwerking bedrijven technolab"],
-                "answer" => "Technolab werkt samen met bedrijven via Techniek en Toekomst (technisch talent vinden), Talent & Toekomst (loopbaanoriëntatie voor scholieren) en workshops voor volwassen teams 🤝 Meer info: <a href='https://www.technolableiden.nl/bedrijven/' target='_blank'>technolableiden.nl/bedrijven</a>",
+                "answer" => "Technolab werkt samen met bedrijven via Techniek en Toekomst (technisch talent vinden), Talent & Toekomst (loopbaanoriëntatie voor scholieren) en workshops voor volwassen teams 🤝 <a href='https://www.technolableiden.nl/bedrijven/' target='_blank'>technolableiden.nl/bedrijven</a>",
                 "suggestions" => [
                     "Wat is Techniek en Toekomst voor bedrijven?",
                     "Wat is Talent & Toekomst?",
@@ -958,15 +1152,15 @@ class TechnoBot
                 "sub_topics" => [
                     "techniek_toekomst_bedrijven" => [
                         "keywords" => ["wat is techniek en toekomst voor bedrijven", "bedrijven techniek talent vinden"],
-                        "answer" => "Via Techniek en Toekomst vinden technisch talent en bedrijven elkaar: van oriënteren tot opleiden, wij maken de stap van dromen naar doen 🔧 <a href='https://www.technolableiden.nl/bedrijven/' target='_blank'>Meer info voor bedrijven</a>"
+                        "answer" => "Via Techniek en Toekomst vinden technisch talent en bedrijven elkaar: van oriënteren tot opleiden, wij maken de stap van dromen naar doen 🔧 <a href='https://www.technolableiden.nl/bedrijven/' target='_blank'>Meer info voor bedrijven — klik hier! →</a>"
                     ],
                     "talent_toekomst_bedrijven" => [
                         "keywords" => ["wat is talent toekomst voor bedrijven", "talent toekomst stage mavo bedrijven"],
-                        "answer" => "Bij Talent & Toekomst lopen mavoleerlingen van het Bonaventura College stage bij bedrijven zoals PLNT, Kleine Planeet en Easyfiets, in sectoren als ICT, Ondernemen, Onderwijs en Zorg 🏢 <a href='https://www.technolableiden.nl/bedrijven/' target='_blank'>Meer info</a>"
+                        "answer" => "Bij Talent & Toekomst lopen mavoleerlingen van het Bonaventura College stage bij bedrijven zoals PLNT, Kleine Planeet en Easyfiets, in sectoren als ICT, Ondernemen, Onderwijs en Zorg 🏢 <a href='https://www.technolableiden.nl/bedrijven/' target='_blank'>Meer info — klik hier! →</a>"
                     ],
                     "workshops_volwassenen" => [
                         "keywords" => ["bieden jullie ook workshops voor teams", "workshops teams bedrijven technolab duurzaamheid"],
-                        "answer" => "Ben je op zoek naar een unieke manier om je team aan te zetten voor duurzaamheid, robotica of de digitale wereld? Meld je team aan voor een workshopdag op Technolab. Binnenkort meer informatie 🛠️ <a href='https://www.technolableiden.nl/bedrijven/' target='_blank'>Meer info voor bedrijven</a>"
+                        "answer" => "Ben je op zoek naar een unieke manier om je team aan te zetten voor duurzaamheid, robotica of de digitale wereld? Meld je team aan voor een workshopdag op Technolab. Binnenkort meer informatie 🛠️ <a href='https://www.technolableiden.nl/bedrijven/' target='_blank'>Meer info voor bedrijven — klik hier! →</a>"
                     ],
                     "partners" => [
                         "keywords" => ["partners technolab wie zijn de partners bedrijven"],
@@ -978,7 +1172,7 @@ class TechnoBot
             // ── TALENT EN TOEKOMST ────────────────────────────────────────────
             "talent_en_toekomst" => [
                 "keywords" => ["talent en toekomst", "vijfdaagse stage leerlingen", "stage vo leerlingen"],
-                "answer" => "Talent & Toekomst is een vijfdaagse activerende stage voor VO-leerlingen om alle ins en outs van vier vakgebieden te ontdekken: Ondernemen, Onderwijs, Techniek en Zorg 🧭 Meer info: <a href='https://www.technolableiden.nl/scholen/voortgezet-onderwijs/talent-en-toekomst/' target='_blank'>technolableiden.nl/talent-en-toekomst</a>",
+                "answer" => "Talent & Toekomst is een vijfdaagse activerende stage voor VO-leerlingen om alle ins en outs van vier vakgebieden te ontdekken: Ondernemen, Onderwijs, Techniek en Zorg 🧭 <a href='https://www.technolableiden.nl/scholen/voortgezet-onderwijs/talent-en-toekomst/' target='_blank'>technolableiden.nl/talent-en-toekomst</a>",
                 "suggestions" => [
                     "Voor welke leerlingen is Talent & Toekomst?",
                     "Bij welke bedrijven loop je stage?",
@@ -987,7 +1181,7 @@ class TechnoBot
                 "sub_topics" => [
                     "doelgroep" => [
                         "keywords" => ["voor welke leerlingen is talent toekomst", "talent toekomst doelgroep school mavo"],
-                        "answer" => "Talent & Toekomst is bedoeld voor middelbare scholieren, momenteel mavoleerlingen van het Bonaventura College 🎓 <a href='https://www.technolableiden.nl/scholen/voortgezet-onderwijs/talent-en-toekomst/' target='_blank'>Meer info</a>"
+                        "answer" => "Talent & Toekomst is bedoeld voor middelbare scholieren, momenteel mavoleerlingen van het Bonaventura College 🎓 <a href='https://www.technolableiden.nl/scholen/voortgezet-onderwijs/talent-en-toekomst/' target='_blank'>Meer info — klik hier! →</a>"
                     ],
                     "sectoren" => [
                         "keywords" => ["talent toekomst sectoren vakgebieden ict zorg"],
@@ -995,11 +1189,11 @@ class TechnoBot
                     ],
                     "bedrijven_stage" => [
                         "keywords" => ["bij welke bedrijven loop je stage talent toekomst", "talent toekomst stagebedrijven plnt"],
-                        "answer" => "Leerlingen lopen stage bij bedrijven zoals PLNT, Kleine Planeet en Easyfiets 🏢 <a href='https://www.technolableiden.nl/scholen/voortgezet-onderwijs/talent-en-toekomst/' target='_blank'>Meer info</a>"
+                        "answer" => "Leerlingen lopen stage bij bedrijven zoals PLNT, Kleine Planeet en Easyfiets 🏢 <a href='https://www.technolableiden.nl/scholen/voortgezet-onderwijs/talent-en-toekomst/' target='_blank'>Meer info — klik hier! →</a>"
                     ],
                     "doel" => [
                         "keywords" => ["hoe werkt de stageweek talent toekomst", "doel talent toekomst studiekeuze"],
-                        "answer" => "Het programma helpt leerlingen groeien in beroepsbeelden, beroepsgerichte kennis en vaardigheden, zodat ze een betere studiekeuze kunnen maken 🎯 <a href='https://www.technolableiden.nl/scholen/voortgezet-onderwijs/talent-en-toekomst/' target='_blank'>Meer info</a>"
+                        "answer" => "Het programma helpt leerlingen groeien in beroepsbeelden, beroepsgerichte kennis en vaardigheden, zodat ze een betere studiekeuze kunnen maken 🎯 <a href='https://www.technolableiden.nl/scholen/voortgezet-onderwijs/talent-en-toekomst/' target='_blank'>Meer info — klik hier! →</a>"
                     ],
                 ]
             ],
@@ -1046,7 +1240,7 @@ class TechnoBot
 
             // ── BUS RIJDEN ────────────────────────────────────────────────────
             "bus" => [
-                "keywords" => ["bus rijden", "bus reserveren technolab", "vervoer technolab", "vervoer"],
+                "keywords" => ["bus", "vervoer", "bus rijden", "bus reserveren technolab", "vervoer technolab", "fiets reserveren", "busje"],
                 "answer" => "Heb je een rijbewijs? Dan moet je eerst een proefrit doen. Daarna mag je ermee rijden! 🚐",
                 "suggestions" => [
                     "Hoe reserveer ik de bus?",
@@ -1253,9 +1447,29 @@ class TechnoBot
             }
 
             foreach ($intent["suggestions"] as $suggestion) {
+                $normalizedSuggestion = $this->normalizeMessage($suggestion);
+
+                // For lessen and projectdag: try direct sub-key name match first
+                // (suggestion "Robot Ontdeklab" → sub-key "robot_ontdeklab")
+                if (in_array($intentName, ["lessen", "projectdag"])) {
+                    $guessedKey = strtolower(preg_replace('/[^a-z0-9]+/i', '_', $normalizedSuggestion));
+                    $guessedKey = trim($guessedKey, '_');
+                    if (isset($intent["sub_topics"][$guessedKey])) {
+                        $this->suggestionMap[$normalizedSuggestion] = [$intentName, $guessedKey];
+                        continue;
+                    }
+                    // Also try matching against first keyword of each sub-topic
+                    foreach ($intent["sub_topics"] as $subKey => $subTopic) {
+                        $firstKeyword = $subTopic["keywords"][0] ?? "";
+                        if (str_contains($firstKeyword, $normalizedSuggestion) || $normalizedSuggestion === $this->normalizeMessage($firstKeyword)) {
+                            $this->suggestionMap[$normalizedSuggestion] = [$intentName, $subKey];
+                            continue 2;
+                        }
+                    }
+                }
+
                 $bestMatch = $this->findSubTopicForSuggestion($intentName, $suggestion);
                 if ($bestMatch) {
-                    $normalizedSuggestion = $this->normalizeMessage($suggestion);
                     $this->suggestionMap[$normalizedSuggestion] = [$intentName, $bestMatch];
                 }
             }
@@ -1550,9 +1764,19 @@ class TechnoBot
             $response["image"] = $subTopic["image"];
         }
 
-        // Prefer sub-topic's own suggestions list; fall back to the parent intent's list
-        $suggestionSource = $subTopic["suggestions"] ?? $intent["suggestions"] ?? [];
+        // For lessen and projectdag: always show the full list again (no cap, no exclusion)
+        if (in_array($intentName, ["lessen", "projectdag"])) {
+            foreach ($intent["suggestions"] as $suggestion) {
+                $response["buttons"][] = [
+                    "label" => $suggestion,
+                    "value" => $suggestion
+                ];
+            }
+            return $response;
+        }
 
+        // All other intents: show up to 3 other suggestions from sub-topic or parent
+        $suggestionSource = $subTopic["suggestions"] ?? $intent["suggestions"] ?? [];
         $suggestionCount = 0;
         foreach ($suggestionSource as $suggestion) {
             $normalizedSuggestion = $this->normalizeMessage($suggestion);
@@ -1595,12 +1819,25 @@ class TechnoBot
             if (isset($subTopicData["image"])) {
                 $response["image"] = $subTopicData["image"];
             }
+            // For lessen and projectdag: show all suggestions again after a lesson answer
+            if (in_array($intentName, ["lessen", "projectdag"])) {
+                foreach ($intent["suggestions"] as $suggestion) {
+                    $response["buttons"][] = ["label" => $suggestion, "value" => $suggestion];
+                }
+            }
             return $response;
         }
 
+        // For lessen and projectdag: show ALL suggestions as buttons (no 3-cap)
         $buttons = [];
-        foreach (array_slice($intent["suggestions"] ?? [], 0, 3) as $suggestion) {
-            $buttons[] = ["label" => $suggestion, "value" => $suggestion];
+        if (in_array($intentName, ["lessen", "projectdag"])) {
+            foreach ($intent["suggestions"] ?? [] as $suggestion) {
+                $buttons[] = ["label" => $suggestion, "value" => $suggestion];
+            }
+        } else {
+            foreach (array_slice($intent["suggestions"] ?? [], 0, 3) as $suggestion) {
+                $buttons[] = ["label" => $suggestion, "value" => $suggestion];
+            }
         }
 
         $response = ["reply" => $intent["answer"], "buttons" => $buttons];
