@@ -62,11 +62,6 @@ function restoreHistory() {
 
 // ── RENDERING ─────────────────────────────────────────────────────────────────
 
-/**
- * Render a message bubble into the chat box.
- * - Bot messages: use innerHTML so links/bold from PHP render correctly.
- * - User messages: use textContent to prevent XSS.
- */
 function renderMessage(message, sender, buttons = [], image = null, persist = false) {
     const messageDiv = document.createElement("div");
     messageDiv.classList.add(sender === "user" ? "user-message" : "bot-message");
@@ -75,15 +70,12 @@ function renderMessage(message, sender, buttons = [], image = null, persist = fa
     contentDiv.classList.add("message-content");
 
     if (sender === "bot") {
-        // Bot content comes from our own PHP — safe to render HTML (links, bold, etc.)
         contentDiv.innerHTML = message;
-        // Make sure all links open in a new tab
         contentDiv.querySelectorAll("a").forEach(a => {
             a.target = "_blank";
             a.rel = "noopener noreferrer";
         });
     } else {
-        // User content — always escape to prevent XSS
         contentDiv.textContent = message;
     }
 
@@ -112,10 +104,6 @@ function renderMessage(message, sender, buttons = [], image = null, persist = fa
     }
 }
 
-/**
- * Render suggestion buttons.
- * When any button is clicked, remove ALL previous button containers.
- */
 function renderButtons(buttons, persist = true) {
     const container = document.createElement("div");
     container.classList.add("buttons-container");
@@ -282,6 +270,4 @@ userInput.addEventListener("keydown", (e) => {
     if (e.key === "Enter" && e.shiftKey) e.preventDefault();
 });
 
-// ── INIT ──────────────────────────────────────────────────────────────────────
 
-// restoreHistory(); // Uncomment to persist chat across page refreshes

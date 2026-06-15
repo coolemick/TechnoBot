@@ -393,24 +393,19 @@ class TechnoBot
             ],
 
             // ── LESSEN ────────────────────────────────────────────────────────
-            "lessen" => [
+            "lesaanbod" => [
                 "keywords" => [
-                    "les",
-                    "lessen",
-                    "lesaanbod",
-                    "lesprogramma",
-                    "workshop",
                     "workshops",
-                    "techniekwijs",
-                    "toekomsttaal",
-                    "popup",
-                    "willie wortel",
-                    "pop up les",
+                    "Workshops",
+                    "lesaanbod",
                     "welke lessen zijn er",
                     "alle lessen",
+                    "overzicht lessen",
+                    "toekomstkunde lessen",
+                    "toon lessen",
                     "lessen overzicht"
                 ],
-                "answer" => "📚 Klik op een les hieronder voor meer info! Bekijk alles op <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>technolableiden.nl/toekomstkunde</a>",
+                "answer" => "📚 Klik op een les hieronder voor meer info <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>Klik hier!</a>",
                 "suggestions" => [
                     "Robot Ontdeklab",
                     "Kleine Muis",
@@ -459,7 +454,7 @@ class TechnoBot
                         "answer" => "🔬 <b>Experimenten met elementen</b> — Groep 1/2<br>Leerlingen ontdekken spelenderwijs de verschillende elementen, observeren en benoemen wat ze waarnemen, en bedenken oplossingen for (technische) problemen. <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>Meer informatie →</a>"
                     ],
                     "electriciteit" => [
-                        "keywords" => ["electriciteit les", "statische elektriciteit ballon", "plasmabol geleiding"],
+                        "keywords" => ["Electriciteit", "electriciteit les", "statische elektriciteit ballon", "plasmabol geleiding"],
                         "answer" => "⚡ <b>Electriciteit</b> — Groep 1/2<br>Kinderen ontdekken statische elektriciteit, leren welke materialen geleiden, ervaren zichtbare stroom met een plasmabol en ontdekken hoe elektriciteit zich gedraagt. <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>Meer informatie →</a>"
                     ],
                     "avontuurlijke_architecten_les" => [
@@ -487,7 +482,7 @@ class TechnoBot
                         "answer" => "🎨 <b>Draadkunst</b> — Groep 4<br>Leerlingen ontwerpen een dier dat kan overleven op een aangegeven locatie. Ze maken eerst een 2D-ontwerp en bouwen dit in 3D. <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>Meer informatie →</a>"
                     ],
                     "space_jam" => [
-                        "keywords" => ["space jam les", "makey makey stroomkring instrument"],
+                        "keywords" => ["Spacejam", "Space jam", "space jam", "space jam les", "makey makey stroomkring instrument"],
                         "answer" => "🚀 <b>Space Jam</b> — Groep 4<br>Leerlingen leren wat een stroomkring is, onderzoeken geleiding en bouwen een papieren/kartonnen instrument met Makey Makey. <a href='https://www.technolableiden.nl/toekomstkunde/' target='_blank'>Meer informatie →</a>"
                     ],
                     "dierenavontuur" => [
@@ -576,6 +571,49 @@ class TechnoBot
                     ],
                 ],
             ],
+            "lessen" => [
+                "keywords" => [
+                    "techniekwijs",
+                    "toekomsttaal",
+                    "popup",
+                    "willie wortel",
+                    "lesprogramma",
+                    "onderwijsaanbod"
+                ],
+                "answer" => "Technolab biedt inspirerende lessen en workshops voor PO en VO op het gebied van techniek, wetenschap en talentontwikkeling! 📚",
+                "suggestions" => [
+                    "Wat zijn alle lesprogramma's?",
+                    "Wat is TechniekWijs?",
+                    "Wat is ToekomstTaal?"
+                ],
+                "sub_topics" => [
+                    "overzicht" => [
+                        "keywords" => ["alle lessen technolab", "welke lessen zijn er", "wat zijn de lesprogrammas van technolab"],
+                        "answer" => "Technolab heeft drie hoofdleerlijnen: TechniekWijs (wetenschap & techniek), ToekomstTaal (programmeren & mediawijsheid) en Toekomstkunde (duurzaamheid & technologie). Daarnaast zijn er POP-UP projectweken, mini-stages en de Willie Wortel Wedstrijd! 🔭💻🌱",
+                    ],
+                    "techniekwijs" => [
+                        "keywords" => ["techniekwijs les", "wat is techniekwijs", "wetenschap techniek les"],
+                        "answer" => "TechniekWijs is de leerlijn voor wetenschap en techniekonderwijs. Met een rijk aanbod aan apparatuur halen we de uitvinder in leerlingen naar boven! Denk aan workshops over stroomcircuits, katrollen, tandwielen en elektriciteit. 🔧⚡",
+                    ],
+                    "toekomsttaal" => [
+                        "keywords" => ["toekomsttaal les", "programmeren les", "mediawijsheid les", "wat is toekomsttaal"],
+                        "answer" => "ToekomstTaal is de leerlijn voor programmeren en mediawijsheid. Leerlingen leren hoe digitale technologie werkt, programmeren met Micro:bit en bouwen eigen robots! 🤖📱",
+                    ],
+                    "toekomstkunde_les" => [
+                        "keywords" => ["toekomstkunde les", "duurzaamheid les", "klimaat les", "wat is toekomstkunde les"],
+                        "answer" => "Toekomstkunde gaat over duurzaamheid, hernieuwbare energie, biodiversiteit en klimaatactie. Leerlingen werken hands-on aan oplossingen voor duurzaamheidsvraagstukken. 🌿🌍",
+                    ],
+                    "popup" => [
+                        "keywords" => ["popup les technolab", "pop up projectweek", "les op school popup"],
+                        "answer" => "Met POP-UP Technolab komen wij naar jouw school! We verzorgen een week vullend programma met activiteiten op school én bijzondere dagdelen bij Technolab of de Hortus. Er is een programmeer/maakweek én een uitvindersweek. Afgesloten met een tentoonstelling! 🎉",
+                    ],
+                    "willie_wortel" => [
+                        "keywords" => ["willie wortel wedstrijd", "uitvinderswedstrijd technolab"],
+                        "answer" => "De Willie Wortel Wedstrijd is een uitvinderswedstrijd voor jonge geniën uit de regio Leiden. Ze bedenken creatieve oplossingen voor uiteenlopende problemen. Er is ook een junior versie voor jongere leerlingen! 🏆💡",
+                    ],
+                ]
+            ],
+
 
             // ── FIKA ──────────────────────────────────────────────────────────
             "fika" => [
@@ -674,6 +712,7 @@ class TechnoBot
                     ],
                 ]
             ],
+
 
             // ── PENSIOEN ──────────────────────────────────────────────────────
             "pensioen" => [
@@ -1307,77 +1346,38 @@ class TechnoBot
     private function initializeSynonyms(): void
     {
         $this->synonyms = [
-            // Loon / salaris
             "loon"              => ["salaris", "betaling", "uitbetaling", "verdienste", "inkomsten", "geld", "loonstrook", "vergoeding", "inkomen", "gage", "arbeidsvergoeding"],
             "salaris"           => ["loon", "betaling", "uitbetaling", "verdienste", "inkomen", "vergoeding", "gage"],
             "betaling"          => ["uitbetaling", "loon", "salaris", "geld", "giro", "overschrijving", "storting", "betalingen"],
-
-            // Lessen / onderwijs
             "lessen"            => ["les", "workshop", "lesaanbod", "lesprogramma", "training", "cursus", "les geven", "onderwijs", "educatie", "instructie", "activiteit"],
             "workshop"          => ["les", "training", "cursus", "sessie", "bijeenkomst", "werksessie", "activiteit", "programma", "les geven"],
             "techniekwijs"      => ["techniek", "wetenschap", "electronics", "maker", "stroomcircuit", "tandwiel", "katrol", "uitvinder"],
             "programmeren"      => ["coderen", "coding", "digitaal", "toekomsttaal", "computeren", "software", "scripting", "algoritme", "microbit"],
             "duurzaamheid"      => ["groen", "klimaat", "toekomstkunde", "milieu", "circulair", "energie", "hernieuwbaar", "biodiversiteit", "ecologie"],
-
-            // Dagco / organisatie
             "dagco"             => ["dagcoordinator", "dagcoördinator", "coordinator", "dagplanner", "openingsdienst", "dienstdoende"],
             "holacratie"        => ["werkoverleg", "cirkel", "team overleg", "cirkeloverleg", "zelfsturend", "scrum", "agile", "autonomie", "zelforganisatie"],
             "planner"           => ["agenda", "teamplanner", "rooster", "planning", "schema", "kalender", "werkschema", "dienstrooster"],
-
-            // Stage / werk
             "stage"             => ["stagiair", "stageplaats", "stagelopen", "praktijk", "leertraject", "beroepspraktijk", "werkplek", "stageplek", "leerwerkplek"],
             "medewerker"        => ["werknemer", "collega", "teamlid", "personeel", "stagiair", "medewerkers"],
-
-            // Pasje / toegang
             "pasje"             => ["badge", "liftpas", "toegangspas", "kaart", "keycard", "pas", "toegangskaart", "identiteitskaart"],
-
-            // BHV / veiligheid
             "bhv"               => ["bedrijfshulpverlening", "noodgeval", "ehbo", "veiligheid", "brandwacht", "calamiteit", "hulpverlener", "ontruiming"],
             "noodgeval"         => ["calamiteit", "incident", "brand", "ongeluk", "gevaar", "emergency", "alarm", "ontruiming"],
-
-            // Fika / koken
             "fika"              => ["lunch", "samen eten", "gezamenlijke maaltijd", "woensdag lunch", "koken", "maaltijd", "groepslunch", "community lunch"],
-
-            // Bus / vervoer
             "bus"               => ["vervoer", "auto", "voertuig", "busje", "transport", "minibus", "wagen", "rijden", "mobiliteit"],
             "vervoer"           => ["bus", "fiets", "auto", "transport", "mobiliteit", "rijden", "reizen"],
-
-            // Boekhouding / geld
             "boekhouding"       => ["administratie", "financiën", "declaratie", "inkoop", "bonnetje", "rekening", "uitgaven", "factuur", "begroting"],
             "declareren"        => ["terugkrijgen", "vergoed krijgen", "voorschieten", "indienen", "declaratie", "terugvorderen"],
-
-            // Pensioen
             "pensioen"          => ["brightpensioen", "pensioenfonds", "ouderdomspensioen", "lijfrente", "pensioenregeling", "pensioenbijdrage", "pensioenopbouw"],
-
-            // MDT
             "mdt"               => ["maatschappelijke diensttijd", "vrijwilligerswerk", "maatschappelijk", "gemeenschap", "subsidie", "jongerenwerk"],
-
-            // VOG
             "vog"               => ["verklaring omtrent gedrag", "integriteitsverklaring", "screenen", "screening", "achtergrondcheck", "bewijs goed gedrag"],
-
-            // Huisregels / gedrag
             "huisregels"        => ["regels", "gedragscode", "protocol", "richtlijnen", "afspraken", "normen", "huisorde", "werkafspraken"],
-
-            // Email handtekening
             "emailhandtekening" => ["handtekening", "outlook handtekening", "mail handtekening", "signature", "email signature", "visitekaartje email"],
-
-            // Urenregistratie
             "urenregistratie"   => ["uren", "tijdregistratie", "werkuren", "tijdschrijven", "klokken", "uren bijhouden", "uren noteren"],
-
-            // Zijinstromers
             "zijinstromers"     => ["zij-instromers", "carriere switch", "overstap", "herintreder", "omscholing", "beroepsverandering", "nieuw vak", "van baan wisselen"],
             "meesterchallenge"  => ["10 weken", "challenge onderwijs", "leer werktraject", "traject", "programma onderwijs"],
-
-            // Techniek en Toekomst
             "techniek"          => ["technisch", "ambacht", "vakman", "installatie", "constructie", "bouw", "machinerie", "engineering"],
-
-            // Bedrijven / samenwerking
             "bedrijven"         => ["bedrijf", "organisatie", "werkgever", "partners", "samenwerking", "ondernemers", "sponsoren", "opdrachtgevers"],
-
-            // Leskisten
             "leskisten"         => ["kisten", "blauwe kisten", "materiaalkoffer", "lesmateriaal", "leskist", "materiaalbox", "lesbox"],
-
-            // Coaching / buddy
             "coaching"          => ["begeleiding", "mentoring", "ondersteuning", "persoonlijke ontwikkeling", "coach", "buddy", "leerbegeleiding"],
 
             // Who / how / when — question helpers
@@ -1392,50 +1392,61 @@ class TechnoBot
     private function initializeSemanticGroups(): void
     {
         $this->semanticGroups = [
-            // Financieel
             "financial"         => ["loon", "salaris", "betaling", "geld", "verdienen", "uitbetaling", "pensioen", "brightpensioen", "declareren", "boekhouding", "vergoeding", "inkomen", "factuur"],
-
-            // Onderwijs / lessen
             "education"         => ["lessen", "les", "workshop", "techniekwijs", "toekomsttaal", "toekomstkunde", "programmeren", "educatie", "lesaanbod", "lesprogramma", "leskisten", "popup"],
-
-            // Organisatie / structuur
             "organization"      => ["dagco", "holacratie", "cirkel", "team", "planner", "werkoverleg", "rolverdeler", "facilitator", "secretaris", "agenda", "teamplanner"],
-
-            // Werk / stage / loopbaan
             "work"              => ["stage", "werk", "job", "stagiair", "medewerker", "contract", "arbeidscontract", "leerwerkplek", "beroepspraktijk", "leertraject"],
-
-            // Regels / beleid
             "rules"             => ["huisregels", "gedrag", "regels", "protocol", "richtlijn", "gedragscode", "afspraken", "normen"],
-
-            // Veiligheid / noodgevallen
             "safety"            => ["bhv", "bedrijfshulpverlening", "noodgeval", "ehbo", "brandwacht", "calamiteit", "hulpverlener", "alarm", "ontruiming", "veiligheid"],
-
-            // Projectdagen / basisschool
             "projects"          => ["projectdag", "botsende bots", "groene daken", "mens en robot", "duurzaam huis", "avontuurlijke architecten", "ontwerp je attractie", "basisschool", "leerlingen"],
-
-            // Vervoer / mobiliteit
             "transport"         => ["bus", "fiets", "vervoer", "auto", "rijden", "mobiliteit", "transport", "busje", "wagen", "reserveren"],
-
-            // Communicatie / digitaal
             "communication"     => ["signal", "appgroep", "whatsapp", "emailhandtekening", "email", "handtekening", "outlook", "app", "communicatie", "berichten"],
-
-            // Toegang / gebouw
             "access"            => ["pasje", "badge", "liftpas", "sleutel", "alarm", "toegang", "gebouw", "pand", "keycard", "inchecken"],
-
-            // Carrière switch / zijinstromers
             "career_switch"     => ["zijinstromers", "meesterchallenge", "expeditie leerkracht", "techniek en toekomst", "carriere switch", "omscholing", "herintreder", "beroepsverandering"],
-
-            // Bedrijven / partners
             "business"          => ["bedrijven", "partner", "samenwerking", "opdrachtgever", "sponsors", "ondernemers", "organisaties", "bedrijf"],
-
-            // Persoonlijke ontwikkeling
             "personal_growth"   => ["coaching", "buddy", "begeleiding", "mentoring", "leerdoel", "talentontwikkeling", "groeien", "vertrouwenspersoon"],
-
-            // Talent & toekomst / scholen
             "schools"           => ["talent en toekomst", "scholen", "leerlingen", "vo", "mavo", "basisschool", "po", "mbo", "hbo", "studenten"],
-
-            // Tijdregistratie / uren
             "time"              => ["urenregistratie", "uren", "tijdregistratie", "werkuren", "mdt", "maatschappelijke diensttijd", "rooster", "werkschema"],
+            "loon"              => ["salaris", "betaling", "uitbetaling", "verdienste", "inkomsten", "geld", "loonstrook", "vergoeding", "inkomen", "gage", "arbeidsvergoeding"],
+            "salaris"           => ["loon", "betaling", "uitbetaling", "verdienste", "inkomen", "vergoeding", "gage"],
+            "betaling"          => ["uitbetaling", "loon", "salaris", "geld", "giro", "overschrijving", "storting", "betalingen"],
+            "lessen"            => ["les", "workshop", "lesaanbod", "lesprogramma", "training", "cursus", "les geven", "onderwijs", "educatie", "instructie", "activiteit"],
+            "workshop"          => ["les", "training", "cursus", "sessie", "bijeenkomst", "werksessie", "activiteit", "programma", "les geven"],
+            "techniekwijs"      => ["techniek", "wetenschap", "electronics", "maker", "stroomcircuit", "tandwiel", "katrol", "uitvinder"],
+            "programmeren"      => ["coderen", "coding", "digitaal", "toekomsttaal", "computeren", "software", "scripting", "algoritme", "microbit"],
+            "duurzaamheid"      => ["groen", "klimaat", "toekomstkunde", "milieu", "circulair", "energie", "hernieuwbaar", "biodiversiteit", "ecologie"],
+            "dagco"             => ["dagcoordinator", "dagcoördinator", "coordinator", "dagplanner", "openingsdienst", "dienstdoende"],
+            "holacratie"        => ["werkoverleg", "cirkel", "team overleg", "cirkeloverleg", "zelfsturend", "scrum", "agile", "autonomie", "zelforganisatie"],
+            "planner"           => ["agenda", "teamplanner", "rooster", "planning", "schema", "kalender", "werkschema", "dienstrooster"],
+            "stage"             => ["stagiair", "stageplaats", "stagelopen", "praktijk", "leertraject", "beroepspraktijk", "werkplek", "stageplek", "leerwerkplek"],
+            "medewerker"        => ["werknemer", "collega", "teamlid", "personeel", "stagiair", "medewerkers"],
+            "pasje"             => ["badge", "liftpas", "toegangspas", "kaart", "keycard", "pas", "toegangskaart", "identiteitskaart"],
+            "bhv"               => ["bedrijfshulpverlening", "noodgeval", "ehbo", "veiligheid", "brandwacht", "calamiteit", "hulpverlener", "ontruiming"],
+            "noodgeval"         => ["calamiteit", "incident", "brand", "ongeluk", "gevaar", "emergency", "alarm", "ontruiming"],
+            "fika"              => ["lunch", "samen eten", "gezamenlijke maaltijd", "woensdag lunch", "koken", "maaltijd", "groepslunch", "community lunch"],
+            "bus"               => ["vervoer", "auto", "voertuig", "busje", "transport", "minibus", "wagen", "rijden", "mobiliteit"],
+            "vervoer"           => ["bus", "fiets", "auto", "transport", "mobiliteit", "rijden", "reizen"],
+            "boekhouding"       => ["administratie", "financiën", "declaratie", "inkoop", "bonnetje", "rekening", "uitgaven", "factuur", "begroting"],
+            "declareren"        => ["terugkrijgen", "vergoed krijgen", "voorschieten", "indienen", "declaratie", "terugvorderen"],
+            "pensioen"          => ["brightpensioen", "pensioenfonds", "ouderdomspensioen", "lijfrente", "pensioenregeling", "pensioenbijdrage", "pensioenopbouw"],
+            "mdt"               => ["maatschappelijke diensttijd", "vrijwilligerswerk", "maatschappelijk", "gemeenschap", "subsidie", "jongerenwerk"],
+            "vog"               => ["verklaring omtrent gedrag", "integriteitsverklaring", "screenen", "screening", "achtergrondcheck", "bewijs goed gedrag"],
+            "huisregels"        => ["regels", "gedragscode", "protocol", "richtlijnen", "afspraken", "normen", "huisorde", "werkafspraken"],
+            "emailhandtekening" => ["handtekening", "outlook handtekening", "mail handtekening", "signature", "email signature", "visitekaartje email"],
+            "urenregistratie"   => ["uren", "tijdregistratie", "werkuren", "tijdschrijven", "klokken", "uren bijhouden", "uren noteren"],
+            "zijinstromers"     => ["zij-instromers", "carriere switch", "overstap", "herintreder", "omscholing", "beroepsverandering", "nieuw vak", "van baan wisselen"],
+            "meesterchallenge"  => ["10 weken", "challenge onderwijs", "leer werktraject", "traject", "programma onderwijs"],
+            "techniek"          => ["technisch", "ambacht", "vakman", "installatie", "constructie", "bouw", "machinerie", "engineering"],
+            "bedrijven"         => ["bedrijf", "organisatie", "werkgever", "partners", "samenwerking", "ondernemers", "sponsoren", "opdrachtgevers"],
+            "leskisten"         => ["kisten", "blauwe kisten", "materiaalkoffer", "lesmateriaal", "leskist", "materiaalbox", "lesbox"],
+            "coaching"          => ["begeleiding", "mentoring", "ondersteuning", "persoonlijke ontwikkeling", "coach", "buddy", "leerbegeleiding"],
+
+            // Who / how / when — question helpers
+            "wie"               => ["welke persoon", "naam", "contact", "medewerker", "collega"],
+            "wat"               => ["welke", "soort", "type", "betekenis", "uitleg"],
+            "hoe"               => ["op welke manier", "werkwijze", "proces", "stappen", "procedure"],
+            "waar"              => ["locatie", "plek", "plaats", "adres", "gebouw"],
+            "wanneer"           => ["tijdstip", "moment", "dag", "uur", "datum", "periode"],
         ];
     }
 
@@ -1449,8 +1460,6 @@ class TechnoBot
             foreach ($intent["suggestions"] as $suggestion) {
                 $normalizedSuggestion = $this->normalizeMessage($suggestion);
 
-                // For lessen and projectdag: try direct sub-key name match first
-                // (suggestion "Robot Ontdeklab" → sub-key "robot_ontdeklab")
                 if (in_array($intentName, ["lessen", "projectdag"])) {
                     $guessedKey = strtolower(preg_replace('/[^a-z0-9]+/i', '_', $normalizedSuggestion));
                     $guessedKey = trim($guessedKey, '_');
@@ -1536,10 +1545,12 @@ class TechnoBot
         return trim($message);
     }
 
+
     private function tokenizeMessage(string $message): array
     {
         return array_filter(explode(' ', $message), fn($w) => strlen($w) >= 2);
     }
+
 
     public function respond(string $message): array
     {
